@@ -4,6 +4,7 @@ import Popular from './Popular';
 import { Route, Routes } from 'react-router-dom';
 import Repertuar from './Repertuar';
 import Movies from './Movies';
+import Searched from './Searched';
 
 
 function Pages() {
@@ -13,6 +14,7 @@ function Pages() {
         <Route path='/popular' element={<Popular />}/>
         <Route path='/movies' element={<Movies />}/>
         <Route path='/repertuar' element={<Repertuar/>}/>
+        <Route path='/searched/:search' element={<Searched/>}/>
     </Routes>
   )
 }

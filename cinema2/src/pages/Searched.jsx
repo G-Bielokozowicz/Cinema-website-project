@@ -1,9 +1,13 @@
 import React from 'react'
+import { useParams } from 'react-router-dom';
 
 function Searched() {
-  return (
-    <div>Searched</div>
-  )
+
+    let params=useParams();
+
+    return (
+        <div>Searched: {params.search}</div>
+    )
 }
 
 export default Searched

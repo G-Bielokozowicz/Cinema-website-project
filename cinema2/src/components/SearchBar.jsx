@@ -8,10 +8,15 @@ function SerachBar() {
     const [input,setInput] = useState("");
     const navigate = useNavigate();
 
+    const reg=/^\.\.\/|\.\.*$/;
+
     const submitHandler = (e) =>{
         e.preventDefault();
-        console.log({input});
-        navigate("/searched/"+input);
+        // eslint-disable-next-line
+        if (!reg.test(input)){
+            navigate("/searched/"+input);
+        }
+        
     }
 
     return (

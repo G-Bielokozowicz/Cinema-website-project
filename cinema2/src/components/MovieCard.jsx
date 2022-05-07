@@ -80,11 +80,9 @@ const Button = styled.button`
     border: none;
     //outline: red solid;
     transition: color 0.4s;
-
     position: relative;
     left: 70%;
     top: 20px;
-
     &:hover {
     color: #ffffff;
     }
