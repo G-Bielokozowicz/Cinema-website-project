@@ -1,19 +1,31 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 function NavigationBar() {
   return ( 
       <div>
       <Wrapper>
-        <Button>
-          Repertuar
-        </Button>    
-        <Button>
-          Movies
-        </Button>   
-        <Button>
-          Popular
-        </Button>  
+        <Link to={'/'}>
+          <Button >
+            Home
+          </Button>  
+        </Link>
+        <Link to={'/repertuar'}>
+          <Button >
+            Repertuar
+          </Button>  
+        </Link>
+        <Link to={'/movies'}>
+          <Button >
+            Movies
+          </Button>  
+        </Link>  
+        <Link to={'/popular'}>
+          <Button >
+            Popular
+          </Button>  
+        </Link>
       </Wrapper>
       </div>
   )

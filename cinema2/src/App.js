@@ -4,12 +4,13 @@ import NavigationBar from './components/NavigationBar';
 import Pages from './pages/Pages';
 
 
+
 function App() {
   return (
     <div>
-      <SerachBar />
-      <NavigationBar />
-      <Pages />
+        <SerachBar />
+        <NavigationBar />
+        <Pages />
     </div>
   );
 }

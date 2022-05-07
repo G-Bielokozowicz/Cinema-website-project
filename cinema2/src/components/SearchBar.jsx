@@ -14,9 +14,9 @@ function SerachBar() {
     return (
         <Wrapper>
             <FormStyle onSubmit={submitHandler}> 
-            <FaSearch></FaSearch>
-            <input onChange={(e)=>setInput(e.target.value)} type='text' value={input} placehoder='Search for a movie'/>    
-        </FormStyle>
+                <FaSearch></FaSearch>
+                <input onChange={(e)=>setInput(e.target.value)} type='text' value={input} placehoder='Search for a movie'/>    
+            </FormStyle>
         </Wrapper>
         )
 }

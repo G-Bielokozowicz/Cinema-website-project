@@ -2,6 +2,7 @@ import React from 'react'
 import MovieCard from './MovieCard'
 import styled from 'styled-components'
 
+
 function MovieCardList() {
   return (
     <div>
