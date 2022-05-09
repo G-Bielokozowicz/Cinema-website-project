@@ -100,9 +100,10 @@ const Description = styled.p`
 
 const ButtonRow=styled.section`
   display: flex;
-  justify-content: left;
-  align-items: left;
-  margin-top: 10%;
+  justify-content: right;
+  align-items: center;
+  margin-top: 18%;
+ 
 `
 
 const Button = styled.button`
