@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Repertuar from './Repertuar';
 import Movies from './Movies';
 import Searched from './Searched';
+import MoviePage from '../components/MoviePage';
 
 
 function Pages() {
@@ -15,6 +16,7 @@ function Pages() {
         <Route path='/movies' element={<Movies />}/>
         <Route path='/repertuar' element={<Repertuar/>}/>
         <Route path='/searched/:search' element={<Searched/>}/>
+        <Route path='/movie/:name' element={<MoviePage/>}/>
     </Routes>
   )
 }

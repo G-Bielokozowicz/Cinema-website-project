@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom'
 
 
 //TODO napisać kod do guzika
@@ -17,8 +17,10 @@ function MovieCard() {
                 Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
             </Description>
             <Button>
-                Buy ticket
-            </Button>
+                <MyLink to={'movie/avengers'}>
+                    Buy ticket
+                </MyLink>
+             </Button>       
         </Info>
     </Card>
   )
@@ -87,5 +89,14 @@ const Button = styled.button`
     color: #ffffff;
     }
 `;
+
+const MyLink=styled(Link)`
+    color: black;
+    text-decoration: none;
+    &:hover{
+        color:white;
+    }
+`
+
 
 export default MovieCard
