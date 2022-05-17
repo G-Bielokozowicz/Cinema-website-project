@@ -9,22 +9,39 @@ function MoviePage() {
       <Card>
           <FillerPoster />
           <Info>
-              <Title>
-                  Tytuł: Avengers
-              </Title>
-              <Description>
-                  Opis: Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
-              </Description>
-              <Description>
-                  Gatunek: Przygodowy, Fantasy
-              </Description>
-              <Description>
-                  Obsada: Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
-              </Description>
-              <Description>
-                  Reżyser: John Whedon
-              </Description>
-              <ButtonRow>
+            <TableRow>
+                <TitleRow>
+                    Tytuł:
+                </TitleRow>
+                <Description>
+                    Avengers
+                </Description>
+            </TableRow>
+            <TableRow>
+                <TitleRow>
+                    Opis:
+                </TitleRow>
+                <Description>
+                    Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
+                </Description>
+            </TableRow>
+            <TableRow>
+                <TitleRow>
+                    Obsada:
+                </TitleRow>
+                <Description>
+                    Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
+                </Description>
+            </TableRow>
+            <TableRow>
+                <TitleRow>
+                    Reżyser:
+                </TitleRow>
+                <Description>
+                    John Whedon
+                </Description>
+            </TableRow>
+            <ButtonRow>
                 <Button>             
                     11:40
                 </Button>  
@@ -37,8 +54,7 @@ function MoviePage() {
                 <Button>             
                     21:30
                 </Button> 
-              </ButtonRow>
-                   
+            </ButtonRow>      
           </Info>
       </Card>
   )
@@ -47,7 +63,7 @@ function MoviePage() {
 const Card = styled.section`
     display:flex;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1250px;
     height: 445px;
     overflow: hidden;
     position: relative;
@@ -72,31 +88,39 @@ const FillerPoster = styled.div`
 const Info = styled.div`
     display: table;
     flex-wrap: wrap;
-    //outline: blue solid;
-    //margin-left: 10px;
+    box-sizing: border-box;
     padding-left: 14px;
     padding-right: 14px;
     max-width: 100%;
     grid-template-rows:80px;
     background-color: black;
 `
-const Title = styled.h1`
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 2px;
-    margin-bottom: 20px;
-    padding-bottom: 6px;
+
+const TableRow = styled.div`
+    //display: table-row;
     border-bottom: solid 1px;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    margin-top: 10px;
 `
 
-const Description = styled.p`
-    font-size: 1rem;
+const TitleRow = styled.div`
+    display: table-cell;
+    min-width: 100px;
+    font-size: 1.1rem;
+    font-weight: 700;
+`
+
+const Description = styled.div`
+    display: table-cell;
+    font-size: 1.05rem;
     font-weight: 600;
     margin: 2px;
     max-height: 60%;
     margin-bottom:8px;
     padding-bottom: 8px;
-    border-bottom: solid 1px;
+    min-width: 160px;
+    box-sizing: border-box;
 `
 
 const ButtonRow=styled.section`
