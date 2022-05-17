@@ -11,17 +11,24 @@ function MovieCarousel() {
     return (
         <Wrapper>
             <Splide options = {{
+                type: 'loop',
                 perPage: 4,
                 arrows: false,
                 pagination: false,
+                autoplay: true,
+                fixedWidth: 200,
+                fixedHeight: 300,
+                perMove: 1,
+                pauseOnHover: true,
+
                 }}>
                 
                 {(() => {
                     let test = [];
-                    for (let i = 0; i <= 10; i++) {
-                        test.push(<SplideSlide>
-                                    <FillerPoster color={i}/>
-                                </SplideSlide>);
+                    for (let i = 0; i < 10; i++) {
+                        test.push(<SplideSlide key={i}>    
+                                        <FillerPoster color={i}/>
+                                    </SplideSlide>);
                     }
                     return test;
                 })()}
@@ -34,19 +41,17 @@ const Wrapper = styled.div`
     margin-top: 3rem;
     margin-left: auto;
     margin-right: auto;
-    width: 1600px;
-    max-width: 40%;
-    outline: 1px groove #D34D18;
+    width: 800px;
+    outline: 1px groove #d34d189e;
 `
 
 const FillerPoster = styled.div`
-    width: 200px;
-    height: 300px;
-    //background-color: #dbdada;
+    width: 100%;
+    height: 100%;
     background-color: ${props=>(props.color%2===1 ? '#271f6d' : 'purple')};
-    //margin-right: 15px;
     display: block;
-    color: transparent;
+    transition: all 0.4s ease-in-out;
 `
+
 
 export default MovieCarousel
