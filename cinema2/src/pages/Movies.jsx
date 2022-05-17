@@ -1,8 +1,11 @@
 import React from 'react'
+import MovieCardList from '../components/MovieCardList'
 
 function Movies() {
   return (
-    <div>Movies</div>
+    <div>
+      <MovieCardList/>
+    </div>
   )
 }
 

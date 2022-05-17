@@ -7,15 +7,15 @@ function MovieCardList() {
   return (
     <div>
         <MovieList>
-          <ListItem>
-            <MovieCard />
-          </ListItem>
-          <ListItem>
-            <MovieCard />
-          </ListItem>
-          <ListItem>
-            <MovieCard />
-          </ListItem>
+          {(() => {
+            let test = [];
+              for (let i = 0; i <= 10; i++) {
+                    test.push(<ListItem>
+                                <MovieCard />
+                              </ListItem>);
+                  }
+                  return test;
+          })()}
         </MovieList>
      
     </div>
