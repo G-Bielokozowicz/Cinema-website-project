@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-//TODO zrobic to tak jak na filmwebie, czyli kazdy wiersz powinien byc klasa table-movie-row, zeby to jakos ladnie wygladalo
-//info to bedzie table
 // to też trzeba będzie z bazy danych brac
 function MoviePage() {
   return (
