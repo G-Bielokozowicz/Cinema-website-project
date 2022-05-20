@@ -10,7 +10,7 @@ function MovieCardList(props) {
           {(() => {
             let test = [];
               for (let i = 0; i < props.number; i++) {
-                    test.push(<ListItem>
+                    test.push(<ListItem key={i}>
                                 <MovieCard />
                               </ListItem>);
                   }

@@ -13,11 +13,9 @@ function MovieCard() {
             <Description>
                 Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
             </Description>
-          
                 <MyLink to={'/movie/avengers'}>
                     Buy ticket
-                </MyLink>
-                   
+                </MyLink>               
         </Info>
     </Card>
   )

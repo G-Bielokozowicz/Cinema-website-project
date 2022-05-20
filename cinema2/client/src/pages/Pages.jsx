@@ -17,7 +17,7 @@ function Pages() {
         <Route path='/repertuar' element={<Repertuar/>}/>
         <Route path='/searched/:search' element={<Searched/>}/>
         <Route path='/movie/:name' element={<MoviePage/>}/>
-        <Route path='/move/:name/ticket' element={<BuyTicket/>}/>
+        <Route path='/movie/:name/ticket' element={<BuyTicket/>}/>
     </Routes>
   )
 }

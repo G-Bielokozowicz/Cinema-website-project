@@ -45,18 +45,18 @@ function MoviePage() {
                     </Description>
                 </TableRow>
                 <ButtonRow>
-                    <Button>        
+                    <Button to={'ticket'} state={{ time: '11:40'}}>        
                         11:40
                     </Button>  
-                    <Button>             
+                    <Button to={'ticket'} state={{ time:  '14:20'}}>              
                         14:20
                     </Button> 
-                    <Button>             
+                    <Button to={'ticket'} state={{ time: '17:30'}}>             
                         17:30
                     </Button> 
-                    <Button>             
+                    <Button to={'ticket'} state={{ time: '21:30'}}>             
                         21:30
-                    </Button> 
+                    </Button > 
                 </ButtonRow>      
             </Info>
         </Card>
@@ -134,7 +134,7 @@ const ButtonRow=styled.section`
  
 `
 
-const Button = styled.button`
+const Button = styled(Link)`
     background-color: #d34d18;
     position: right;
     color: #000;
@@ -147,16 +147,12 @@ const Button = styled.button`
     margin: 0 10px 0px 10px;
     //outline: red solid;
     transition: color 0.4s;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     &:hover {
     color: #ffffff;
-    }
-`
-
-const MyLink=styled(Link)`
-    color: black;
-    text-decoration: none;
-    &:hover{
-        color:white;
     }
 `
 
