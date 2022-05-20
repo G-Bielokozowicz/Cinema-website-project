@@ -6,7 +6,7 @@ import Repertuar from './Repertuar';
 import Movies from './Movies';
 import Searched from './Searched';
 import MoviePage from '../components/MoviePage';
-
+import BuyTicket from './BuyTicket';
 
 function Pages() {
   return (
@@ -17,6 +17,7 @@ function Pages() {
         <Route path='/repertuar' element={<Repertuar/>}/>
         <Route path='/searched/:search' element={<Searched/>}/>
         <Route path='/movie/:name' element={<MoviePage/>}/>
+        <Route path='/move/:name/ticket' element={<BuyTicket/>}/>
     </Routes>
   )
 }

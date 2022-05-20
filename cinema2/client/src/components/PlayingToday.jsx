@@ -6,7 +6,7 @@ function PlayingToday() {
   return (
     <div>
         <Wrapper>
-            <Text>Dzisiaj grddfgamy</Text>
+            <Text>Dzisiaj gramy</Text>
             <MovieCardList number={3}/>
         </Wrapper>
         

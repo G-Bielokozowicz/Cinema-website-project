@@ -1,60 +1,65 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 // to też trzeba będzie z bazy danych brac
 function MoviePage() {
-  return (
-      <Card>
-          <FillerPoster />
-          <Info>
-            <TableRow>
-                <TitleRow>
-                    Tytuł:
-                </TitleRow>
-                <Description>
-                    Avengers
-                </Description>
-            </TableRow>
-            <TableRow>
-                <TitleRow>
-                    Opis:
-                </TitleRow>
-                <Description>
-                    Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
-                </Description>
-            </TableRow>
-            <TableRow>
-                <TitleRow>
-                    Obsada:
-                </TitleRow>
-                <Description>
-                    Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
-                </Description>
-            </TableRow>
-            <TableRow>
-                <TitleRow>
-                    Reżyser:
-                </TitleRow>
-                <Description>
-                    John Whedon
-                </Description>
-            </TableRow>
-            <ButtonRow>
-                <Button>             
-                    11:40
-                </Button>  
-                <Button>             
-                    14:20
-                </Button> 
-                <Button>             
-                    17:30
-                </Button> 
-                <Button>             
-                    21:30
-                </Button> 
-            </ButtonRow>      
-          </Info>
-      </Card>
+
+    let { name } = useParams();
+
+    return (
+        <Card>
+            <FillerPoster />
+            <Info>
+                <TableRow>
+                    <TitleRow>
+                        Tytuł:
+                    </TitleRow>
+                    <Description>
+                        {name.charAt(0).toUpperCase() + name.slice(1)}
+                    </Description>
+                </TableRow>
+                <TableRow>
+                    <TitleRow>
+                        Opis:
+                    </TitleRow>
+                    <Description>
+                        Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
+                    </Description>
+                </TableRow>
+                <TableRow>
+                    <TitleRow>
+                        Obsada:
+                    </TitleRow>
+                    <Description>
+                        Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
+                    </Description>
+                </TableRow>
+                <TableRow>
+                    <TitleRow>
+                        Reżyser:
+                    </TitleRow>
+                    <Description>
+                        John Whedon
+                    </Description>
+                </TableRow>
+                <ButtonRow>
+                    <Button>        
+                        11:40
+                    </Button>  
+                    <Button>             
+                        14:20
+                    </Button> 
+                    <Button>             
+                        17:30
+                    </Button> 
+                    <Button>             
+                        21:30
+                    </Button> 
+                </ButtonRow>      
+            </Info>
+        </Card>
   )
 }
 
@@ -145,6 +150,14 @@ const Button = styled.button`
     &:hover {
     color: #ffffff;
     }
-`;
+`
+
+const MyLink=styled(Link)`
+    color: black;
+    text-decoration: none;
+    &:hover{
+        color:white;
+    }
+`
 
 export default MoviePage
