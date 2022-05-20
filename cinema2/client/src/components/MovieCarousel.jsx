@@ -39,7 +39,7 @@ function MovieCarousel() {
 
 const Wrapper = styled.div`
     margin-top: 3rem;
-    margin-left: auto;
+    margin-left: 35.5rem;
     margin-right: auto;
     width: 800px;
     outline: 1px groove #d34d189e;

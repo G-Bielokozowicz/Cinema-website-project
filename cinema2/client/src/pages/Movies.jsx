@@ -4,7 +4,7 @@ import MovieCardList from '../components/MovieCardList'
 function Movies() {
   return (
     <div>
-      <MovieCardList/>
+      <MovieCardList number={10}/>
     </div>
   )
 }

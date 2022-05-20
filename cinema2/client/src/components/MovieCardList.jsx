@@ -3,13 +3,13 @@ import MovieCard from './MovieCard'
 import styled from 'styled-components'
 
 
-function MovieCardList() {
+function MovieCardList(props) {
   return (
     <div>
         <MovieList>
           {(() => {
             let test = [];
-              for (let i = 0; i <= 10; i++) {
+              for (let i = 0; i < props.number; i++) {
                     test.push(<ListItem>
                                 <MovieCard />
                               </ListItem>);
