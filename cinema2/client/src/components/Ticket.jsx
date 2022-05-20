@@ -2,12 +2,16 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
+import { useParams} from 'react-router-dom'
 
-function Ticket(props) {
+//TODO zrobić ui żeby było ładniej
+
+function Ticket() {
     const location = useLocation()
     const { time } = location.state
     const [seatNumber, setSeatNumber]=useState(1);
-
+    const params = useParams()
+    const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
     function handleSetSeatNumber(id){
         setSeatNumber(id)
     }
@@ -20,8 +24,9 @@ function Ticket(props) {
       }
     return (
         <div>
-            {props.name}
-            Chosen seat is {seatNumber}
+            You are buying ticket for {name} at {time}
+            <br></br>
+            Chosen seat is {seatNumber} 
             <CinemaHall>
                 {seats}
             </CinemaHall>
@@ -29,6 +34,12 @@ function Ticket(props) {
         </div>
     )
 }
+
+const Wrapper=styled.div`
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+`
 
 const CinemaHall=styled.div`
     display: flex;
@@ -50,13 +61,14 @@ const Square=styled.button`
     border: none;
     background-color: white;
     outline: double 1px;
-    flex-basis:2%;
+    flex-basis: 2%;
     cursor: pointer;
     transition: all 0.3s;
     &:hover{
         background-color: #D34D18;
         color: white;
     }
+    
 `
 
 export default Ticket
