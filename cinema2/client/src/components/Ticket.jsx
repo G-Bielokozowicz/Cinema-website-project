@@ -23,29 +23,46 @@ function Ticket() {
         </Square>);
       }
     return (
-        <div>
+        <Wrapper>
             You are buying ticket for {name} at {time}
             <br></br>
             Chosen seat is {seatNumber} 
+            <Screen>
+                Screen
+            </Screen>
             <CinemaHall>
                 {seats}
             </CinemaHall>
-            
-        </div>
+        </Wrapper>
     )
 }
 
+
 const Wrapper=styled.div`
-    display:flex;
-    flex-wrap: wrap;
+    display:grid;
     justify-content: center;
+    margin-top: 25px;
+`
+
+const Screen=styled.div`
+    display: flex;
+    margin-top: 50px;
+    min-width: 1100px;
+    height: 30px;
+    font-weight: 5rem;
+    background-color: #eeeded;
+    color: black;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 600;
 `
 
 const CinemaHall=styled.div`
+    margin-top: 12%;
     display: flex;
     flex-wrap: wrap; 
     height: 250px;
-    width: 600px;
+    width: 1100px;
     align-content: flex-start;
     
 `
@@ -56,10 +73,10 @@ const Square=styled.button`
     align-items: center;
     margin-top: 10px;
     margin-left: 5px;
-    min-height: 25px;
-    min-width: 25px;
+    min-height: 50px;
+    min-width: 50px;
     border: none;
-    background-color: white;
+    background-color: #eeeded;
     outline: double 1px;
     flex-basis: 2%;
     cursor: pointer;
