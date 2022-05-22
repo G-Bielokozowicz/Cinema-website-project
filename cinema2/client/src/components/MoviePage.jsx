@@ -3,10 +3,18 @@ import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-// to też trzeba będzie z bazy danych brac
-function MoviePage() {
+import { useLocation } from 'react-router-dom'
 
-    let { name } = useParams();
+// to też trzeba będzie z bazy danych brac
+function MoviePage(props) {
+    
+    const params = useParams()
+    const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
+    const location = useLocation()
+
+
+    const description=location.state.temp[0]
+    const director=location.state.temp[1]
 
     return (
         <Card>
@@ -16,33 +24,33 @@ function MoviePage() {
                     <TitleRow>
                         Tytuł:
                     </TitleRow>
-                    <Description>
-                        {name.charAt(0).toUpperCase() + name.slice(1)}
-                    </Description>
+                    <TableText>
+                        {name}
+                    </TableText>
                 </TableRow>
                 <TableRow>
                     <TitleRow>
                         Opis:
                     </TitleRow>
-                    <Description>
-                        Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
-                    </Description>
+                    <TableText>
+                        {description}
+                    </TableText>
                 </TableRow>
                 <TableRow>
                     <TitleRow>
                         Obsada:
                     </TitleRow>
-                    <Description>
+                    <TableText>
                         Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
-                    </Description>
+                    </TableText>
                 </TableRow>
                 <TableRow>
                     <TitleRow>
                         Reżyser:
                     </TitleRow>
-                    <Description>
-                        John Whedon
-                    </Description>
+                    <TableText>
+                        {director}
+                    </TableText>
                 </TableRow>
                 <ButtonRow>
                     <Button to={'ticket'} state={{ time: '11:40'}}>        
@@ -114,7 +122,7 @@ const TitleRow = styled.div`
     font-weight: 700;
 `
 
-const Description = styled.div`
+const TableText = styled.div`
     display: table-cell;
     font-size: 1.05rem;
     font-weight: 600;

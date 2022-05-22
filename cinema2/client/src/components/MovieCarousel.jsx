@@ -38,17 +38,6 @@ function MovieCarousel() {
                 perMove: 1,
                 pauseOnHover: true,
                 }}>
-                
-                {/* {(() => {
-                    let test = [];
-                    for (let i = 0; i < 10; i++) {
-                        test.push(<SplideSlide key={i}>    
-                                        <FillerPoster color={i}/>
-                                    </SplideSlide>);
-                    }
-                    return test;
-                })()} */}
-
                 {movies.map((movie)=>{
                     return (
                         <SplideSlide key={movie._id}>
@@ -69,13 +58,6 @@ const Wrapper = styled.div`
     outline: 1px groove #d34d189e;
 `
 
-const FillerPoster = styled.div`
-    width: 100%;
-    height: 100%;
-    background-color: ${props=>(props.color%2===1 ? '#271f6d' : 'purple')};
-    display: block;
-    transition: all 0.4s ease-in-out;
-`
 
 
 export default MovieCarousel

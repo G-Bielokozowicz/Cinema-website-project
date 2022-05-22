@@ -30,11 +30,10 @@ function MovieCardList(props) {
           {movies.map((movie)=>{
             return (
               <ListItem key={movie._id}>
-                <MovieCard name={movie.movieName} description={movie.movieDescription} image={movie.moviePosterURL}/>
+                <MovieCard name={movie.movieName} description={movie.movieDescription} image={movie.moviePosterURL} director={movie.movieDirector}/>
               </ListItem>
             )
           })}
-
           </MovieList>
       
       </div>
