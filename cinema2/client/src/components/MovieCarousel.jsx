@@ -2,11 +2,28 @@ import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/splide/dist/css/splide.min.css'
 import styled from 'styled-components'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-// tu będzie trzeba z bazy danych brać plakaty
+
 
 function MovieCarousel() {
 
+    const [movies, setMovies] = useState([])
+
+    const getMovies = async () =>{
+      axios.get('http://localhost:5000/movies/')
+      .then((response) => {
+        setMovies(response.data)
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+    }
+   
+    useEffect(()=>{
+      getMovies()
+    },[])
 
     return (
         <Wrapper>
@@ -20,10 +37,9 @@ function MovieCarousel() {
                 fixedHeight: 300,
                 perMove: 1,
                 pauseOnHover: true,
-
                 }}>
                 
-                {(() => {
+                {/* {(() => {
                     let test = [];
                     for (let i = 0; i < 10; i++) {
                         test.push(<SplideSlide key={i}>    
@@ -31,7 +47,15 @@ function MovieCarousel() {
                                     </SplideSlide>);
                     }
                     return test;
-                })()}
+                })()} */}
+
+                {movies.map((movie)=>{
+                    return (
+                        <SplideSlide key={movie._id}>
+                            <img src={movie.moviePosterURL} width={200} height={300} alt='Poster'/>
+                        </SplideSlide>
+                    )
+                })}
             </Splide>
         </Wrapper>
     )
