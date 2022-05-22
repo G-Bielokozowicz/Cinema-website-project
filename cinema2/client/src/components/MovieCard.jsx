@@ -2,23 +2,25 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-function MovieCard() {
-  return (
-    <Card>
-        <FillerPoster />
-        <Info>
-            <Title>
-                Avengers
-            </Title>
-            <Description>
-                Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
-            </Description>
-                <MyLink to={'/movie/avengers'}>
-                    Buy ticket
-                </MyLink>               
-        </Info>
-    </Card>
-  )
+function MovieCard(props) {
+
+
+    return (
+        <Card>
+            <FillerPoster />
+            <Info>
+                <Title>
+                    {props.name}
+                </Title>
+                <Description>
+                    Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
+                </Description>
+                    <MyLink to={'/movie/avengers'}>
+                        Buy ticket
+                    </MyLink>               
+            </Info>
+        </Card>
+    )
 }
 
 const Card = styled.section`
