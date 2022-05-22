@@ -4,13 +4,11 @@ import '@splidejs/splide/dist/css/splide.min.css'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 function MovieCarousel() {
 
     const [movies, setMovies] = useState([])
-    const navigate = useNavigate();
     const getMovies = async () =>{
       axios.get('http://localhost:5000/movies/')
       .then((response) => {
@@ -25,18 +23,17 @@ function MovieCarousel() {
       getMovies()
     },[])
  
-    const handleClick = (name) => {
-      console.log(name)  
-    }
+ 
 
     return (
         <Wrapper>
             <Splide options = {{
-               
+                rewind: true,
                 perPage: 4,
                 arrows: false,
                 pagination: false,
                 autoplay: true,
+                interval: 5000,
                 fixedWidth: 200,
                 fixedHeight: 300,
                 perMove: 1,
