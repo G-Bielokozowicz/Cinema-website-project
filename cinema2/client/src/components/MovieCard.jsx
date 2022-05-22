@@ -7,15 +7,15 @@ function MovieCard(props) {
 
     return (
         <Card>
-            <img src={props.image} width={200} height={300}/>
+            <img src={props.image} width={200} height={300} alt='Poster'/>
             <Info>
                 <Title>
                     {props.name}
                 </Title>
                 <Description>
-                    Grupa superbohaterów, na czele z Thorem, Iron Manem i Hulkiem, łączy siły, by obronić Ziemię przed inwazją kosmitów.
+                    {props.description}
                 </Description>
-                    <MyLink to={'/movie/avengers'}>
+                    <MyLink to={`/movie/${props.name}`}>
                         Buy ticket
                     </MyLink>               
             </Info>

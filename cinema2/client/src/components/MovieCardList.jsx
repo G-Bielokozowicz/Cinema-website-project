@@ -27,20 +27,10 @@ function MovieCardList(props) {
     return (
       <div>
           <MovieList>
-            
-            {/* {(() => {
-              let test = [];
-                for (let i = 0; i < props.number; i++) {
-                      test.push(<ListItem key={i}>
-                                  <MovieCard name={'test'}/>
-                                </ListItem>);
-                    }
-                    return test;
-            })()} */}
           {movies.map((movie)=>{
             return (
               <ListItem key={movie._id}>
-                <MovieCard name={movie.movieName} image={movie.moviePosterURL}/>
+                <MovieCard name={movie.movieName} description={movie.movieDescription} image={movie.moviePosterURL}/>
               </ListItem>
             )
           })}
