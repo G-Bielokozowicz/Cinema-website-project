@@ -15,10 +15,11 @@ function MoviePage(props) {
 
     const description=location.state.temp[0]
     const director=location.state.temp[1]
+    const image=location.state.temp[2]
 
     return (
         <Card>
-            <FillerPoster />
+            <img src={image} width={320} height={500} alt='Poster'/>
             <Info>
                 <TableRow>
                     <TitleRow>
