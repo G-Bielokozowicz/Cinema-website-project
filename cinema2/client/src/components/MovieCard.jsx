@@ -7,7 +7,7 @@ function MovieCard(props) {
 
     return (
         <Card>
-            <FillerPoster />
+            <img src={props.image} width={200} height={300}/>
             <Info>
                 <Title>
                     {props.name}
@@ -34,15 +34,6 @@ const Card = styled.section`
    // outline: red solid;
 `
 
-const FillerPoster = styled.div`
-    min-width: 200px;
-    min-height: 300px;
-    background-color: #dbdada;
-    border-radius: 5px;
-    //margin-right: 15px;
-    display: block;
-    color: transparent;
-`
 const Info = styled.div`
     display: flex;
     flex-wrap: wrap;

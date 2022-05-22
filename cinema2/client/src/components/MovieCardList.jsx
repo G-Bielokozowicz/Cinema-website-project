@@ -40,7 +40,7 @@ function MovieCardList(props) {
           {movies.map((movie)=>{
             return (
               <ListItem key={movie._id}>
-                <MovieCard name={movie.movieName}/>
+                <MovieCard name={movie.movieName} image={movie.moviePosterURL}/>
               </ListItem>
             )
           })}
