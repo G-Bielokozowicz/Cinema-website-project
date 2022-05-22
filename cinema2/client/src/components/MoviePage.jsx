@@ -85,18 +85,6 @@ const Card = styled.section`
    // outline: red solid;
 `
 
-const FillerPoster = styled.div`
-    min-width: 300px;
-    min-height: 445px;
-    max-width: 300px;
-    max-height: 445px;
-    background-color: #dbdada;
-    border-radius: 5px;
-    margin-right: 2%;
-    //margin-right: 15px;
-    display: block;
-    color: transparent;
-`
 const Info = styled.div`
     display: table;
     flex-wrap: wrap;
@@ -106,6 +94,7 @@ const Info = styled.div`
     max-width: 100%;
     grid-template-rows:80px;
     background-color: black;
+    position: relative;
 `
 
 const TableRow = styled.div`
@@ -136,11 +125,14 @@ const TableText = styled.div`
 `
 
 const ButtonRow=styled.section`
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  margin-top: 18%;
- 
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 2%;
+    margin-right: 1.5%;
 `
 
 const Button = styled(Link)`

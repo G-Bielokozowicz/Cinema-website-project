@@ -4,13 +4,13 @@ import '@splidejs/splide/dist/css/splide.min.css'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-
-
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 function MovieCarousel() {
 
     const [movies, setMovies] = useState([])
-
+    const navigate = useNavigate();
     const getMovies = async () =>{
       axios.get('http://localhost:5000/movies/')
       .then((response) => {
@@ -24,11 +24,15 @@ function MovieCarousel() {
     useEffect(()=>{
       getMovies()
     },[])
+ 
+    const handleClick = (name) => {
+      console.log(name)  
+    }
 
     return (
         <Wrapper>
             <Splide options = {{
-                type: 'loop',
+               
                 perPage: 4,
                 arrows: false,
                 pagination: false,
@@ -41,7 +45,9 @@ function MovieCarousel() {
                 {movies.map((movie)=>{
                     return (
                         <SplideSlide key={movie._id}>
+                            <Link to={`/movie/${movie.movieName}`} state= {{ temp: [movie.movieDescription, movie.movieDirector, movie.moviePosterURL] }}>
                             <img src={movie.moviePosterURL} width={200} height={300} alt='Poster'/>
+                            </Link>
                         </SplideSlide>
                     )
                 })}
