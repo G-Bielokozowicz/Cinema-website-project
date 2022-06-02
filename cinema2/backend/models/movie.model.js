@@ -4,13 +4,13 @@ const mongoose = require('mongoose');
 const movieSchema = new Schema({
     movieName: {
         type: String,
-        require: true,
+        required: true,
         unique: true,
         minlength: 1,
     },
     movieDirector: {
         type: String,
-        require: true
+        required: true
     },
     movieLength:{
         type: Number,
@@ -18,15 +18,15 @@ const movieSchema = new Schema({
     },
     movieDescription:{
         type: String,
-        require: true,
+        required: true,
     },
     movieReleaseYear:{
         type: Number,
-        require: true,
+        required: true,
     },
     moviePosterURL:{
         type: String,
-        require: true,
+        required: true,
     },
     })
 
