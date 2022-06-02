@@ -46,12 +46,16 @@ router.route('/add').post(asyncHandler (async (req,res)=>{
 
     // Save user to database
     newUser.save()
-    .then(() => res.json('User added'))
+    .then(() => res.json({
+        _id: newUser.id,
+        email: userEmail,
+        token: generateToken(newUser._id)
+    }))
     .catch(err => res.status(400).json('Error: ' + err));
 }))
 
-//TODO
-//Login
+
+// Login
 router.route('/login').post(asyncHandler (async (req,res)=>{
     const userEmail = req.body.userEmail
     const userPassword = req.body.userPassword
@@ -61,12 +65,22 @@ router.route('/login').post(asyncHandler (async (req,res)=>{
 
     if (user && (await bcrypt.compare(userPassword, user.userPassword))){
         res.json({
-            _id: user._id,
-            // email: user.userEmail,         
+             _id: user._id,
+            email: user.userEmail,  
+            token: generateToken(user._id)       
         })
     }
-
-    res.json('User not logged in')
+    else {
+        res.json('User not logged in')
+    }
+    
 }))
+
+// Generate JWT
+const generateToken = (id) =>{
+    return jwt.sign({ id }, process.env.JWT_SECRET,{
+        expiresIn: '30d',
+    })
+}
 
 module.exports=router;
