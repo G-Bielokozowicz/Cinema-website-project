@@ -1,6 +1,8 @@
 const { Schema } = require("mongoose");
 const mongoose = require('mongoose');
 
+// TODO add updating user ticket array
+
 const userSchema = new Schema({
     userEmail: {
         type: String,
@@ -19,6 +21,7 @@ const userSchema = new Schema({
     userBoughtTickets: {
         type: Array,
         required: false,
+        //ref: 'Ticket',
     },
     })
 

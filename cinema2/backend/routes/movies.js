@@ -1,12 +1,14 @@
 const router = require('express').Router()
 let Movie = require('../models/movie.model')
 
+// Get all movies
 router.route('/').get((req,res)=>{
     Movie.find()
     .then(movies=>res.json(movies))
     .catch(err=>res.status(400).json('Error: ' + err));
 })
 
+// Add a movie
 router.route('/add').post((req,res)=>{
     const movieName = req.body.movieName
     const movieDirector = req.body.movieDirector
