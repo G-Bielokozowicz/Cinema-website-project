@@ -67,7 +67,13 @@ const loginUser = asyncHandler(async(req,res)=>{
 
 const getMe = asyncHandler(async(req,res)=>{
 
-    res.json({message: "User data"})
+    // User id is got from token passed by protect function from middleware
+    const {_id, userEmail} = await User.findById(req.user.id)
+
+    res.status(200).json({
+        id:_id,
+        userEmail,
+    })
 
 })
 
