@@ -1,7 +1,7 @@
 const express=require('express')
 const cors = require('cors')
 const mongoose=require('mongoose')
-
+const protect = require('./middleware/authMiddleware')
 require('dotenv').config()
 
 const app = express()
@@ -18,7 +18,7 @@ connection.once('open',()=>{
 })
 
 const moviesRouter=require('./routes/movies')
-const usersRouter=require('./routes/users')
+const usersRouter=require('./routes/userRoutes')
 
 app.use('/movies',moviesRouter)
 app.use('/users',usersRouter)

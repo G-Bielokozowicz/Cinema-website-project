@@ -5,17 +5,8 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 
 
-// TODO add updating user ticket array
-
-// Get all users
-router.route('/').get(async (req,res)=>{
-    User.find()
-    .then(users=>res.json(users))
-    .catch(err=>res.status(400).json('Error: ' + err));
-})
-
-// Register
-router.route('/add').post(asyncHandler (async (req,res)=>{
+// Register user
+const registerUser = asyncHandler(async(req, res)=>{
     const userEmail = req.body.userEmail
     const userPassword = req.body.userPassword
     const userType = req.body.userType
@@ -52,11 +43,9 @@ router.route('/add').post(asyncHandler (async (req,res)=>{
         token: generateToken(newUser._id)
     }))
     .catch(err => res.status(400).json('Error: ' + err));
-}))
+})
 
-
-// Login
-router.route('/login').post(asyncHandler (async (req,res)=>{
+const loginUser = asyncHandler(async(req,res)=>{
     const userEmail = req.body.userEmail
     const userPassword = req.body.userPassword
 
@@ -74,11 +63,13 @@ router.route('/login').post(asyncHandler (async (req,res)=>{
         res.json('User not logged in')
     }
     
-}))
+})
 
-router.route('/me').get(asyncHandler (async (req, res)=>{
+const getMe = asyncHandler(async(req,res)=>{
+
     res.json({message: "User data"})
-}))
+
+})
 
 // Generate JWT
 const generateToken = (id) =>{
@@ -87,4 +78,4 @@ const generateToken = (id) =>{
     })
 }
 
-module.exports=router;
+module.exports = {registerUser,loginUser,getMe}
