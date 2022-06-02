@@ -65,7 +65,7 @@ router.route('/login').post(asyncHandler (async (req,res)=>{
 
     if (user && (await bcrypt.compare(userPassword, user.userPassword))){
         res.json({
-             _id: user._id,
+            _id: user._id,
             email: user.userEmail,  
             token: generateToken(user._id)       
         })
@@ -74,6 +74,10 @@ router.route('/login').post(asyncHandler (async (req,res)=>{
         res.json('User not logged in')
     }
     
+}))
+
+router.route('/me').get(asyncHandler (async (req, res)=>{
+    res.json({message: "User data"})
 }))
 
 // Generate JWT
