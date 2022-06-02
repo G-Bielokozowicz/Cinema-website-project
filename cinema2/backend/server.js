@@ -17,7 +17,7 @@ connection.once('open',()=>{
     console.log("MongoDB connection established")
 })
 
-const moviesRouter=require('./routes/movies')
+const moviesRouter=require('./routes/movieRoutes')
 const usersRouter=require('./routes/userRoutes')
 
 app.use('/movies',moviesRouter)

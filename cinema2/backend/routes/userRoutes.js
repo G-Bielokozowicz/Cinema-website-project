@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const asyncHandler = require('express-async-handler')
 
 const {registerUser,
         loginUser,
@@ -9,7 +8,5 @@ const {registerUser,
 router.post('/add',registerUser)
 router.post('/login',loginUser)
 router.get('/me',getMe)
-
-
 
 module.exports=router;

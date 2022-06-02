@@ -1,15 +1,14 @@
 const router = require('express').Router()
 let Movie = require('../models/movie.model')
+const asyncHandler = require('express-async-handler')
 
-// Get all movies
-router.route('/').get((req,res)=>{
+const getAllMovies = asyncHandler(async(req, res)=>{
     Movie.find()
     .then(movies=>res.json(movies))
     .catch(err=>res.status(400).json('Error: ' + err));
 })
 
-// Add a movie
-router.route('/add').post((req,res)=>{
+const addMovie = asyncHandler(async(req,res)=>{
     const movieName = req.body.movieName
     const movieDirector = req.body.movieDirector
     const movieLength = Number(req.body.movieLength)
@@ -32,4 +31,5 @@ router.route('/add').post((req,res)=>{
     .catch(err => res.status(400).json('Error: ' + err));
 })
 
-module.exports=router;
+
+module.exports = {getAllMovies,addMovie}
