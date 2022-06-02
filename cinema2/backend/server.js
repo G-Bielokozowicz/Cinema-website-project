@@ -19,9 +19,11 @@ connection.once('open',()=>{
 
 const moviesRouter=require('./routes/movieRoutes')
 const usersRouter=require('./routes/userRoutes')
+const screeningsRouter=require('./routes/screeningRoutes')
 
 app.use('/movies',moviesRouter)
 app.use('/users',usersRouter)
+app.use('/screenings',screeningsRouter)
 
 
 app.listen(5000,()=>{
