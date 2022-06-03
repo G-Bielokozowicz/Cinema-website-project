@@ -12,7 +12,7 @@ const getAllScreenings = asyncHandler(async(req,res)=>{
 const addScreening = asyncHandler(async(req,res)=>{
     const screeningMovieName = req.body.screeningMovieName
     const screeningRoom = Number(req.body.screeningRoom)
-    const screeningDate = req.body.screeningDate
+    const screeningDate = Date(req.body.screeningDate)
 
     const movie = await Movie.findOne({movieName: screeningMovieName})
     if (movie){
