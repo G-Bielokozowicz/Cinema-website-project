@@ -5,11 +5,15 @@ const Screening = require('../models/screening.model');
 
 const getAllTickets = asyncHandler(async(req,res)=>{
     Ticket.find({ticketUser: req.user.id})
-    .populate([{
-        path: 'ticketUser'},
-        {path: 'ticketScreeningID',
-        populate: 'screeningMovie'
-    }])
+    .populate([
+        {
+            path: 'ticketUser'
+        },
+        {
+            path: 'ticketScreeningID',
+            populate: 'screeningMovie'
+        }
+    ])
     .then(tickets=>res.json(tickets))
     .catch(err=>res.status(400).json('Error: ' + err));
 })
