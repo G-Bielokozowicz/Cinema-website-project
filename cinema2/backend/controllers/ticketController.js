@@ -2,14 +2,14 @@ const router = require('express').Router()
 let Ticket = require('../models/ticket.model')
 const asyncHandler = require('express-async-handler');
 const Screening = require('../models/screening.model');
-const Movie = require('../models/movie.model')
 
 const getAllTickets = asyncHandler(async(req,res)=>{
     Ticket.find({ticketUser: req.user.id})
-    .populate({
-        path: 'ticketScreeningID',
+    .populate([{
+        path: 'ticketUser'},
+        {path: 'ticketScreeningID',
         populate: 'screeningMovie'
-    })
+    }])
     .then(tickets=>res.json(tickets))
     .catch(err=>res.status(400).json('Error: ' + err));
 })

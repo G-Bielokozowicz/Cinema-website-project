@@ -32,7 +32,6 @@
     userEmail: String,
     userPassword: String,
     userType: String,
-    userBoughtTickets: Number[]
 }
 ```
 
@@ -56,5 +55,38 @@
     },
     screeningRoom: Number,
     screeningDate: Date,
+}
+```
+
+## /tickets
+| Endpoint | Description |
+|---------|----------------|
+| / | Get tickets of the logged user|
+| /add | Add ticket for the logged user|
+
+## ticket JSON
+```
+{
+    ticksetScreeningID: {
+        screeningMovie: {
+            movieName: String,
+            movieDirector: String,
+            movieLength: Number,
+            movieDescription: String,
+            movieReleaseYear: Number,
+            moviePosterURL: String
+        },
+        screeningRoom: Number,
+        screeningDate: Date,
+    },
+    ticketPrice: Number,
+    ticketType: String,
+    ticketSeats: [Number],
+    ticketUser: {
+        userEmail: String,
+        userPassword: String,
+        userType: String,
+    }
+    
 }
 ```
