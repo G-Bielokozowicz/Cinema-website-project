@@ -8,24 +8,6 @@ const getAllScreenings = asyncHandler(async(req,res)=>{
     .populate('screeningMovie')
     .then(screenings=>res.json(screenings))
     .catch(err=>res.status(400).json('Error: ' + err));
-
-    // const screeningRoom=2
-    // const movie=await Screening.find({screeningRoom: screeningRoom})
-    // .populate('screeningMovie')
-    // // Let's pretend that this is the screening I want to add
-    // const myDate = new Date(movie[0].screeningDate)
-    // //----
-    // for (let i=0;i<movie.length;i++){
-    //     // Difference between screening times in hours
-    //     let diff = Math.abs(myDate-movie[i].screeningDate)/1000/3600
-    
-    //     // Length of the movie in hours
-    //     let existingMovieLength = movie[i].screeningMovie.movieLength/60
-    //     if (diff<existingMovieLength){
-    //         console.log(diff+" mniejsze od " + existingMovieLength)
-    //     }
-    // }
-
     
 })
 
