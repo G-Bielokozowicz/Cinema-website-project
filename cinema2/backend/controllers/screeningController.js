@@ -55,11 +55,21 @@ const addScreening = asyncHandler(async(req,res)=>{
 
             // Difference between screening times in hours
             let diff = Math.abs(screeningDate-existingScreening[i].screeningDate)/1000/3600
-            // Length of the movie in hours
+            // Length of the movie in hours of existing screening
             let existingMovieLength = existingScreening[i].screeningMovie.movieLength/60
-            
-            if (diff<existingMovieLength+(20/60)){
-                console.log(diff+" mniejsze od " + existingMovieLength)
+            // Length of the movie in hours of added screening
+            let addedMovieLength=movie.movieLength/60
+            // Added screening is after existing, so diffrence between them should be more than to existing screening movie length + 20 minutes
+            if (diff<existingMovieLength+(20/60) && screeningDate>=existingScreening[i].screeningDate){
+                console.log("screening number: " + i )
+                console.log("Po: "+ diff+" mniejsze od " + existingMovieLength)
+                res.status(400)
+                throw new Error('Not enough time')
+
+            // Added screening is before existing, so difference between them should be more than new screening movie length + 20 minutes
+            } else if (diff<addedMovieLength+(20/60)){
+                console.log("screening number: " + i )
+                console.log("Przed: " + diff+" mniejsze od " + (addedMovieLength+(20/60)))
                 res.status(400)
                 throw new Error('Not enough time')
             } else {
