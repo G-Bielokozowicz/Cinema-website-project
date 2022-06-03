@@ -4,7 +4,7 @@ const { protect } = require('../middleware/authMiddleware')
 
 const {getAllTickets, addTicket} = require('../controllers/ticketController')
 
-router.get('/', getAllTickets)
+router.get('/', protect,getAllTickets)
 router.post('/add',protect,addTicket)
 
 module.exports=router;

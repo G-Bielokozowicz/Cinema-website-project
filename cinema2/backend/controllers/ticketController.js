@@ -5,7 +5,7 @@ const Screening = require('../models/screening.model');
 const Movie = require('../models/movie.model')
 
 const getAllTickets = asyncHandler(async(req,res)=>{
-    Ticket.find()
+    Ticket.find({ticketUser: req.user.id})
     .populate({
         path: 'ticketScreeningID',
         populate: 'screeningMovie'
