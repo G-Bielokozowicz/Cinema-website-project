@@ -16,7 +16,7 @@ const ticketSchema = new Schema({
         required: true,
     },
     ticketSeats: {
-        type: Array,
+        type: [Number],
         required: true,
     },
     ticketUser: {
