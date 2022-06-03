@@ -13,7 +13,7 @@ const addScreening = asyncHandler(async(req,res)=>{
 
     if(req.user.userType!=='admin'){
         res.status(400)
-        throw new Error('Permission denied from addScreening')
+        throw new Error('Permission denied')
     }
 
     const screeningMovieName = req.body.screeningMovieName
@@ -29,7 +29,7 @@ const addScreening = asyncHandler(async(req,res)=>{
         })
         newScreening.save()
         .then(()=>res.json({
-            message: "Screening movie name",
+            message: "Screening added",
             screeningMovieName: screeningMovieName
 
         }))
@@ -41,9 +41,9 @@ const addScreening = asyncHandler(async(req,res)=>{
 })
 
 const deleteScreening = asyncHandler(async(req,res)=>{
-    const screening= await Screening.findById(req.params.id)
+    const screening= await Screening.findById(req.body.screeningId)
 
-    if(!req.user.userType!=='admin'){
+    if(req.user.userType!=='admin'){
         res.status(400)
         throw new Error('Permission denied')
     }
@@ -54,6 +54,7 @@ const deleteScreening = asyncHandler(async(req,res)=>{
     }
     await screening.remove()
     res.status(200).json({
+        message: "Screening removed",
         id: req.params.id,
         name: screening.screeningMovieName
     })
