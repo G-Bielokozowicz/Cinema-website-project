@@ -10,6 +10,12 @@ const getAllScreenings = asyncHandler(async(req,res)=>{
 })
 
 const addScreening = asyncHandler(async(req,res)=>{
+
+    if(req.user.userType!=='admin'){
+        res.status(400)
+        throw new Error('Permission denied from addScreening')
+    }
+
     const screeningMovieName = req.body.screeningMovieName
     const screeningRoom = Number(req.body.screeningRoom)
     const screeningDate = Date(req.body.screeningDate)
@@ -22,7 +28,11 @@ const addScreening = asyncHandler(async(req,res)=>{
             screeningDate
         })
         newScreening.save()
-        .then(()=>res.json('Screening added'))
+        .then(()=>res.json({
+            message: "Screening movie name",
+            screeningMovieName: screeningMovieName
+
+        }))
         .catch(err => res.status(400).json('Error: ' + err));
         
     } else {
@@ -30,4 +40,23 @@ const addScreening = asyncHandler(async(req,res)=>{
     }
 })
 
-module.exports = {getAllScreenings,addScreening}
+const deleteScreening = asyncHandler(async(req,res)=>{
+    const screening= await Screening.findById(req.params.id)
+
+    if(!req.user.userType!=='admin'){
+        res.status(400)
+        throw new Error('Permission denied')
+    }
+
+    if (!screening){
+        res.status(400)
+        throw new Error('Screening not found')
+    }
+    await screening.remove()
+    res.status(200).json({
+        id: req.params.id,
+        name: screening.screeningMovieName
+    })
+})
+
+module.exports = {getAllScreenings,addScreening, deleteScreening}
