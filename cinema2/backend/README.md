@@ -46,7 +46,14 @@
 
 ```
 {
-    screeningMovieName: String,
+    screeningMovie: {
+        movieName: String,
+        movieDirector: String,
+        movieLength: Number,
+        movieDescription: String,
+        movieReleaseYear: Number,
+        moviePosterURL: String
+    },
     screeningRoom: Number,
     screeningDate: Date,
 }
