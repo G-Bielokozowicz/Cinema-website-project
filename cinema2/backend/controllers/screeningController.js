@@ -8,6 +8,25 @@ const getAllScreenings = asyncHandler(async(req,res)=>{
     .populate('screeningMovie')
     .then(screenings=>res.json(screenings))
     .catch(err=>res.status(400).json('Error: ' + err));
+
+    // const screeningRoom=2
+    // const movie=await Screening.find({screeningRoom: screeningRoom})
+    // .populate('screeningMovie')
+    // // Let's pretend that this is the screening I want to add
+    // const myDate = new Date(movie[0].screeningDate)
+    // //----
+    // for (let i=0;i<movie.length;i++){
+    //     // Difference between screening times in hours
+    //     let diff = Math.abs(myDate-movie[i].screeningDate)/1000/3600
+    
+    //     // Length of the movie in hours
+    //     let existingMovieLength = movie[i].screeningMovie.movieLength/60
+    //     if (diff<existingMovieLength){
+    //         console.log(diff+" mniejsze od " + existingMovieLength)
+    //     }
+    // }
+
+    
 })
 
 const addScreening = asyncHandler(async(req,res)=>{
@@ -27,15 +46,27 @@ const addScreening = asyncHandler(async(req,res)=>{
     // No movie in database
     if (!movie){
         res.status(400).json('No movie exists with this name')
-    
     } 
 
-    // // Check if screening in this room, and at this time exists
-    // const existingScreening = await Screening.find({screeningRoom: 1})
-    // if (existingScreening){
-    //     console.log('screening found in room: ' + existingScreening.screeningRoom)
-    //     console.log('Screening id: ' + existingScreening._id)
-    // }
+    // Check if screening in this room, and at this time exists
+    const existingScreening = await Screening.find({screeningRoom:screeningRoom}).populate('screeningMovie')
+    if (existingScreening){
+        for (let i=0;i<existingScreening.length;i++){
+
+            // Difference between screening times in hours
+            let diff = Math.abs(screeningDate-existingScreening[i].screeningDate)/1000/3600
+            // Length of the movie in hours
+            let existingMovieLength = existingScreening[i].screeningMovie.movieLength/60
+            
+            if (diff<existingMovieLength+(20/60)){
+                console.log(diff+" mniejsze od " + existingMovieLength)
+                res.status(400)
+                throw new Error('Not enough time')
+            } else {
+                continue
+            }
+        }
+    }
 
     // Add screening
     const newScreening = new Screening({
