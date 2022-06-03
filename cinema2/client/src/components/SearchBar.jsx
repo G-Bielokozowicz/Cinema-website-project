@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { FaSearch } from 'react-icons/fa'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 
 function SerachBar() {
     const [input,setInput] = useState("");
@@ -25,12 +26,13 @@ function SerachBar() {
                 <FaSearch></FaSearch>
                 <input onChange={(e)=>setInput(e.target.value)} type='text' value={input} placehoder='Search for a movie'/>    
             </FormStyle>
+            <Header/>
         </Wrapper>
         )
 }
 
 const FormStyle=styled.form`
-    //margin: 25px 0 0 60%;
+    margin: 0px 10px 0 10%;
     position: relative;
     width: 100%;
     input{
@@ -52,7 +54,7 @@ const FormStyle=styled.form`
 `
 
 const Wrapper=styled.div`
-    display: grid;
+    display: flex;
     justify-content: right;
     margin-right: 25%;
     margin-top: 20px;

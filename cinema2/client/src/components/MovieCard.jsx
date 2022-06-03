@@ -16,7 +16,7 @@ function MovieCard(props) {
                     {props.description}
                 </Description>
                     <MyLink to={`/movie/${props.name}`} state= {{ temp: [props.description, props.director, props.image] }}>
-                        Buy ticket
+                        Buy tickets
                     </MyLink>               
             </Info>
         </Card>

@@ -7,6 +7,8 @@ import Movies from './Movies';
 import Searched from './Searched';
 import MoviePage from '../components/MoviePage';
 import BuyTicket from './BuyTicket';
+import Login from '../components/Login';
+import Register from '../components/Register';
 
 function Pages() {
   return (
@@ -18,6 +20,8 @@ function Pages() {
         <Route path='/searched/:search' element={<Searched/>}/>
         <Route path='/movie/:name' element={<MoviePage/>}/>
         <Route path='/movie/:name/ticket' element={<BuyTicket/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
     </Routes>
   )
 }
