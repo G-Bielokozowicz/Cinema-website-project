@@ -5,10 +5,12 @@ const screeningSchema = new Schema({
     screeningMovieName: {
         type: String,
         required: true,
+        ref: 'Movie',
     },
     screeningRoom:{
         type: Number,
         required: true,
+        ref: 'Room',
     },
     screeningDate: {
         type: Date,
