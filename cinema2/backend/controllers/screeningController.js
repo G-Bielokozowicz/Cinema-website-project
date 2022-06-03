@@ -17,33 +17,40 @@ const addScreening = asyncHandler(async(req,res)=>{
         throw new Error('Permission denied')
     }
 
-    const screeningMovieName = req.body.screeningMovieName
+    const screeningMovieID = req.body.screeningMovieID
     const screeningRoom = Number(req.body.screeningRoom)
     const screeningDate = new Date (req.body.screeningDate)
 
     // Check if movie exists in database
-    const movie = await Movie.findOne({movieName: screeningMovieName})
-    if (movie){
-
-        // Add screening
-        const newScreening = new Screening({
-            screeningMovieName,
-            screeningRoom,
-            screeningDate
-        })
-        newScreening.save()
-        .then(()=>res.json({
-            message: "Screening added",
-            screeningMovieName: screeningMovieName
-
-        }))
-        .catch(err => res.status(400).json('Error: ' + err));
-        
+    const movie = await Movie.findById(screeningMovieID)
     // No movie in database
-    } else {
-        res.json('No movie exists with this name')
-    }
+    if (!movie){
+        res.status(400).json('No movie exists with this name')
+    
+    } 
+
+    // // Check if screening in this room, and at this time exists
+    // const existingScreening = await Screening.find({screeningRoom: 1})
+    // if (existingScreening){
+    //     console.log('screening found in room: ' + existingScreening.screeningRoom)
+    //     console.log('Screening id: ' + existingScreening._id)
+    // }
+
+    // Add screening
+    const newScreening = new Screening({
+        screeningMovieID,
+        screeningMovieName: movie.movieName,
+        screeningRoom,
+        screeningDate
+    })
+    newScreening.save()
+    .then(()=>res.json({
+        message: "Screening added",
+        screeningMovieName: movie.movieName
+    }))
+    .catch(err => res.status(400).json('Error: ' + err));
 })
+
 
 const deleteScreening = asyncHandler(async(req,res)=>{
 
