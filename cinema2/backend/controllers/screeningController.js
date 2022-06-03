@@ -5,6 +5,7 @@ let Screening = require('../models/screening.model')
 
 const getAllScreenings = asyncHandler(async(req,res)=>{
     Screening.find()
+    .populate('screeningMovie')
     .then(screenings=>res.json(screenings))
     .catch(err=>res.status(400).json('Error: ' + err));
 })
@@ -17,12 +18,12 @@ const addScreening = asyncHandler(async(req,res)=>{
         throw new Error('Permission denied')
     }
 
-    const screeningMovieID = req.body.screeningMovieID
+    const screeningMovie = req.body.screeningMovie
     const screeningRoom = Number(req.body.screeningRoom)
     const screeningDate = new Date (req.body.screeningDate)
 
     // Check if movie exists in database
-    const movie = await Movie.findById(screeningMovieID)
+    const movie = await Movie.findById(screeningMovie)
     // No movie in database
     if (!movie){
         res.status(400).json('No movie exists with this name')
@@ -38,8 +39,7 @@ const addScreening = asyncHandler(async(req,res)=>{
 
     // Add screening
     const newScreening = new Screening({
-        screeningMovieID,
-        screeningMovieName: movie.movieName,
+        screeningMovie,
         screeningRoom,
         screeningDate
     })
