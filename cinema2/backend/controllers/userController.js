@@ -67,14 +67,18 @@ const loginUser = asyncHandler(async(req,res)=>{
 
 const getMe = asyncHandler(async(req,res)=>{
 
-    // User id is got from token passed by protect function from middleware
-    const {_id, userEmail} = await User.findById(req.user.id)
+    res.status(200).json(req.user)
+
+})
+
+const addTicket = asyncHandler(async(req,res)=>{
+
+    const userTickets = req.user.userBoughtTickets
 
     res.status(200).json({
-        id:_id,
-        userEmail,
+        message: userTickets
     })
-
+    
 })
 
 // Generate JWT
@@ -84,4 +88,4 @@ const generateToken = (id) =>{
     })
 }
 
-module.exports = {registerUser,loginUser,getMe}
+module.exports = {registerUser,loginUser,getMe,addTicket}
