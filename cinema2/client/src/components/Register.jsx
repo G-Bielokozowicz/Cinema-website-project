@@ -8,14 +8,15 @@ function Register() {
         name: '',
         email: '',
         password: '',
-        password: '',
+        password2: '',
     })
 
     const { name, email, password, password2} = formData
 
-    const onChange = () => {
+    const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
+            [e.targer.name]: e.target.value
         }))
     }
 
