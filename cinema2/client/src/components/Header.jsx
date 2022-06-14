@@ -27,25 +27,21 @@ function Header() {
 
 const Wrapper = styled.section`
   display: flex;
-  //justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-left: 50px;
   margin-right: 50px;
 `;
 
 const Title = styled.h1`
-  color: #000;
+  color: #ffffff;
   height: 150px;
   font-size: 100px;
   margin: 0 10px 0px 10px;
-  transition: color 0.4s;
-  &:hover {
-    color: #ffffff;
-  }
 `;
 
 const HeaderStyle=styled.div`
-   height: 150px; //zmiana wysokosci przestrzeni, na której jest tytul
+   height: 140px; //zmiana wysokosci przestrzeni, na której jest tytul
 `
 
 const LinkStyle=styled(Link)`
@@ -60,8 +56,6 @@ const LinkStyle=styled(Link)`
 `
 const RLStyle = styled.li`
   display: flex;
-  justify-content: right;
   margin-top: 100px;
-  margin-left: 50%;
 `
 export default Header
