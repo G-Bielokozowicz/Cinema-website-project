@@ -111,8 +111,6 @@ const getTodayScreenings = asyncHandler(async(req,res)=>{
     .populate('screeningMovie')
     .then(screenings=>res.json(screenings))
     .catch(err=>res.status(400).json('Error: ' + err));
-
-    console.log(startOfDay(new Date()))
 })
 
 module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings}
