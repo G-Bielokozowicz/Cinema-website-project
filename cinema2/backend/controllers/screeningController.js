@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
+var endOfDay = require('date-fns/endOfDay') 
+var startOfDay = require('date-fns/startOfDay') 
 let Movie = require('../models/movie.model')
 let Screening = require('../models/screening.model')
 
@@ -99,4 +101,18 @@ const deleteScreening = asyncHandler(async(req,res)=>{
     })
 })
 
-module.exports = {getAllScreenings,addScreening, deleteScreening}
+const getTodayScreenings = asyncHandler(async(req,res)=>{
+    Screening.find({
+        screeningDate:{
+            $gte: startOfDay(new Date()),
+            $lte: endOfDay(new Date())
+        }
+    })
+    .populate('screeningMovie')
+    .then(screenings=>res.json(screenings))
+    .catch(err=>res.status(400).json('Error: ' + err));
+
+    console.log(startOfDay(new Date()))
+})
+
+module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings}
