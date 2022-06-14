@@ -6,31 +6,47 @@ import styled from 'styled-components'
 
 function Header() {
   return (
-    <section>
-        <HeaderStyle>
-            <UlStyle>
-                <Title>
-                    <TitStyle to ='/TAI.Kino'>
-                    TAI.Kino                
-                    </TitStyle>
-                </Title>
-                <RLStyle>
-                    <LiStyle>
-                        <LinkStyle to='/login'>
-                            <FaSignInAlt/> Login
-                        </LinkStyle>
-                    </LiStyle>
-                    <LiStyle>
-                        <LinkStyle to='/register'>
-                            <FaUser/> Register
-                        </LinkStyle>
-                    </LiStyle>
-                </RLStyle>
-            </UlStyle>
-        </HeaderStyle>
-    </section>
+    <HeaderStyle>
+        <Wrapper>
+            <Title to ='/TAI.Kino'>
+            TAI.Kino                
+            </Title>
+        <RLStyle>
+                <LinkStyle to='/login'>
+                    <FaSignInAlt/> Login
+                </LinkStyle>
+
+                <LinkStyle to='/register'>
+                    <FaUser/> Register
+                </LinkStyle>
+        </RLStyle>
+        </Wrapper>
+    </HeaderStyle>
   )
 }
+
+const Wrapper = styled.section`
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  margin-right: 50px;
+`;
+
+const Title = styled.h1`
+  color: #000;
+  height: 150px;
+  font-size: 100px;
+  margin: 0 10px 0px 10px;
+  transition: color 0.4s;
+  &:hover {
+    color: #ffffff;
+  }
+`;
+
+const HeaderStyle=styled.div`
+   height: 150px; //zmiana wysokosci przestrzeni, na której jest tytul
+`
 
 const LinkStyle=styled(Link)`
     text-decoration: none;
@@ -38,17 +54,10 @@ const LinkStyle=styled(Link)`
     &:hover {
     color: #ffffff;
     }
+    margin-left: 0px;
+    margin-right: 30px;
 `
-const TitStyle=styled(Link)`
-    text-decoration: none;
-    color: #ffffff;
-`
-const Title = styled.h1`
-    font-size: 5rem;
-    font-weight: 1100;
-    margin: 0 auto;
-    margin-left: 107%;
-`
+
 
 const LiStyle=styled.li`
     margin-right: 10px;
@@ -58,8 +67,10 @@ const LiStyle=styled.li`
     }
 `
 const RLStyle = styled.li`
-    margin-left: 80%;
-    display: flex;
+  display: flex;
+  justify-content: right;
+  margin-top: 100px;
+  margin-left: 50%;
 `
 
 const UlStyle=styled.ul`
@@ -67,13 +78,4 @@ const UlStyle=styled.ul`
     display: flex;
     align-items: center;
 `
-
-const HeaderStyle=styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: flex-end;
-    padding: 0px 0px;
-`
-
 export default Header
