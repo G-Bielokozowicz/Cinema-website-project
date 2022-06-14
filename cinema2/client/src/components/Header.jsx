@@ -56,26 +56,12 @@ const LinkStyle=styled(Link)`
     }
     margin-left: 0px;
     margin-right: 30px;
-`
 
-
-const LiStyle=styled.li`
-    margin-right: 10px;
-    margin-top: 60px;
-    svg{
-        margin-left: 0%;
-    }
 `
 const RLStyle = styled.li`
   display: flex;
   justify-content: right;
   margin-top: 100px;
   margin-left: 50%;
-`
-
-const UlStyle=styled.ul`
-    list-style:none;
-    display: flex;
-    align-items: center;
 `
 export default Header
