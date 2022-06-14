@@ -1,13 +1,26 @@
 const router = require('express').Router()
 const asyncHandler = require('express-async-handler')
+var endOfDay = require('date-fns/endOfDay') 
+var startOfDay = require('date-fns/startOfDay') 
 let Movie = require('../models/movie.model')
 let Screening = require('../models/screening.model')
 
 const getAllScreenings = asyncHandler(async(req,res)=>{
-    Screening.find()
-    .populate('screeningMovie')
-    .then(screenings=>res.json(screenings))
-    .catch(err=>res.status(400).json('Error: ' + err));
+    if (req.params['movie']){
+        Screening.find({
+            screeningMovie: req.params['movie']
+        })
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+    }
+    else {
+        Screening.find()
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+        
+    }
     
 })
 
@@ -99,4 +112,31 @@ const deleteScreening = asyncHandler(async(req,res)=>{
     })
 })
 
-module.exports = {getAllScreenings,addScreening, deleteScreening}
+const getTodayScreenings = asyncHandler(async(req,res)=>{
+    if (req.params['movie']){
+        Screening.find({
+            screeningDate:{
+                $gte: startOfDay(new Date()),
+                $lte: endOfDay(new Date())
+            },
+            screeningMovie: req.params['movie']
+        })
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+    }
+    else {
+        Screening.find({
+            screeningDate:{
+                $gte: startOfDay(new Date()),
+                $lte: endOfDay(new Date())
+            }
+        })
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+    }
+   
+})
+
+module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings}
