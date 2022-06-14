@@ -70,15 +70,7 @@ const getMe = asyncHandler(async(req,res)=>{
 
 })
 
-const addTicket = asyncHandler(async(req,res)=>{
 
-    const userTickets = req.user.userBoughtTickets
-
-    res.status(200).json({
-        message: userTickets
-    })
-    
-})
 
 // Generate JWT
 const generateToken = (id) =>{
@@ -87,4 +79,4 @@ const generateToken = (id) =>{
     })
 }
 
-module.exports = {registerUser,loginUser,getMe,addTicket}
+module.exports = {registerUser,loginUser,getMe}
