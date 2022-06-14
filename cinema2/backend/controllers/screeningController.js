@@ -6,10 +6,21 @@ let Movie = require('../models/movie.model')
 let Screening = require('../models/screening.model')
 
 const getAllScreenings = asyncHandler(async(req,res)=>{
-    Screening.find()
-    .populate('screeningMovie')
-    .then(screenings=>res.json(screenings))
-    .catch(err=>res.status(400).json('Error: ' + err));
+    if (req.params['movie']){
+        Screening.find({
+            screeningMovie: req.params['movie']
+        })
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+    }
+    else {
+        Screening.find()
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+        
+    }
     
 })
 
