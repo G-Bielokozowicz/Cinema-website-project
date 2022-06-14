@@ -4,7 +4,9 @@ const asyncHandler = require('express-async-handler');
 const Screening = require('../models/screening.model');
 
 const getAllTickets = asyncHandler(async(req,res)=>{
-    Ticket.find({ticketUser: req.user.id})
+    Ticket.find({
+        ticketUser: req.user.id
+    })
     .populate([
         {
             path: 'ticketUser'
