@@ -4,7 +4,7 @@
 Metoda | Endpoint | Description |
 | -------- |--------  | -------------|
 | GET | /        | Get all movies |
-| GET | /add     | Add a movie     | 
+| POST | /add     | Add a movie     | 
 
 ## movie JSON
 ```
