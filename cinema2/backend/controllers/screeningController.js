@@ -102,15 +102,30 @@ const deleteScreening = asyncHandler(async(req,res)=>{
 })
 
 const getTodayScreenings = asyncHandler(async(req,res)=>{
-    Screening.find({
-        screeningDate:{
-            $gte: startOfDay(new Date()),
-            $lte: endOfDay(new Date())
-        }
-    })
-    .populate('screeningMovie')
-    .then(screenings=>res.json(screenings))
-    .catch(err=>res.status(400).json('Error: ' + err));
+    if (req.params['movie']){
+        Screening.find({
+            screeningDate:{
+                $gte: startOfDay(new Date()),
+                $lte: endOfDay(new Date())
+            },
+            screeningMovie: req.params['movie']
+        })
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+    }
+    else {
+        Screening.find({
+            screeningDate:{
+                $gte: startOfDay(new Date()),
+                $lte: endOfDay(new Date())
+            }
+        })
+        .populate('screeningMovie')
+        .then(screenings=>res.json(screenings))
+        .catch(err=>res.status(400).json('Error: ' + err));
+    }
+   
 })
 
 module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings}

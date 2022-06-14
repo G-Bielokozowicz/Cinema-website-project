@@ -8,5 +8,6 @@ router.get('/',getAllScreenings)
 router.post('/add',protect,addScreening)
 router.delete('/delete',protect,deleteScreening)
 router.get('/today',getTodayScreenings)
+router.get('/today/:movie',getTodayScreenings)
 
 module.exports=router
