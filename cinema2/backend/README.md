@@ -1,10 +1,10 @@
 # Endpoints
 
 ## /movies
-| Endpoint | Description |
-|--------  | -------------|
-| /        | Get all movies |
-| /add     | Add a movie     | 
+Metoda | Endpoint | Description |
+| -------- |--------  | -------------|
+| GET | /        | Get all movies |
+| POST | /add     | Add a movie     | 
 
 ## movie JSON
 ```
@@ -20,11 +20,11 @@
 --------------------------------
 
 ## /users
-| Endpoint | Description |
-|---------| -----------|
-| /add | Register user|
-| /login | Login user |
-| /me | Get information about currently logged user|
+|Metoda | Endpoint | Description |
+|----------|---------| -----------|
+| POST | /register | Register user|
+| POST | /login | Login user |
+| GET|/me | Get information about currently logged user|
 
 ## user JSON
 ```
@@ -36,10 +36,15 @@
 ```
 
 ## /screenings
-| Endpoint | Description |
-|---------| -----------|
-| / | Get all screenings
-| /add | Add a screening
+|Metoda| Endpoint | Description |
+|-------|---------| -----------|
+| GET| / | Get all screenings
+| GET| /:movie | Get screenings for a movie (/:movie is movieID)
+| POST| /add | Add a screening
+| DELETE | /delete | Delete a screening, by screening ID
+| GET | /today | Get today screenings
+| GET | /today/:movie | Get today screenings for a movie (/:movie is movieID)
+
 
 ## screening JSON
 
@@ -59,10 +64,10 @@
 ```
 
 ## /tickets
-| Endpoint | Description |
-|---------|----------------|
-| / | Get tickets of the logged user|
-| /add | Add ticket for the logged user|
+|Metoda| Endpoint | Description |
+|-----------|---------|----------------|
+| GET| / | Get tickets of the logged user|
+| POST| /add | Add ticket for the logged user|
 
 ## ticket JSON
 ```
@@ -88,5 +93,34 @@
         userType: String,
     }
     
+}
+```
+
+
+## /comments
+| Metoda| Endpoint | Description |
+|---------|---------|----------------|
+| GET |/user | Get comments of the logged user|
+| GET | /movie/:movie | Get comments of the movie (/:movie is movieID)|
+| POST | /add | Add a comment to the movie by the currently logged user|
+
+## comment JSON
+
+```
+{
+    commentUser: {
+        userEmail: String,
+        userPassword: String,
+        userType: String,
+    },
+    commentMovie: {
+        movieName: String,
+        movieDirector: String,
+        movieLength: Number,
+        movieDescription: String,
+        movieReleaseYear: Number,
+        moviePosterURL: String
+    },
+    commentBody: String
 }
 ```

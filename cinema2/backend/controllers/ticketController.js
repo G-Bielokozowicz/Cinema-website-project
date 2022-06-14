@@ -9,7 +9,8 @@ const getAllTickets = asyncHandler(async(req,res)=>{
     })
     .populate([
         {
-            path: 'ticketUser'
+            path: 'ticketUser',
+            select: '-userPassword'
         },
         {
             path: 'ticketScreeningID',
@@ -24,6 +25,7 @@ const addTicket = asyncHandler(async(req,res)=>{
     
     const ticketScreeningID = req.body.ticketScreeningID
 
+    // Find screening with given ID
     const screening = await Screening.findById(ticketScreeningID)
     if (!screening){
         res.status(400).json('No screening exists with given ID')
@@ -33,12 +35,13 @@ const addTicket = asyncHandler(async(req,res)=>{
     const ticketSeats = req.body.ticketSeats
     const ticketUser = req.user.id
     
+    // Check if seats are taken
     const existingTicket = await Ticket.find({ticketScreeningID:ticketScreeningID, ticketSeats: {"$in":ticketSeats}})
     if (existingTicket.length>0){
         console.log(existingTicket)
         res.status(400).json('Seats already taken')
+        throw new Error ('Seats taken')
     } else {
-
         const newTicket = new Ticket({
             ticketScreeningID,
             ticketPrice,

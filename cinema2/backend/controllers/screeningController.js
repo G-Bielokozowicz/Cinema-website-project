@@ -100,7 +100,7 @@ const deleteScreening = asyncHandler(async(req,res)=>{
 
     // No screening
     if (!screening){
-        res.status(400)
+        res.status(400).json("Screening not found")
         throw new Error('Screening not found')
     }
     // Remove screening
