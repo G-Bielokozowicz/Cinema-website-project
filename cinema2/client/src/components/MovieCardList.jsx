@@ -44,7 +44,7 @@ const MovieList = styled.ul`
   display:flex;
   flex-direction: column;
   margin:auto;
-  max-width:40%;
+  max-width:70%;
 `
 
 const ListItem = styled.li`

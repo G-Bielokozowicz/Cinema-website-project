@@ -25,7 +25,7 @@ function MovieCard(props) {
 
 const Card = styled.section`
     display:flex;
-    width: 100%;
+    //width: 100%;
     overflow: hidden;
     position: relative;
     border: 0;
@@ -60,6 +60,7 @@ const Description = styled.p`
 
 const MyLink=styled(Link)`
     text-decoration: none;
+    display: grid;
     background-color: #d34d18;
     color: #000;
     height: 50px;
@@ -70,11 +71,10 @@ const MyLink=styled(Link)`
     //outline: red solid;
     transition: color 0.4s;
     position: relative;
-    left: 70%;
+    left: auto;
     top: 20px;
     justify-content: center;
     align-items: center;
-    display: flex;
     &:hover {
     color: #ffffff;
     }
