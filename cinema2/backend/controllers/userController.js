@@ -13,7 +13,7 @@ const registerUser = asyncHandler(async(req, res)=>{
 
     // Check if email and password are typed
     if (!userEmail || !userPassword){
-        res.status(400)
+        res.status(400).json("Add all fields")
         throw new Error("Add all fields")
     }
 
@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async(req, res)=>{
     const userExistsEmail = await User.findOne({userEmail})
     const userExistsName = await User.findOne({userName})
     if (userExistsEmail || userExistsName){
-        res.status(400)
+        res.status(400).json("User already exists")
         throw new Error("User already exists")
     }
 
