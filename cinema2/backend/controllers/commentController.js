@@ -63,7 +63,7 @@ const addComment = asyncHandler(async(req,res)=>{
     // If user did not see the movie, don't allow him to comment
     if (screenings.length<=0){
         res.status(400).json({"Message":"You haven't seen this movie yet, so you cannot comment"})
-        throw new Error()
+        throw new Error("You haven't seen this movie yet, so you cannot comment")
     }
 
     // If he did see the movie, allow him to comment

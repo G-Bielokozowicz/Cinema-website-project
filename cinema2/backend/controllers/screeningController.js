@@ -35,7 +35,6 @@ const addScreening = asyncHandler(async(req,res)=>{
     const screeningMovie = req.body.screeningMovie
     const screeningRoom = Number(req.body.screeningRoom)
     const screeningDate = new Date (req.body.screeningDate)
-
     // Check if movie exists in database
     const movie = await Movie.findById(screeningMovie)
     // No movie in database

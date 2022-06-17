@@ -23,12 +23,12 @@ const screeningsRouter=require('./routes/screeningRoutes')
 const ticketRouter=require('./routes/ticketRoutes')
 const commentRoutes=require('./routes/commentRoutes')
 
-app.use('/movies',moviesRouter)
+
 app.use('/users',usersRouter)
 app.use('/screenings',screeningsRouter)
 app.use('/tickets',ticketRouter)
 app.use('/comments',commentRoutes)
-
+app.use('/movies',moviesRouter)
 
 
 app.listen(5000,()=>{
