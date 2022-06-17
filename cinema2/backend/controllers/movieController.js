@@ -19,6 +19,13 @@ const getMovieByName = asyncHandler (async(req, res)=>{
     .catch(err=>res.status(400).json('Error: ' + err));
 })
 
+const getMovieById = asyncHandler(async(req,res)=>{
+    const movieID = req.params['movie']
+    Movie.findById(movieID)
+    .then(movies=>res.json(movies))
+    .catch(err=>res.status(400).json('Error: '+err));
+})
+
 const addMovie = asyncHandler(async(req,res)=>{
 
     if(req.user.userType!=='admin'){
@@ -48,4 +55,4 @@ const addMovie = asyncHandler(async(req,res)=>{
 })
 
 
-module.exports = {getAllMovies,getMovieByName,addMovie}
+module.exports = {getAllMovies,getMovieByName,getMovieById,addMovie}
