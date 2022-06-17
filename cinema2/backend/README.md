@@ -4,6 +4,8 @@
 Metoda | Endpoint | Description |
 | -------- |--------  | -------------|
 | GET | /        | Get all movies |
+| GET | /name/:movie | Find movies with fuzzy search
+| GET | /id/:movie | Get movie with specific mongoDB _id
 | POST | /add     | Add a movie     | 
 
 ## movie JSON
