@@ -19,82 +19,91 @@ function MoviePage(props) {
 
     return (
         <Card>
-            <img src={image} width={320} height={500} alt='Poster'/>
-            <Info>
-                <TableRow>
-                    <TitleRow>
-                        Tytuł:
-                    </TitleRow>
-                    <TableText>
-                        {name}
-                    </TableText>
-                </TableRow>
-                <TableRow>
-                    <TitleRow>
-                        Opis:
-                    </TitleRow>
-                    <TableText>
-                        {description}
-                    </TableText>
-                </TableRow>
-                <TableRow>
-                    <TitleRow>
-                        Obsada:
-                    </TitleRow>
-                    <TableText>
-                        Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
-                    </TableText>
-                </TableRow>
-                <TableRow>
-                    <TitleRow>
-                        Reżyser:
-                    </TitleRow>
-                    <TableText>
-                        {director}
-                    </TableText>
-                </TableRow>
-                <ButtonRow>
-                    <Button to={'ticket'} state={{ time: '11:40'}}>        
-                        11:40
-                    </Button>  
-                    <Button to={'ticket'} state={{ time:  '14:20'}}>              
-                        14:20
-                    </Button> 
-                    <Button to={'ticket'} state={{ time: '17:30'}}>             
-                        17:30
-                    </Button> 
-                    <Button to={'ticket'} state={{ time: '21:30'}}>             
-                        21:30
-                    </Button > 
-                </ButtonRow>      
-            </Info>
+            <MovieDesc>
+                <img src={image} width={320} height={400} alt='Poster'/>
+                <Info>
+                    <TableRow>
+                        <TitleRow>
+                            Tytuł:
+                        </TitleRow>
+                        <TableText>
+                            {name}
+                        </TableText>
+                    </TableRow>
+                    <TableRow>
+                        <TitleRow>
+                            Opis:
+                        </TitleRow>
+                        <TableText>
+                            {description}
+                        </TableText>
+                    </TableRow>
+                    <TableRow>
+                        <TitleRow>
+                            Obsada:
+                        </TitleRow>
+                        <TableText>
+                            Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
+                        </TableText>
+                    </TableRow>
+                    <TableRow>
+                        <TitleRow>
+                            Reżyser:
+                        </TitleRow>
+                        <TableText>
+                            {director}
+                        </TableText>
+                    </TableRow>     
+                </Info>
+            </MovieDesc>
+            <ButtonRow>
+                <Button to={'ticket'} state={{ time: '11:40'}}>        
+                    11:40
+                </Button>  
+                <Button to={'ticket'} state={{ time:  '14:20'}}>              
+                    14:20
+                </Button> 
+                <Button to={'ticket'} state={{ time: '17:30'}}>             
+                    17:30
+                </Button> 
+                <Button to={'ticket'} state={{ time: '21:30'}}>             
+                    21:30
+                </Button > 
+            </ButtonRow> 
         </Card>
   )
 }
 
 const Card = styled.section`
-    display:flex;
-    width: 100%;
-    max-width: 1250px;
-    height: 445px;
-    overflow: hidden;
-    position: relative;
-    border: 0;
-    margin-left:17%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  //  width: 100%;
+    max-width: 80%;
+    //height: 445px;
+    //overflow: hidden;
+  //  position: relative;
+    //border: 0;
+    margin-left:10%;
     margin-top:2%;
    // outline: red solid;
 `
 
+const MovieDesc = styled.section`
+    display: flex;
+`
+
+
 const Info = styled.div`
-    display: table;
-    flex-wrap: wrap;
-    box-sizing: border-box;
+   // display: table;
+    //flex-wrap: wrap;
+    //box-sizing: border-box;
     padding-left: 14px;
-    padding-right: 14px;
-    max-width: 100%;
-    grid-template-rows:80px;
+   // padding-right: 14px;
+   // max-width: 100%;
+   // grid-template-rows:80px;
     background-color: black;
-    position: relative;
+   // position: relative;
 `
 
 const TableRow = styled.div`
@@ -125,24 +134,24 @@ const TableText = styled.div`
 `
 
 const ButtonRow=styled.section`
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    display: grid;
+    //justify-content: right;
+  //  align-items: center;
+   // position: absolute;
+   // bottom: 0;
+   // right: 0;
     margin-bottom: 2%;
-    margin-right: 1.5%;
+ //   margin-right: 1.5%;
 `
 
 const Button = styled(Link)`
     background-color: #d34d18;
-    position: right;
+   // position: right;
     color: #000;
     height: 50px;
-    width: 150px;
+    width: 150px; //szerokosc przycisku
     font-size: 20px;
-    border-radius: 20px;
+    border-radius: 20px; //okragle rogi
     cursor: pointer;
     border: none;
     margin: 0 10px 0px 10px;
@@ -155,6 +164,7 @@ const Button = styled(Link)`
     &:hover {
     color: #ffffff;
     }
+    margin-top: 1%;
 `
 
 export default MoviePage
