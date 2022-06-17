@@ -9,7 +9,7 @@ import MoviePage from '../components/MoviePage';
 import BuyTicket from './BuyTicket';
 import Login from './LoginPage';
 import Register from './RegisterPage';
-import ConfirmLogin from './ConfirmLogin';
+import ConfirmRegistration from './ConfirmRegistration';
 
 function Pages() {
   return (
@@ -23,7 +23,7 @@ function Pages() {
         <Route path='/movie/:name/ticket' element={<BuyTicket/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
-        <Route path='/confirm' element={<ConfirmLogin/>}/>
+        <Route path='/confirm' element={<ConfirmRegistration/>}/>
     </Routes>
   )
 }
