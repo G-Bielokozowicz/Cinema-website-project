@@ -62,7 +62,7 @@ const loginUser = asyncHandler(async(req,res)=>{
         })
     }
     else {
-        res.json('User not logged in')
+        res.status(400).json('User not logged in')
     }
     
 })
