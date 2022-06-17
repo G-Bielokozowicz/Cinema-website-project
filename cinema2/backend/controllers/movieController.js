@@ -8,13 +8,23 @@ const getAllMovies = asyncHandler(async(req, res)=>{
     .catch(err=>res.status(400).json('Error: ' + err));
 })
 
+const getMovieByName = asyncHandler (async(req, res)=>{
+    const movieName = req.params['movie']
+   
+    Movie.find({
+        movieName: new RegExp(movieName, 'i')
+        
+    })
+    .then(movies=>res.json(movies))
+    .catch(err=>res.status(400).json('Error: ' + err));
+})
+
 const addMovie = asyncHandler(async(req,res)=>{
 
     if(req.user.userType!=='admin'){
         res.status(400)
         throw new Error('Permission denied')
     }
-    
     const movieName = req.body.movieName
     const movieDirector = req.body.movieDirector
     const movieLength = Number(req.body.movieLength)
@@ -38,4 +48,4 @@ const addMovie = asyncHandler(async(req,res)=>{
 })
 
 
-module.exports = {getAllMovies,addMovie}
+module.exports = {getAllMovies,getMovieByName,addMovie}

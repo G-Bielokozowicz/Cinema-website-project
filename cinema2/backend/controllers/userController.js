@@ -51,7 +51,6 @@ const registerUser = asyncHandler(async(req, res)=>{
 const loginUser = asyncHandler(async(req,res)=>{
     const userEmail = req.body.userEmail
     const userPassword = req.body.userPassword
-
     // Find user with given email
     const user = await User.findOne({userEmail})
 
