@@ -6,6 +6,7 @@ import {FaUser} from 'react-icons/fa'
 import {register, reset} from '../components/features/auth/authSlice'
 import styled from 'styled-components'
 import Spinner from './Spinner'
+import { Link } from 'react-router-dom'
 
 
 function Register() {
@@ -56,7 +57,7 @@ function Register() {
         password,
       }
 
-    //   dispatch(register(userData))
+       dispatch(register(userData))
     }
   }
 
@@ -123,7 +124,7 @@ function Register() {
                             onChange={onChange}>
                         </input>
                     </WindowStyle>
-                    <ButtonStyle>
+                    <ButtonStyle to ={'//'}>
                         <div className='form-group'>
                             <button type='submit' className='btn btn-block'>
                                 Submit
@@ -144,9 +145,10 @@ const WindowStyle = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-const ButtonStyle = styled.div`
+const ButtonStyle = styled(Link)`
   display: grid;
   justify-content: center;
+ // size: 20px;
   //align-items: center;
 `;
 

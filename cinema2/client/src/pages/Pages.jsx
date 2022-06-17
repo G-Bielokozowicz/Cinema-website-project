@@ -7,8 +7,8 @@ import Movies from './Movies';
 import Searched from './Searched';
 import MoviePage from '../components/MoviePage';
 import BuyTicket from './BuyTicket';
-import Login from '../components/Login';
-import Register from '../components/Register';
+import Login from './LoginPage';
+import Register from './RegisterPage';
 
 function Pages() {
   return (
