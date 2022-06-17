@@ -7,6 +7,7 @@ import {register, reset} from '../features/auth/authSlice'
 import styled from 'styled-components'
 import Spinner from './Spinner'
 import { Link } from 'react-router-dom'
+import validator from 'validator'
 
 
 function Register() {
@@ -38,12 +39,33 @@ function Register() {
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
+  const [emailError, setEmailError] = useState('')
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }))
+    var email = e.target.value
+  
+    if (validator.isEmail(email)) {
+      setEmailError(':)')
+    } 
+    else {
+      setEmailError('Enter valid Email!')
+    }
   }
+
+   
+  // const validateEmail = (e) => {
+  //   var email = e.target.value
+  
+  //   if (validator.isEmail(email)) {
+  //     setEmailError('Valid Email :)')
+  //   } else {
+  //     setEmailError('Enter valid Email!')
+  //   }
+  // }
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -77,18 +99,10 @@ function Register() {
 
             <section className='form'> 
                 <form onSubmit={onSubmit}>
-                    <WindowStyle className='form-group'>
-                        <input 
-                            type = "text" 
-                            className = 'form-control' 
-                            id='name'
-                            name='name' 
-                            value={name} 
-                            placeholder = 'Enter your name' 
-                            size={30}
-                            onChange={onChange}>
-                        </input>
-                    </WindowStyle>
+    
+                    <ValidStyle>
+                       {emailError}
+                    </ValidStyle>
                     <WindowStyle className='form-group'>
                         <input 
                             type = "email" 
@@ -97,6 +111,18 @@ function Register() {
                             name='email' 
                             value={email} 
                             placeholder = 'Enter your email' 
+                            size={30}
+                            onChange={onChange}>
+                        </input>
+                    </WindowStyle>
+                    <WindowStyle className='form-group'>
+                        <input 
+                            type = "text" 
+                            className = 'form-control' 
+                            id='name'
+                            name='name' 
+                            value={name} 
+                            placeholder = 'Enter your name' 
                             size={30}
                             onChange={onChange}>
                         </input>
@@ -146,11 +172,17 @@ const WindowStyle = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
+
 const ButtonStyle = styled.div`
   display: grid;
   justify-content: center;
  // size: 20px;
   //align-items: center;
+`;
+
+const ValidStyle = styled.div`
+  color: #c50e0e;
+  font-size: 12px;
 `;
 
 export default Register
