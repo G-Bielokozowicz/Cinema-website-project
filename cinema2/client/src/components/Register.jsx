@@ -32,7 +32,7 @@ function Register() {
     }
 
     if (isSuccess || user) {
-      navigate('/')
+      navigate('/confirm/')
     }
 
     dispatch(reset())
@@ -52,9 +52,10 @@ function Register() {
       toast.error('Passwords do not match')
     } else {
       const userData = {
-        name,
-        email,
-        password,
+        userEmail: email,
+        userName: name,
+        userPassword: password,
+        userType: 'user' 
       }
 
        dispatch(register(userData))
@@ -124,7 +125,7 @@ function Register() {
                             onChange={onChange}>
                         </input>
                     </WindowStyle>
-                    <ButtonStyle to ={'/confirm/'}>
+                    <ButtonStyle >
                         <div className='form-group'>
                             <button type='submit' className='btn btn-block'>
                                 Submit
@@ -145,7 +146,7 @@ const WindowStyle = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-const ButtonStyle = styled(Link)`
+const ButtonStyle = styled.div`
   display: grid;
   justify-content: center;
  // size: 20px;
