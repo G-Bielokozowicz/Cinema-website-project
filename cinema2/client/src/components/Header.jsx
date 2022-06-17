@@ -26,14 +26,14 @@ function Header() {
             </Title>
            <RLStyle>
             {user ? ( 
-              <LinkStyle to='/login'>
-                <button className='btn' onClick={onLogout}>
+              <LinkStyle to='/logout' className='btn' onClick={onLogout}>
+                {/* <button className='btn' onClick={onLogout}> */}
                   <FaSignOutAlt/> Logout
-                </button>
+                {/* </button> */}
               </LinkStyle>
               ) : (<>
               <LinkStyle to='/login'>
-                <FaSignInAlt/> login
+                <FaSignInAlt/> Login
               </LinkStyle>
               <LinkStyle to='/register'>
                 <FaUser/> Register
@@ -73,8 +73,8 @@ const LinkStyle=styled(Link)`
     }
     margin-left: 0px;
     margin-right: 30px;
-
 `
+
 const RLStyle = styled.li`
   display: flex;
   margin-top: 100px;
