@@ -46,26 +46,14 @@ function Register() {
       ...prevState,
       [e.target.name]: e.target.value,
     }))
-    var email = e.target.value
   
-    if (validator.isEmail(email)) {
-      setEmailError(':)')
+    if (!validator.isEmail(email)) {
+      setEmailError('Please enter valid email!')
     } 
-    else {
-      setEmailError('Enter valid Email!')
+    else{
+      setEmailError('')
     }
   }
-
-   
-  // const validateEmail = (e) => {
-  //   var email = e.target.value
-  
-  //   if (validator.isEmail(email)) {
-  //     setEmailError('Valid Email :)')
-  //   } else {
-  //     setEmailError('Enter valid Email!')
-  //   }
-  // }
 
   const onSubmit = (e) => {
     e.preventDefault()

@@ -15,7 +15,7 @@ function Header() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/')
+    navigate('/movies/')
   }
 
   return (
@@ -26,7 +26,7 @@ function Header() {
             </Title>
            <RLStyle>
             {user ? ( 
-              <LinkStyle to='/logout' className='btn' onClick={onLogout}>
+              <LinkStyle to='/' className='btn' onClick={onLogout}>
                 {/* <button className='btn' onClick={onLogout}> */}
                   <FaSignOutAlt/> Logout
                 {/* </button> */}
