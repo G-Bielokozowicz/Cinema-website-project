@@ -3,67 +3,66 @@ import { useSelector, useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {FaUser} from 'react-icons/fa'
-import {register, reset} from '../components/auth/authSlice'
+import {register, reset} from '../components/features/auth/authSlice'
 import styled from 'styled-components'
 import Spinner from './Spinner'
 
+
 function Register() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+  })
 
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        password2: '',
-    })
+  const { name, email, password, password2 } = formData
 
-    const { name, email, password, password2} = formData
+  // const navigate = useNavigate()
+  // const dispatch = useDispatch()
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+  // const { user, isLoading, isError, isSuccess, message } = useSelector(
+  //   (state) => state.auth
+  // )
 
-    const {user, isLoading, isError, isSuccess, message} = useSelector
-    (
-        (state) => state.auth
-    )
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error(message)
+  //   }
 
-    useEffect(() => {
-        if(isError){
-            toast.error(message)
-        }
+  //   if (isSuccess || user) {
+  //     navigate('/')
+  //   }
 
-        if(isSuccess || user){
-            navigate('/')
-        }
+  //   dispatch(reset())
+  // }, [user, isError, isSuccess, message, navigate, dispatch])
 
-        dispatch(reset())
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  }
 
-    }, [user, isError, isSuccess, message, navigate, dispatch])
+  const onSubmit = (e) => {
+    e.preventDefault()
 
-    const onChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
+    if (password !== password2) {
+      toast.error('Passwords do not match')
+    } else {
+      const userData = {
+        name,
+        email,
+        password,
+      }
+
+    //   dispatch(register(userData))
     }
+  }
 
-    const onSubmit = (e) => {
-        e.preventDefault()
-
-        if(password !== password2){
-            toast.error('Passwords do not match')
-        }else{
-            const userData = {
-                name, 
-                email, 
-                password,
-            }
-            dispatch(register(userData))
-        }
-    }
-
-    if(isLoading){
-        return <Spinner/>
-    }
+  // if (isLoading) {
+  //   return <Spinner />
+  // }
 
     return <>
         <WindowsStyle>
@@ -88,7 +87,7 @@ function Register() {
                             onChange={onChange}>
                         </input>
                     </WindowStyle>
-                    <WindowStyle>
+                    <WindowStyle className='form-group'>
                         <input 
                             type = "email" 
                             className = 'form-control' 
@@ -100,7 +99,7 @@ function Register() {
                             onChange={onChange}>
                         </input>
                     </WindowStyle>
-                    <WindowStyle>
+                    <WindowStyle className='form-group'>
                         <input 
                             type = "password" 
                             className = 'form-control' 
@@ -112,7 +111,7 @@ function Register() {
                             onChange={onChange}>
                         </input>
                     </WindowStyle>
-                    <WindowStyle>
+                    <WindowStyle className='form-group'>
                         <input 
                             type = "password2" 
                             className = 'form-control' 

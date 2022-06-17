@@ -1,4 +1,4 @@
-import React from 'react'
+//import React from 'react'
 import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
@@ -11,15 +11,15 @@ function Header() {
             <Title to ='/TAI.Kino'>
             TAI.Kino                
             </Title>
-        <RLStyle>
-                <LinkStyle to='/login'>
-                    <FaSignInAlt/> Login
-                </LinkStyle>
+           <RLStyle>
+              <LinkStyle to='/login'>
+                  <FaSignInAlt/> Login
+              </LinkStyle>
 
-                <LinkStyle to='/register'>
-                    <FaUser/> Register
-                </LinkStyle>
-        </RLStyle>
+              <LinkStyle to='/register'>
+                  <FaUser/> Register
+              </LinkStyle>
+           </RLStyle>
         </Wrapper>
     </HeaderStyle>
   )
