@@ -30,6 +30,7 @@ Metoda | Endpoint | Description |
 ```
 {
     userEmail: String,
+    userName: String,
     userPassword: String,
     userType: String,
 }
@@ -89,6 +90,7 @@ Metoda | Endpoint | Description |
     ticketSeats: [Number],
     ticketUser: {
         userEmail: String,
+        userName: String,
         userPassword: String,
         userType: String,
     }
@@ -110,6 +112,7 @@ Metoda | Endpoint | Description |
 {
     commentUser: {
         userEmail: String,
+        userName: String,
         userPassword: String,
         userType: String,
     },
