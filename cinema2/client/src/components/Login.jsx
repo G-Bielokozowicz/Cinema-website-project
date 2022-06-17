@@ -7,6 +7,7 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {login, reset} from '../features/auth/authSlice'
 import Spinner from './Spinner'
+import validator from 'validator'
 
 function Login() {
 
@@ -36,11 +37,19 @@ function Login() {
         dispatch(reset())
       }, [user, isError, isSuccess, message, navigate, dispatch])
 
+    const [emailError, setEmailError] = useState('')
+
     const onChange = (e) => {
         setFormData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value
         }))
+        if (!validator.isEmail(email)) {
+            setEmailError('Please enter valid email!')
+          } 
+        else{
+        setEmailError('')
+        }
     }
 
     const onSubmit = (e) => {
@@ -70,6 +79,9 @@ function Login() {
 
             <section className='form'> 
                 <form onSubmit={onSubmit}>
+                    <ValidStyle>
+                       {emailError}
+                    </ValidStyle>
                     <WindowStyle >
                         <input 
                             type = "email" 
@@ -121,6 +133,11 @@ const ButtonStyle = styled.div`
   display: grid;
   justify-content: center;
   //align-items: center;
+`;
+
+const ValidStyle = styled.div`
+  color: #c50e0e;
+  font-size: 12px;
 `;
 
 export default Login
