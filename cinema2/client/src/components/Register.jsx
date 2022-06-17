@@ -124,7 +124,7 @@ function Register() {
                             onChange={onChange}>
                         </input>
                     </WindowStyle>
-                    <ButtonStyle to ={'//'}>
+                    <ButtonStyle to ={'/confirm/'}>
                         <div className='form-group'>
                             <button type='submit' className='btn btn-block'>
                                 Submit
