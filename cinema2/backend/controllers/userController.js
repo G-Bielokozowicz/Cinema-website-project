@@ -9,7 +9,8 @@ const registerUser = asyncHandler(async(req, res)=>{
     const userEmail = req.body.userEmail
     const userPassword = req.body.userPassword
     const userType = req.body.userType
-    
+    const userName = req.body.userName
+
     // Check if email and password are typed
     if (!userEmail || !userPassword){
         res.status(400)
@@ -17,8 +18,9 @@ const registerUser = asyncHandler(async(req, res)=>{
     }
 
     // Check if user exists
-    const userExists = await User.findOne({userEmail})
-    if (userExists){
+    const userExistsEmail = await User.findOne({userEmail})
+    const userExistsName = await User.findOne({userName})
+    if (userExistsEmail || userExistsName){
         res.status(400)
         throw new Error("User already exists")
     }
@@ -30,6 +32,7 @@ const registerUser = asyncHandler(async(req, res)=>{
     // Create user
     const newUser = new User({
         userEmail,
+        userName,
         userPassword: hashedPassword,
         userType,
     });
@@ -39,6 +42,7 @@ const registerUser = asyncHandler(async(req, res)=>{
     .then(() => res.json({
         _id: newUser.id,
         email: userEmail,
+        name: userName,
         token: generateToken(newUser._id)
     }))
     .catch(err => res.status(400).json('Error: ' + err));
