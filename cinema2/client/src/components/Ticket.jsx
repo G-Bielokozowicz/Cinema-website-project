@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
 import { useParams} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 //TODO zrobić ui żeby było ładniej
 
@@ -34,14 +35,14 @@ function Ticket() {
                 {seats}
             </CinemaHall>
             Chosen seat is {seatNumber}
-            <Button>
+            <Button to={'summary'} state = {{text: 'Buy'}}>
                 Buy
             </Button>
         </Wrapper>
     )
 }
 
-const Button=styled.button`
+const Button=styled(Link)`
     background-color: #d34d18;
     position: right;
     color: #000;
