@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 
 function MovieCard(props) {
 
-    
+    const movieId = props.id
+    //console.log(movieId)
+
     return (
         <Card>
             <img src={props.image} width={200} height={300} alt='Poster'/>
@@ -15,7 +17,7 @@ function MovieCard(props) {
                 <Description>
                     {props.description}
                 </Description>
-                    <MyLink to={`/movie/${props.name}`} state= {{ temp: [props.description, props.director, props.image] }}>
+                    <MyLink to={`/movie/${props.name}`} state= {{ temp: [props.id, props.description, props.director, props.image] }}>
                         Buy tickets
                     </MyLink>               
             </Info>

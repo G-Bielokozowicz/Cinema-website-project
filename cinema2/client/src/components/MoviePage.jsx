@@ -4,18 +4,44 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 import { useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // to też trzeba będzie z bazy danych brac
 function MoviePage(props) {
+
+    const API_URL = 'http://localhost:5000/screenings/'
     
     const params = useParams()
     const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
+    
     const location = useLocation()
 
 
-    const description=location.state.temp[0]
-    const director=location.state.temp[1]
-    const image=location.state.temp[2]
+    const movieId = location.state.temp[0]
+    const description=location.state.temp[1]
+    const director=location.state.temp[2]
+    const image=location.state.temp[3]
+
+    const [screenings, setScreenings] = useState([])
+
+    const getScreenings = async () =>{
+      axios.get(API_URL + movieId)
+      .then((response) => {
+        setScreenings(response.data)
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+    }
+   
+    useEffect(()=>{
+        getScreenings()
+    },[])
+
+    // console.log(screenings[0])
+
+    console.log( Object.keys(movieId))
 
     return (
         <Card>
@@ -56,8 +82,11 @@ function MoviePage(props) {
                     </TableRow>     
                 </Info>
             </MovieDesc>
-            <ButtonRow>
-                <Button to={'ticket'} state={{ time: '11:40'}}>        
+            <ScreeningsStyle>
+                {/* {screenings[0].screeningMovie} */}
+            </ScreeningsStyle>
+            {/* <ButtonRow>
+                <Button to={'ticket'} state={{screenings[0].screeningsDate}}>        
                     11:40
                 </Button>  
                 <Button to={'ticket'} state={{ time:  '14:20'}}>              
@@ -69,7 +98,7 @@ function MoviePage(props) {
                 <Button to={'ticket'} state={{ time: '21:30'}}>             
                     21:30
                 </Button > 
-            </ButtonRow> 
+            </ButtonRow>  */}
         </Card>
   )
 }
@@ -92,7 +121,9 @@ const Card = styled.section`
 const MovieDesc = styled.section`
     display: flex;
 `
-
+const ScreeningsStyle = styled.section`
+    display: flex;
+`
 
 const Info = styled.div`
    // display: table;
