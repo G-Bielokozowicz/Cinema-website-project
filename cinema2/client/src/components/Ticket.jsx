@@ -12,6 +12,7 @@ function Ticket() {
     const [seatNumber, setSeatNumber]=useState(1);
     const params = useParams()
     const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
+    
     function handleSetSeatNumber(id){
         setSeatNumber(id)
     }
