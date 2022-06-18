@@ -3,6 +3,7 @@ let Ticket = require('../models/ticket.model')
 const asyncHandler = require('express-async-handler');
 const Screening = require('../models/screening.model');
 const crypto = require("crypto")
+
 const getAllTickets = asyncHandler(async(req,res)=>{
     Ticket.find({
         ticketUser: req.user.id
@@ -20,6 +21,27 @@ const getAllTickets = asyncHandler(async(req,res)=>{
     .then(tickets=>res.json(tickets))
     .catch(err=>res.status(400).json('Error: ' + err));
 })
+
+const getTicketByID = asyncHandler(async(req,res)=>{
+    const ticketid = req.params['ticketid']
+    Ticket.findOne({
+        _id:ticketid,
+        ticketUser:req.user._id
+    }).
+    populate([
+        {
+            path: 'ticketUser',
+            select: '-userPassword'
+        },
+        {
+            path: 'ticketScreeningID',
+            populate: 'screeningMovie'
+        }
+    ])
+    .then(tickets=>res.json(tickets))
+    .catch(err=>res.status(400).json('Error: ' + err));
+})
+
 
 const addTicket = asyncHandler(async(req,res)=>{
     
@@ -74,4 +96,4 @@ const addTicket = asyncHandler(async(req,res)=>{
 
 
 
-module.exports = {getAllTickets,addTicket}
+module.exports = {getAllTickets,getTicketByID,addTicket}
