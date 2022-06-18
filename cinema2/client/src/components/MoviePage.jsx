@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Screenings from './Screenings'
 
 // to też trzeba będzie z bazy danych brac
 function MoviePage(props) {
@@ -39,9 +38,9 @@ function MoviePage(props) {
         getScreenings()
     },[])
 
-    // console.log(screenings[0])
+  //  console.log(screenings[0])
 
-    console.log( Object.keys(movieId))
+    // console.log( Object.keys(movieId))
 
     return (
         <Card>
@@ -83,7 +82,13 @@ function MoviePage(props) {
                 </Info>
             </MovieDesc>
             <ScreeningsStyle>
-                {/* {screenings[0].screeningMovie} */}
+                {screenings.map((screen) => {
+                    return(
+                        <ScreenStyle key = {screen._id}>
+                            <Screenings date = {screen.screeningDate} nr={screen.screeningRoom} />
+                        </ScreenStyle>
+                    )
+                })}
             </ScreeningsStyle>
             {/* <ButtonRow>
                 <Button to={'ticket'} state={{screenings[0].screeningsDate}}>        
@@ -124,6 +129,10 @@ const MovieDesc = styled.section`
 const ScreeningsStyle = styled.section`
     display: flex;
 `
+const ScreenStyle = styled.section`
+    font-weight: 100;
+`
+
 
 const Info = styled.div`
    // display: table;
