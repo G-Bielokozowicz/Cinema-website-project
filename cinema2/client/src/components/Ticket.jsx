@@ -113,7 +113,11 @@ const Square=styled.button`
         background-color: #D34D18;
         color: white;
     }
-    
+    &:focus{
+        background-color: #D34D18;
+        color: white;
+    }
+   
 `
 
 export default Ticket
