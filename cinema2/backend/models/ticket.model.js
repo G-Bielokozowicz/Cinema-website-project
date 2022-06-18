@@ -23,7 +23,13 @@ const ticketSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User',
+    },
+    ticketQRCode:{
+        type:String,
+        required:true,
+        unique:true,
     }
+
 })
 
 const Ticket = mongoose.model('Ticket',ticketSchema)
