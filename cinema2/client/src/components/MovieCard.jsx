@@ -17,7 +17,7 @@ function MovieCard(props) {
                 <Description>
                     {props.description}
                 </Description>
-                    <MyLink to={'comments'} state= {{ id: [props.id]}} >
+                    <MyLink to={`/movie/${props.name}/comments`} state= {{ temp: [props.id, props.name, props.image]}} >
                         Leave comments
                     </MyLink>               
             </Info>

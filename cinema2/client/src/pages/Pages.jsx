@@ -11,6 +11,7 @@ import Login from './LoginPage';
 import Register from './RegisterPage';
 import ConfirmRegistration from './ConfirmRegistration';
 import Summary from './Summary';
+import CommentsPage from './CommentsPage';
 
 function Pages() {
   return (
@@ -26,6 +27,7 @@ function Pages() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/confirm' element={<ConfirmRegistration/>}/>
         <Route path='/movie/:name/ticket/summary' element={<Summary/>}/>
+        <Route path='/movie/:name/comments' element={<CommentsPage/>}/>
     </Routes>
   )
 }
