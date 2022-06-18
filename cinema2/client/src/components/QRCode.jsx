@@ -10,7 +10,7 @@ function QRCodePom(props) {
     QRCode.toDataURL(props.qr).then(setSrc)
 
     return (
-        <div><img src={src}/></div>
+        <div><img src={src} height = {300}/></div>
     )
 }
 
