@@ -46,46 +46,72 @@ function Comments(props) {
     return (
         <Wrapper>
             <Card>
-                <Info>
-                    {name}         
-                </Info>
-                <img src={image} width={297} height={420} alt='Poster'/>
+                <NameAndImage>
+                    <Info>
+                        {name}         
+                    </Info>
+                    <img src={image} width={297} height={420} alt='Poster'/>
+                </NameAndImage>
+                <TextStyle>
+                    <HeaderStyle>
+                        User Comments:
+                    </HeaderStyle>
+                    <div>
+                        {comments.map((comment)=>{
+                        return (
+                            <div key={comment._id}>
+                                <div com={comment.commentBody} />
+                                {comment.commentBody}
+                            </div>
+                        )
+                        })}
+                    </div>
+                </TextStyle>
             </Card>
-            <div>
-            {comments.map((comment)=>{
-            return (
-                <div key={comment._id}>
-                    <CommentsStyle com={comment.commentBody} />
-                    {comment.commentBody}
-                </div>
-            )
-            })}
-        </div>
        </Wrapper>
     )
 }
 
 const Card = styled.section`
-    /* display: grid;
-    justify-content: center;
-    align-items: center; */
+    display: flex;
+    /* justify-content: space-around; */
+    /* flex-wrap: wrap; */
+    //flex-direction: column;
+    align-items: center;
     max-width: 80%;
     margin-left:10%;
     margin-top:2%;
-   // outline: red solid;
+    /* outline: red solid; */
 `
 const Info = styled.div`
-    /* display: grid;
-    justify-content: center;
-    align-items: center; */
     margin-bottom: 1%;
     font-size: 25px;
     font-weight: bold;
+  //  outline: blue solid;
 `
 
-const CommentsStyle = styled.div`
+const NameAndImage = styled.div`
+  //  outline: purple solid;
 
 `
+
+const TextStyle = styled.div`
+    display: grid;
+    justify-content: space-around;
+    align-items: end;
+    margin-left: 10%;
+  //  outline: red solid;
+
+`
+
+const HeaderStyle = styled.div`
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10%;
+   // outline: green solid;
+
+`
+
 const Wrapper=styled.div`
     /* display:grid; */
     /* justify-content: center; */
