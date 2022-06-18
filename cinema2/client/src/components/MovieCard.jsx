@@ -33,13 +33,13 @@ const Card = styled.section`
     border: 0;
     //margin-top:15px;
     //margin-left:20%;
-    outline: red solid;
+    //outline: red solid;
 `
 
 const Info = styled.div`
     display: flex;
     flex-wrap: wrap;
-    outline: blue solid;
+   // outline: blue solid;
     //margin-left: 10px;
     padding-left: 10px;
     max-width: 100%;
@@ -53,7 +53,7 @@ const Title = styled(Link)`
     font-weight: 600;
     margin: 2px;
     margin-bottom: 20px;
-    outline: green solid;
+   // outline: green solid;
     &:hover {
     color: #8a8989;
    // text-decoration: overline;
@@ -65,7 +65,7 @@ const Description = styled.p`
     font-weight: 600;
     margin: 2px;
     max-height: 60%;
-    outline: yellow solid;
+   // outline: yellow solid;
 `
 
 const MyLink=styled(Link)`
@@ -80,7 +80,7 @@ const MyLink=styled(Link)`
     font-size: 20px;
     border-radius: 20px;
     cursor: pointer;
-    outline: red solid;
+   // outline: red solid;
     transition: color 0.4s;
     position: relative;
     left: auto;
