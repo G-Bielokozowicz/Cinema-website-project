@@ -16,12 +16,6 @@ function Screenings(props) {
     const formatDate = (date) => {
         var optionsHour = {year: 'numeric', month: 'long', day: 'numeric'}
         return new Date(date).toLocaleDateString([], optionsHour)
-        // return new Date(date).toLocaleTimeString('en-us', {
-        //     year: 'numeric', 
-        //     month: 'long', 
-        //     day: 'numeric',
-        //     weekday: 'long'
-        // })
     }
 
 
@@ -39,7 +33,7 @@ function Screenings(props) {
                 </DateStyle>
             </Info>
             <ButtonRow>
-                <Button>
+                <Button to={'ticket'} state = {{id: movieId}}>
                     Buy ticket
                 </Button>
             </ButtonRow>
@@ -49,6 +43,7 @@ function Screenings(props) {
 
 const Wrapper = styled.section`
     display: grid;
+    margin: auto;
     //width: 100%;
    //overflow: hidden;
     //position: relative;
@@ -121,7 +116,7 @@ const ButtonRow=styled.section`
  //   margin-right: 1.5%;
 `
 
-const Button = styled.div`
+const Button = styled(Link)`
     background-color: #d34d18;
    // position: right;
     color: #000;
