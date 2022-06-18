@@ -8,27 +8,34 @@ function Screenings(props) {
     const dataBD = props.date
     //console.log(movieId)
 
-    const format = () => {
-        var options = {year: 'numeric', month: 'long', day: 'numeric'}
-        return new Date().toLocaleDateString([], dataBD)
+    const formatTime = (time) => {
+        var optionstime = {hour: 'numeric', minute: 'numeric'}
+        return new Date(time).toLocaleTimeString([], optionstime)
     }
 
-    const formatHour = () => {
-        var optionsHour = {hour: 'numeric', minute: 'numeric'}
-        return new Date().toLocaleTimeString([], optionsHour)
+    const formatDate = (date) => {
+        var optionsHour = {year: 'numeric', month: 'long', day: 'numeric'}
+        return new Date(date).toLocaleDateString([], optionsHour)
+        // return new Date(date).toLocaleTimeString('en-us', {
+        //     year: 'numeric', 
+        //     month: 'long', 
+        //     day: 'numeric',
+        //     weekday: 'long'
+        // })
     }
 
-    const data = format()
-    const hour = formatHour()
+
+    const time = formatTime(dataBD)
+    const date = formatDate(dataBD)
 
     return (
         <Wrapper>
             <Info>
                 <DateStyle>
-                    {data}
+                    {date}
                 </DateStyle>
                 <DateStyle>
-                    {hour}
+                    {time}
                 </DateStyle>
             </Info>
             <ButtonRow>
