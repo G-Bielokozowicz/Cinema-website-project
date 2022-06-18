@@ -38,7 +38,7 @@ const addTicket = asyncHandler(async(req,res)=>{
     let tick
 
     do {
-        qrcode = crypto.randomBytes(4).toString('hex');
+        qrcode = crypto.randomBytes(5).toString('hex');
         tick = await Ticket.find({
             ticketQRCode:qrcode
         })

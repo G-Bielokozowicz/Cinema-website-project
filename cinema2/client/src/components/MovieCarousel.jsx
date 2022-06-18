@@ -42,7 +42,7 @@ function MovieCarousel() {
                 {movies.map((movie)=>{
                     return (
                         <SplideSlide key={movie._id}>
-                            <Link to={`/movie/${movie.movieName}`} state= {{ temp: [movie.movieDescription, movie.movieDirector, movie.moviePosterURL] }}>
+                            <Link to={`/movie/${movie.movieName}`} state= {{ temp: [movie._id, movie.movieDescription, movie.movieDirector, movie.moviePosterURL] }}>
                             <img src={movie.moviePosterURL} width={200} height={300} alt='Poster'/>
                             </Link>
                         </SplideSlide>
