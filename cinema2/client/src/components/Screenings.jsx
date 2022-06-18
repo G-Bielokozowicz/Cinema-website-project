@@ -6,6 +6,7 @@ function Screenings(props) {
 
     const movieId = props.id
     const dataBD = props.date
+    const room = props.room
     //console.log(movieId)
 
     const formatTime = (time) => {
@@ -30,6 +31,12 @@ function Screenings(props) {
                 </DateStyle>
                 <DateStyle>
                     {time}
+                </DateStyle>
+                <DateStyle>
+                    <div>
+                        Room nr:
+                    </div> 
+                    {room}
                 </DateStyle>
             </Info>
             <ButtonRow>
@@ -60,7 +67,7 @@ const DateStyle = styled.div`
     justify-content: center;
     align-items: center;
    // flex-wrap: wrap;
-    outline: blue solid;
+   // outline: blue solid;
     //margin-left: 10px;
    // padding-left: 10px;
    // max-width: 100%;

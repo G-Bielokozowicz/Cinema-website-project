@@ -85,25 +85,11 @@ function MoviePage(props) {
                 {screenings.map((screen) => {
                     return(
                         <ScreenStyle key = {screen._id}>
-                            <Screenings date = {screen.screeningDate} nr={screen.screeningRoom} />
+                            <Screenings date = {screen.screeningDate} room={screen.screeningRoom} />
                         </ScreenStyle>
                     )
                 })}
             </ScreeningsStyle>
-            {/* <ButtonRow>
-                <Button to={'ticket'} state={{screenings[0].screeningsDate}}>        
-                    11:40
-                </Button>  
-                <Button to={'ticket'} state={{ time:  '14:20'}}>              
-                    14:20
-                </Button> 
-                <Button to={'ticket'} state={{ time: '17:30'}}>             
-                    17:30
-                </Button> 
-                <Button to={'ticket'} state={{ time: '21:30'}}>             
-                    21:30
-                </Button > 
-            </ButtonRow>  */}
         </Card>
   )
 }
