@@ -5,6 +5,7 @@ import QRCode from 'qrcode';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import QRCodee from './QRCode';
+import { useLocation } from 'react-router-dom'
 
 function PurchaseSummary() {
 
@@ -33,36 +34,38 @@ function PurchaseSummary() {
 
     // const ticketId = tickets[0] 
 
+    //pobieranie danych z Ticket
+    //props._id, props.ticketType, props.ticketSeats]
+    const location = useLocation()
+
+    const ticketID = location.state.temp[0]
+    const ticketType = location.state.temp[1]
+    const ticketSeats = location.state.temp[2]
+    const qrCode = location.state.temp[3]
+
+    console.log("qr:" +  qrCode)
+
+    // console.log("ticketID:" +  ticketID)
+    // console.log("ticketType:" +  ticketType)
+    // console.log("ticketSeats:" +  ticketSeats)
+
     return (
-        <div>
-            {tickets.map((ticket)=>{
-             
-            return (
-                <Wrapper>
-                    <TextStyle>
-                        Purchase summary
-                    </TextStyle>
-                    
-                    <div>
-                    {tickets.map((ticket)=>{
-                    
-                    return (
-                        <div key={ticket._id}>
-                        <QRCodee qr={ticket.ticketQRCode}></QRCodee> 
-                        {ticket.ticketQRCode}
-                        <br></br></div>
-                    )
-                    })}
-                   </div>
-                   <ButtonRow>
-                        <Button to = {'print'}>
-                            Print ticket
-                        </Button>
-                    </ButtonRow>
-                </Wrapper>
-            )
-          })}
-        </div>
+   
+        <Wrapper>
+            <TextStyle>
+                Purchase summary
+            </TextStyle>
+            
+            <div>
+            <QRCodee qr={qrCode}></QRCodee> 
+            </div>
+            <ButtonRow>
+                <Button to = {'print'}>
+                    Print ticket
+                </Button>
+            </ButtonRow>
+        </Wrapper>
+
     )
 }
 
@@ -73,19 +76,6 @@ const QRStyle = styled.div`
   //margin-bottom: 1%;
   margin-top: 1%;
 `
-//     return (
-//         <Wrapper>
-//             <TextStyle>
-//                 Purchase summary
-//             </TextStyle>
-//             <ButtonRow>
-//                 <Button to = {'print'}>
-//                     Print ticket
-//                 </Button>
-//             </ButtonRow>
-//         </Wrapper>
-//     )
-// }
 
 const Wrapper = styled.div`
     display: grid;

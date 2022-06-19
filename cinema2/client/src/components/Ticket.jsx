@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios'
+import QRCodee from './QRCode';
 
 //TODO zrobić ui żeby było ładniej
 
@@ -17,40 +18,10 @@ function Ticket(props) {
     const location = useLocation()
 
     const movieId = location.state.temp[0]
-    const screeningID = location.state.temp[1]
+    const ticketScreeningID = location.state.temp[1]
 
-    console.log("TicketScreeningId: " + screeningID)
-
-    //umieszczanie biletu w bazie 
-    const API_URL = 'http://localhost:5000/tickets/add'
-    
- 
-    const [tickets, setTickets] = useState([])
-
-    const ticket = {
-        ticketScreeningID: screeningID,
-        ticektPrice: 150,
-        ticektType: "normal",
-        ticektSeats: Array
-    }
-    
-
-    const postTickets = async () =>{
-        axios.post(API_URL, ticket)
-        .then((response) => {
-            setTickets(response.data)
-            console.log(tickets.size)
-        })
-        .catch((error)=>{
-          console.log(error);
-        })
-      }
-    
-    useEffect(()=>{
-        postTickets()
-    },[])
-
-   
+   // console.log("TicketScreeningId: " + ticketScreeningID)
+  
    
   //generowanie siedzonek 
     // const location = useLocation()
@@ -69,10 +40,47 @@ function Ticket(props) {
             {i}
         </Square>);
       }
+
+    const ticketSeats = seatNumber
+    const ticketType = 'normal'
+      
+    //przechwytywanie kodu qr
+    const [serverTicket, setServerTicket] = useState([])
+
+    //umieszczanie biletu w bazie 
+
+    const token = JSON.parse(localStorage.getItem('user')) ///kto tu ma byc?
+    //  console.log("token: " + token.token)
+      
+    const config = {
+        headers: { Authorization: `Bearer ${token.token}` }
+    };      
+    
+    const onSubmit = (e) => {
+        console.log("Nacisnieto button")
+        e.preventDefault()
+        
+        const data = {ticketScreeningID, ticketType, ticketSeats} //nazwy takie jak w bazie
+        
+        axios.post('http://localhost:5000/tickets/add', data, config)
+        .then((response) => {
+            console.log("New ticket added")
+            setServerTicket(response.data)
+            console.log(response.data)
+        })
+        .catch((error)=>{
+        console.log(error);
+        })
+    }
+
+    console.log("qr w ticket:" +  serverTicket.qrCode)
+
     return (
         <Wrapper>
-            You are buying ticket for {name} at {time}
+            <form onSubmit={onSubmit}>
+            You are buying ticket for {name} at {time} and type {ticketType} and seats {ticketSeats}
             <br></br>
+            {serverTicket.ticketQRCode}
             <Screen>
                 Screen
             </Screen>
@@ -80,9 +88,21 @@ function Ticket(props) {
                 {seats}
             </CinemaHall>
             Chosen seat is {seatNumber}
-            <Button to={'summary'} state = {{text: 'Buy'}}>
+            <Button to={'summary'} state = {{temp: [props._id, ticketType, ticketSeats, serverTicket.qrCode] }}>
                 Buy
             </Button>
+            </form>
+            <div>
+                {/* {serverTicket.map((ticket)=>{
+                
+                return (
+                    <div key={ticket._id}>
+                    <QRCodee qr={ticket.ticketQRCode}></QRCodee> 
+                    {ticket.ticketQRCode}
+                    <br></br></div>
+                )
+                })} */}
+            </div>
         </Wrapper>
     )
 }
