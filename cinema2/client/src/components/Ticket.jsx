@@ -41,14 +41,22 @@ function Ticket(props) {
       }
 
     const ticketSeats = seatNumber
-    //TODO//////////////////////////////////////////////////////
+
     const ticketType = 'normal'
+
+    const [selectedTicketType] = useState('')
+
+    const onClickRadioButton= (e) => {
+        e.preventDefault()
+        //selectedTicketType.slice(e.target.value)
+        selectedTicketType.toString(e.target.value)
+    }
+    console.log("selectedTicketType: "+ selectedTicketType);
       
     //przechwytywanie kodu qr
     const [serverTicket, setServerTicket] = useState([])
 
     //umieszczanie biletu w bazie 
-
     const token = JSON.parse(localStorage.getItem('user')) ///kto tu ma byc?
     const config = {
         headers: { Authorization: `Bearer ${token.token}` }
@@ -71,6 +79,7 @@ function Ticket(props) {
         })
     }
 
+
     return (
         <Wrapper>
             <form onSubmit={onSubmit}>
@@ -84,7 +93,28 @@ function Ticket(props) {
                 {seats}
             </CinemaHall>
             Chosen seat is {seatNumber}
-            <Button to={'summary'} state = {{temp: [props._id, ticketType, ticketSeats, serverTicket.qrCode, room, time, date, name] }}>
+            <RadioStyle >
+                <div>
+                    <input
+                        type = "radio"
+                        value = "normal ticket"
+                        name = "ticket" 
+                        onChange={onClickRadioButton}   
+                    />
+                    normal ticket
+                </div>
+                <div>
+                    <input
+                        type = "radio"
+                        value = "reduced ticket"
+                        name = "ticket"
+                        onChange={onClickRadioButton}   
+                    />
+                    reduced ticket
+                </div>
+            </RadioStyle>
+            Chosen {selectedTicketType} ticket
+            <Button to={'summary'} state = {{temp: [props._id, selectedTicketType, ticketSeats, serverTicket.qrCode, room, time, date, name] }}>
                 Buy
             </Button>
             </form>
@@ -93,32 +123,41 @@ function Ticket(props) {
 }
 
 const Button=styled(Link)`
+   // position: right;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
     background-color: #d34d18;
-    position: right;
     color: #000;
     height: 50px;
     width: 150px;
     font-size: 20px;
     border-radius: 20px;
     margin-top:4%;
-    cursor: pointer;
-    border: none;
-    position: relative;
-    left: 40%;
-    //outline: red solid;
-    transition: color 0.4s;
+    margin: auto;
+    ///cursor: pointer;
+    //border: none;
+   // position: relative;
+    //left: 40%;
+   // outline: green solid;
+   // transition: color 0.4s;
     text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
     &:hover {
     color: #ffffff;
     }
 `
-
+const RadioStyle=styled.div`
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    //margin-top: 25px;
+    // outline: red solid;
+`
 const Wrapper=styled.div`
     display:grid;
     justify-content: center;
+    align-items: center;
     margin-top: 25px;
 `
 

@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom'
 function PurchaseSummary() {
 
     const token = JSON.parse(localStorage.getItem('user'))
-     console.log("token: " + token.token)
+    // console.log("token: " + token.token)
       
     const config = {
         headers: { Authorization: `Bearer ${token.token}` }
@@ -44,7 +44,7 @@ function PurchaseSummary() {
     const date = location.state.temp[6]
     const name = location.state.temp[7]
 
-    console.log("name w summary:" +  name)
+    console.log("ticketType: " + ticketType)
 
     return (
         <Wrapper>
