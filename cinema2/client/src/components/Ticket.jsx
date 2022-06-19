@@ -13,19 +13,18 @@ import QRCodee from './QRCode';
 function Ticket(props) {
    
     //pozyskiwanie dancyh
-    
-    // const params = useParams()
+
     const location = useLocation()
 
     const movieId = location.state.temp[0]
     const ticketScreeningID = location.state.temp[1]
-
-   // console.log("TicketScreeningId: " + ticketScreeningID)
-  
+    const room = location.state.temp[2]
+    const ticketPriceNormal = location.state.temp[3]
+    const ticketPriceReduced = location.state.temp[4]
+    const time = location.state.temp[5]
+    const date = location.state.temp[6]
    
   //generowanie siedzonek 
-    // const location = useLocation()
-    const { time } = location.state
     const [seatNumber, setSeatNumber]=useState(1);
     const params = useParams()
     const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
@@ -42,6 +41,7 @@ function Ticket(props) {
       }
 
     const ticketSeats = seatNumber
+    //TODO//////////////////////////////////////////////////////
     const ticketType = 'normal'
       
     //przechwytywanie kodu qr
@@ -50,8 +50,6 @@ function Ticket(props) {
     //umieszczanie biletu w bazie 
 
     const token = JSON.parse(localStorage.getItem('user')) ///kto tu ma byc?
-    //  console.log("token: " + token.token)
-      
     const config = {
         headers: { Authorization: `Bearer ${token.token}` }
     };      
@@ -73,12 +71,10 @@ function Ticket(props) {
         })
     }
 
-    console.log("qr w ticket:" +  serverTicket.qrCode)
-
     return (
         <Wrapper>
             <form onSubmit={onSubmit}>
-            You are buying ticket for {name} at {time} and type {ticketType} and seats {ticketSeats}
+            You are buying ticket for {name} at {time}
             <br></br>
             {serverTicket.ticketQRCode}
             <Screen>
@@ -88,21 +84,10 @@ function Ticket(props) {
                 {seats}
             </CinemaHall>
             Chosen seat is {seatNumber}
-            <Button to={'summary'} state = {{temp: [props._id, ticketType, ticketSeats, serverTicket.qrCode] }}>
+            <Button to={'summary'} state = {{temp: [props._id, ticketType, ticketSeats, serverTicket.qrCode, room, time, date, name] }}>
                 Buy
             </Button>
             </form>
-            <div>
-                {/* {serverTicket.map((ticket)=>{
-                
-                return (
-                    <div key={ticket._id}>
-                    <QRCodee qr={ticket.ticketQRCode}></QRCodee> 
-                    {ticket.ticketQRCode}
-                    <br></br></div>
-                )
-                })} */}
-            </div>
         </Wrapper>
     )
 }

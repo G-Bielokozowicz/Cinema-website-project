@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom'
 
 function Screenings(props) {
 
-    console.log("Jestem w screenings!")
-
-    // date = {screen.screeningDate} room={screen.screeningRoom} screeningId={screen._id} 
-    // ticketNormal = {screen.screeningPriceNormal} ticketReduced = {screen.screeningPriceReduced}
-
     // const movieId = props.id
     const dataBD = props.date
     const room = props.room
@@ -59,7 +54,7 @@ function Screenings(props) {
                 </DateStyle>
             </Info>
             <ButtonRow>
-                <Button to={'ticket'} state = {{temp: [props.movieId, screeningID, room, ticketPriceNormal, ticketPriceReduced]}}>
+                <Button to={'ticket'} state = {{temp: [props.movieId, screeningID, room, ticketPriceNormal, ticketPriceReduced, time, date]}}>
                     Buy ticket
                 </Button>
             </ButtonRow>

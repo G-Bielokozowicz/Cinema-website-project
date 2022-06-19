@@ -40,8 +40,11 @@ function PurchaseSummary() {
     const ticketSeats = location.state.temp[2]
     const qrCode = location.state.temp[3]
     const room = location.state.temp[4]
+    const time = location.state.temp[5]
+    const date = location.state.temp[6]
+    const name = location.state.temp[7]
 
-    // console.log("qr:" +  qrCode)
+    console.log("name w summary:" +  name)
 
     return (
         <Wrapper>
@@ -49,7 +52,7 @@ function PurchaseSummary() {
                 Purchase summary
             </TextStyle>
             <InfoStyle>
-                You are buying {ticketType} ticket
+                You are buying {ticketType} ticket for {name} at {time}
             </InfoStyle>
             <InfoStyle>
                 Your seat number: {ticketSeats}
