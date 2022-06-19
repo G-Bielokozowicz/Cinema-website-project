@@ -35,6 +35,8 @@ const addScreening = asyncHandler(async(req,res)=>{
     const screeningMovie = req.body.screeningMovie
     const screeningRoom = Number(req.body.screeningRoom)
     const screeningDate = new Date (req.body.screeningDate)
+    const screeningPriceNormal = Number(req.body.screeningPriceNormal)
+    const screeningPriceReduced = Number(req.body.screeningPriceReduced)
     // Check if movie exists in database
     const movie = await Movie.findById(screeningMovie)
     // No movie in database
@@ -75,7 +77,9 @@ const addScreening = asyncHandler(async(req,res)=>{
     const newScreening = new Screening({
         screeningMovie,
         screeningRoom,
-        screeningDate
+        screeningDate,
+        screeningPriceNormal,
+        screeningPriceReduced
     })
     newScreening.save()
     .then(()=>res.json({

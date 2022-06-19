@@ -7,10 +7,6 @@ const ticketSchema = new Schema({
         required: true,
         ref: 'Screening',
     },
-    ticketPrice:{
-        type: Number,
-        required: true,
-    },
     ticketType:{
         type: String,
         required: true,
