@@ -1,11 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { createGoal } from '../features/goals/goalSlice'
 
 
 function Comments(props) {
@@ -51,6 +49,10 @@ function Comments(props) {
         getComments()
     },[])
 
+    //blokowanie przycisku
+    const [isPending, setIsPending] = useState(false)
+
+    //dodwanie komenatrzy do bazy
     const [commentBody, setText] = useState('')
     
     const token = JSON.parse(localStorage.getItem('user'))
@@ -63,28 +65,20 @@ function Comments(props) {
     const onSubmit = (e) => {
         e.preventDefault()
           
-          const data = {commentMovie, commentBody}
-          axios.post('http://localhost:5000/comments/add', data, config)
-          .then(() => {
-              console.log("New comment added")
-          })
-          .catch((error)=>{
-            console.log(error);
-          })
-      }
+        const data = {commentMovie, commentBody}
 
-    // const onSubmit = (e) => {
-    //   e.preventDefault()
-        
-    //     const data = {movieId, text}
-    //     fetch('http://localhost:5000/comments/add', config, {
-    //         metohod: 'POST',
-    //         headerd: {"Content-Type": "application/json"},
-    //         body: JSON.stringify(data) 
-    //     }).then(() => {
-    //         console.log("New comment added")
-    //     })
-    // }
+        setIsPending(true);
+
+        axios.post('http://localhost:5000/comments/add', data, config)
+        .then(() => {
+            console.log("New comment added")
+            setIsPending(false);
+        })
+        .catch((error)=>{
+        console.log(error);
+        })
+    }
+
 
     return (
         <Wrapper>
@@ -97,7 +91,9 @@ function Comments(props) {
                 </NameAndImage>
                 <form onSubmit={onSubmit}>
                     <CommentsWindow>
-                        Leave your comment
+                        <Leavestyle>
+                            Leave your comment
+                        </Leavestyle>
                         <input 
                             type='text'
                             name='text'
@@ -105,13 +101,18 @@ function Comments(props) {
                             value={commentBody}
                             placeholder = 'Enter your comment' 
                             size="100"
-                            height="30"
+                            //height="30"
                             onChange={(e) => setText(e.target.value)}
                             >
                         </input>
-                        <button className='btn btn-block' type='submit'>
+                        {!isPending && <button className='btn btn-block' type='submit'>
                             Add Comment
                         </button>
+                        }
+                        {isPending && <button disabled>
+                            Thanks for your comment
+                        </button>
+                        }
                     </CommentsWindow>
                 </form>
             </Card>
@@ -119,16 +120,17 @@ function Comments(props) {
                 <HeaderStyle>
                     User Comments:
                 </HeaderStyle>
-                <div>
                     {comments.map((comment)=>{
                     return (
-                        <div key={comment._id}>
-                            <div com={comment.commentBody} />
-                            {comment.commentBody}
-                        </div>
+                        <CommentsStyle>
+                            <div key={comment._id}>
+                                <div com={comment.commentBody}/>
+                                {comment.commentBody}
+                            </div>
+                        </CommentsStyle>
                     )
                     })}
-                </div>
+
             </TextStyle>
        </Wrapper>
     )
@@ -140,6 +142,12 @@ const input = styled.div`
     line-height: 28px;
 
 `
+
+const Leavestyle = styled.div`
+    font-weight: bold;
+    font-size: 25px;
+`
+
 const Card = styled.section`
     display: flex;
     /* justify-content: space-around; */
@@ -149,18 +157,24 @@ const Card = styled.section`
     max-width: 80%;
     margin-left:10%;
     margin-top:2%;
-    outline: red solid;
+   // outline: red solid;
 `
 const Info = styled.div`
     margin-bottom: 1%;
     font-size: 25px;
     font-weight: bold;
-    outline: blue solid;
+   // outline: blue solid;
     /* line-height: 28px; */
 `
 
 const NameAndImage = styled.div`
-    outline: purple solid;
+    //outline: purple solid;
+
+`
+
+const CommentsStyle = styled.div`
+    margin-bottom: 8%;
+    //outline: purple solid;
 
 `
 
@@ -187,7 +201,7 @@ const CommentsWindow= styled.div`
    // box-sizing: padding-box;
    // margin-bottom: 10%;
     margin-left: 10%;
-    outline: green solid;
+   // outline: green solid;
 
 `
 
