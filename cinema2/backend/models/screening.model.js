@@ -15,6 +15,14 @@ const screeningSchema = new Schema({
     screeningDate: {
         type: Date,
         required: true,
+    },
+    screeningPriceNormal:{
+        type: Number,
+        required: true,
+    },
+    screeningPriceReduced:{
+        type: Number,
+        required: true,
     }
 })
 

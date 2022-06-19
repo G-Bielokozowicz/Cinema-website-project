@@ -52,7 +52,6 @@ const addTicket = asyncHandler(async(req,res)=>{
     if (!screening){
         res.status(400).json('No screening exists with given ID')
     } 
-    const ticketPrice = req.body.ticketPrice
     const ticketType = req.body.ticketType
     const ticketSeats = req.body.ticketSeats
     const ticketUser = req.user.id
@@ -64,7 +63,6 @@ const addTicket = asyncHandler(async(req,res)=>{
         tick = await Ticket.find({
             ticketQRCode:qrcode
         })
-        console.log(qrcode.toUpperCase())
     } while (tick.length>0)
 
 
@@ -77,7 +75,6 @@ const addTicket = asyncHandler(async(req,res)=>{
 
     const newTicket = new Ticket({
             ticketScreeningID,
-            ticketPrice,
             ticketType,
             ticketSeats,
             ticketUser,

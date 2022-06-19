@@ -63,6 +63,8 @@ Metoda | Endpoint | Description |
     },
     screeningRoom: Number,
     screeningDate: Date,
+    screeningPriceNormal: Number,
+    screeningPriceReduced: Number
 }
 ```
 
@@ -87,7 +89,6 @@ Metoda | Endpoint | Description |
         screeningRoom: Number,
         screeningDate: Date,
     },
-    ticketPrice: Number,
     ticketType: String,
     ticketSeats: [Number],
     ticketUser: {
