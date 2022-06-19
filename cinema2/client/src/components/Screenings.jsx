@@ -16,7 +16,7 @@ function Screenings(props) {
     const ticketPriceNormal = props.ticketNormal
     const ticketPriceReduced = props.ticketReduced
     
-    console.log("ScreeenignID: " + screeningID)
+   // console.log("room w screenings: " + room)
 
     const formatTime = (time) => {
         var optionstime = {hour: 'numeric', minute: 'numeric'}
@@ -59,7 +59,7 @@ function Screenings(props) {
                 </DateStyle>
             </Info>
             <ButtonRow>
-                <Button to={'ticket'} state = {{temp: [props.movieId, screeningID]}}>
+                <Button to={'ticket'} state = {{temp: [props.movieId, screeningID, room, ticketPriceNormal, ticketPriceReduced]}}>
                     Buy ticket
                 </Button>
             </ButtonRow>

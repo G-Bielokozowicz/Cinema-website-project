@@ -24,7 +24,8 @@ function Comments(props) {
     const image = location.state.temp[2]
 
    // console.log(movieId)
-
+   
+    //wczytywanie komenatrzy z bazy
     const [comments, setComments] = useState([])
     
     const [formData, setFormData] = useState({
