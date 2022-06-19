@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { createGoal } from '../features/goals/goalSlice'
 
 
 function Comments(props) {
@@ -19,7 +21,7 @@ function Comments(props) {
     
     const location = useLocation()
 
-    const movieId = location.state.temp[0]
+    const commentMovie = location.state.temp[0]
     const name = location.state.temp[1]
     const image = location.state.temp[2]
 
@@ -35,7 +37,7 @@ function Comments(props) {
     const { comment} = formData
 
     const getComments = async () =>{
-        axios.get(API_URL + `movie/${movieId}`)
+        axios.get(API_URL + `movie/${commentMovie}`)
         .then((response) => {
             setComments(response.data)
             console.log(comments.size)
@@ -49,6 +51,40 @@ function Comments(props) {
         getComments()
     },[])
 
+    const [commentBody, setText] = useState('')
+    
+    const token = JSON.parse(localStorage.getItem('user'))
+    console.log("token: " + token.token)
+    
+    const config = {
+        headers: { Authorization: `Bearer ${token.token}` }
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault()
+          
+          const data = {commentMovie, commentBody}
+          axios.post('http://localhost:5000/comments/add', data, config)
+          .then(() => {
+              console.log("New comment added")
+          })
+          .catch((error)=>{
+            console.log(error);
+          })
+      }
+
+    // const onSubmit = (e) => {
+    //   e.preventDefault()
+        
+    //     const data = {movieId, text}
+    //     fetch('http://localhost:5000/comments/add', config, {
+    //         metohod: 'POST',
+    //         headerd: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(data) 
+    //     }).then(() => {
+    //         console.log("New comment added")
+    //     })
+    // }
 
     return (
         <Wrapper>
@@ -59,18 +95,25 @@ function Comments(props) {
                     </Info>
                     <img src={image} width={297} height={420} alt='Poster'/>
                 </NameAndImage>
-                <CommentsWindow>
-                    Leave your comment
-                    <input 
-                        type = "comment" 
-                        className = 'form-control' 
-                        id='comment'
-                        name='comment' 
-                        value={comment} 
-                        placeholder = 'Enter your comment' 
-                        size="100">
-                    </input>
-                </CommentsWindow>
+                <form onSubmit={onSubmit}>
+                    <CommentsWindow>
+                        Leave your comment
+                        <input 
+                            type='text'
+                            name='text'
+                            id='text'
+                            value={commentBody}
+                            placeholder = 'Enter your comment' 
+                            size="100"
+                            height="30"
+                            onChange={(e) => setText(e.target.value)}
+                            >
+                        </input>
+                        <button className='btn btn-block' type='submit'>
+                            Add Comment
+                        </button>
+                    </CommentsWindow>
+                </form>
             </Card>
             <TextStyle>
                 <HeaderStyle>
