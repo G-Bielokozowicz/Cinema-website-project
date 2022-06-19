@@ -65,14 +65,6 @@ function MoviePage(props) {
                     </TableRow>
                     <TableRow>
                         <TitleRow>
-                            Obsada:
-                        </TitleRow>
-                        <TableText>
-                            Robert Downey Jr., Chris Hemsworth, Chris Evans, Mark Ruffalo, Scarlett Johansson, Jeremy Renner, Tom Hiddleston
-                        </TableText>
-                    </TableRow>
-                    <TableRow>
-                        <TitleRow>
                             Reżyser:
                         </TitleRow>
                         <TableText>
@@ -85,7 +77,9 @@ function MoviePage(props) {
                 {screenings.map((screen) => {
                     return(
                         <ScreenStyle key = {screen._id}>
+                            tutaj
                             <Screenings date = {screen.screeningDate} room={screen.screeningRoom} screeningId={screen._id}/>
+                            Haaalo czy jestem tu?
                         </ScreenStyle>
                     )
                 })}
@@ -99,7 +93,7 @@ const Card = styled.section`
     justify-content: center;
     align-items: center;
   //  width: 100%;
-    max-width: 80%;
+    max-width: 40%;
     //height: 445px;
     //overflow: hidden;
   //  position: relative;

@@ -56,7 +56,7 @@ function Comments(props) {
     const [commentBody, setText] = useState('')
     
     const token = JSON.parse(localStorage.getItem('user'))
-    console.log("token: " + token.token)
+  //  console.log("token: " + token.token)
     
     const config = {
         headers: { Authorization: `Bearer ${token.token}` }
@@ -105,14 +105,18 @@ function Comments(props) {
                             onChange={(e) => setText(e.target.value)}
                             >
                         </input>
-                        {!isPending && <button className='btn btn-block' type='submit'>
-                            Add Comment
-                        </button>
-                        }
-                        {isPending && <button disabled>
-                            Thanks for your comment
-                        </button>
-                        }
+                        
+                            {!isPending && 
+                                <button className='btn btn-block' type='submit'>
+                                    Add Comment
+                                </button>
+                            }
+                                                    
+                            {isPending && 
+                                <button disabled>
+                                    Thanks for your comment
+                                </button>
+                            }
                     </CommentsWindow>
                 </form>
             </Card>
@@ -136,11 +140,9 @@ function Comments(props) {
     )
 }
 
-const input = styled.div`
-    width: fit-content;
-    padding: 20px 10px; 
-    line-height: 28px;
-
+const ButtonStyle = styled.div`
+  //  background-color: #d34d18;
+   // border-radius: 20%;
 `
 
 const Leavestyle = styled.div`

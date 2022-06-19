@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Ticket from './Ticket'
 
 function Screenings(props) {
 
-    const movieId = props.id
+    console.log("Jestem w screenings!")
+
+    // const movieId = props.id
     const dataBD = props.date
     const room = props.room
     const screeningID = props.screeningId
@@ -28,6 +29,7 @@ function Screenings(props) {
 
     return (
         <Wrapper>
+            HAlo Gdzie jestem?
             <Info>
                 <DateStyle>
                     {date}
@@ -47,7 +49,6 @@ function Screenings(props) {
                     Buy ticket
                 </Button>
             </ButtonRow>
-             {/* <MyLink to={`/movie/${props.name}/comments`} state= {{ temp: [props.id, props.name, props.image]}} ></MyLink> */}
         </Wrapper>
     )
 }
