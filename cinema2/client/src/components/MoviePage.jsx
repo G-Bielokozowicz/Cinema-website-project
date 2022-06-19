@@ -77,9 +77,7 @@ function MoviePage(props) {
                 {screenings.map((screen) => {
                     return(
                         <ScreenStyle key = {screen._id}>
-                            tutaj
-                            <Screenings date = {screen.screeningDate} room={screen.screeningRoom} screeningId={screen._id}/>
-                            Haaalo czy jestem tu?
+                            <Screenings date = {screen.screeningDate} room={screen.screeningRoom} screeningId={screen._id} ticketNormal = {screen.screeningPriceNormal} ticketReduced = {screen.screeningPriceReduced}/>
                         </ScreenStyle>
                     )
                 })}
@@ -89,30 +87,30 @@ function MoviePage(props) {
 }
 
 const Card = styled.section`
-    display: grid;
+    display: gridbox;
     justify-content: center;
     align-items: center;
   //  width: 100%;
-    max-width: 40%;
+    max-width: 60%;
     //height: 445px;
     //overflow: hidden;
   //  position: relative;
     //border: 0;
-    margin-left:10%;
-    margin-top:2%;
-   // outline: red solid;
+    /* margin-left:10%;
+    margin-right:10%;
+    margin-top:2%; */
+    outline: green solid;
 `
 
 const MovieDesc = styled.section`
-    display: flex;
+    display: flex; //dzieki temu napisy sa obok img
 `
 const ScreeningsStyle = styled.section`
-    display: flex;
+    /* display: flex; */ //dzieki temu seanse sa jede pod drugim
 `
 const ScreenStyle = styled.section`
     font-weight: 100;
 `
-
 
 const Info = styled.div`
    // display: table;
