@@ -6,10 +6,15 @@ function Screenings(props) {
 
     console.log("Jestem w screenings!")
 
+    // date = {screen.screeningDate} room={screen.screeningRoom} screeningId={screen._id} 
+    // ticketNormal = {screen.screeningPriceNormal} ticketReduced = {screen.screeningPriceReduced}
+
     // const movieId = props.id
     const dataBD = props.date
     const room = props.room
     const screeningID = props.screeningId
+    const ticketPriceNormal = props.ticketNormal
+    const ticketPriceReduced = props.ticketReduced
     
     console.log("ScreeenignID: " + screeningID)
 
@@ -29,7 +34,6 @@ function Screenings(props) {
 
     return (
         <Wrapper>
-            HAlo Gdzie jestem?
             <Info>
                 <DateStyle>
                     {date}
@@ -43,6 +47,16 @@ function Screenings(props) {
                     </div> 
                     {room}
                 </DateStyle>
+                <DateStyle>
+                    Normal Ticket: 
+                    {ticketPriceNormal}
+                     zł
+                </DateStyle>
+                <DateStyle>
+                    Reduced Ticket: 
+                    {ticketPriceReduced}
+                     zł
+                </DateStyle>
             </Info>
             <ButtonRow>
                 <Button to={'ticket'} state = {{temp: [props.movieId, screeningID]}}>
@@ -54,17 +68,18 @@ function Screenings(props) {
 }
 
 const Wrapper = styled.section`
-    display: grid;
-    margin: auto;
+    display: gridbox;
+   // margin: auto;
+    justify-content: center;
+    align-items: center;
     //width: 100%;
    //overflow: hidden;
     //position: relative;
     //border: 0;
     //margin-top:15px;
     //margin-left:20%;
-   // outline: red solid;
-    justify-content: center;
-    align-items: center;
+    outline: red solid;
+    background-color: black;
 `
 
 const DateStyle = styled.div`
@@ -72,7 +87,7 @@ const DateStyle = styled.div`
     justify-content: center;
     align-items: center;
    // flex-wrap: wrap;
-   // outline: blue solid;
+    outline: blue solid;
     //margin-left: 10px;
    // padding-left: 10px;
    // max-width: 100%;
@@ -83,38 +98,11 @@ const DateStyle = styled.div`
 
 const Info = styled.section`
     display: grid;
-    font-size: 1.25rem;
-    font-weight: 600;
-    //margin: 2px;
-   // margin-bottom: 20px;
-`
-
-const Description = styled.p`
     font-size: 1rem;
     font-weight: 600;
     margin: 2px;
-    max-height: 60%;
-`
-
-const MyLink=styled(Link)`
-    text-decoration: none;
-    display: grid;
-    color: #000;
-    height: 50px;
-    width: 150px;
-    font-size: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    //outline: red solid;
-    transition: color 0.4s;
-    position: relative;
-    left: auto;
-    top: 20px;
-    justify-content: center;
-    align-items: center;
-    &:hover {
-    color: #ffffff;
-    }
+    margin-bottom: 20px;
+    outline: yellow solid;
 `
 
 const ButtonRow=styled.section`
@@ -126,10 +114,12 @@ const ButtonRow=styled.section`
    // right: 0;
     margin-bottom: 2%;
  //   margin-right: 1.5%;
+    outline: pink solid;
 `
 
 const Button = styled(Link)`
     background-color: #d34d18;
+    outline: grey solid;
    // position: right;
     color: #000;
     height: 50px;
