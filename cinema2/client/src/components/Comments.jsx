@@ -23,9 +23,16 @@ function Comments(props) {
     const name = location.state.temp[1]
     const image = location.state.temp[2]
 
-    console.log(movieId)
+   // console.log(movieId)
 
     const [comments, setComments] = useState([])
+    
+    const [formData, setFormData] = useState({
+        addingComment: '',
+
+    })
+
+    const { comment} = formData
 
     const getComments = async () =>{
         axios.get(API_URL + `movie/${movieId}`)
@@ -52,26 +59,44 @@ function Comments(props) {
                     </Info>
                     <img src={image} width={297} height={420} alt='Poster'/>
                 </NameAndImage>
-                <TextStyle>
-                    <HeaderStyle>
-                        User Comments:
-                    </HeaderStyle>
-                    <div>
-                        {comments.map((comment)=>{
-                        return (
-                            <div key={comment._id}>
-                                <div com={comment.commentBody} />
-                                {comment.commentBody}
-                            </div>
-                        )
-                        })}
-                    </div>
-                </TextStyle>
+                <CommentsWindow>
+                    Leave your comment
+                    <input 
+                        type = "comment" 
+                        className = 'form-control' 
+                        id='comment'
+                        name='comment' 
+                        value={comment} 
+                        placeholder = 'Enter your comment' 
+                        size="100">
+                    </input>
+                </CommentsWindow>
             </Card>
+            <TextStyle>
+                <HeaderStyle>
+                    User Comments:
+                </HeaderStyle>
+                <div>
+                    {comments.map((comment)=>{
+                    return (
+                        <div key={comment._id}>
+                            <div com={comment.commentBody} />
+                            {comment.commentBody}
+                        </div>
+                    )
+                    })}
+                </div>
+            </TextStyle>
        </Wrapper>
     )
 }
 
+const input = styled.div`
+    width: fit-content;
+    padding: 20px 10px; 
+    line-height: 28px;
+
+`
 const Card = styled.section`
     display: flex;
     /* justify-content: space-around; */
@@ -81,17 +106,18 @@ const Card = styled.section`
     max-width: 80%;
     margin-left:10%;
     margin-top:2%;
-    /* outline: red solid; */
+    outline: red solid;
 `
 const Info = styled.div`
     margin-bottom: 1%;
     font-size: 25px;
     font-weight: bold;
-  //  outline: blue solid;
+    outline: blue solid;
+    /* line-height: 28px; */
 `
 
 const NameAndImage = styled.div`
-  //  outline: purple solid;
+    outline: purple solid;
 
 `
 
@@ -109,6 +135,16 @@ const HeaderStyle = styled.div`
     font-size: 25px;
     margin-bottom: 10%;
    // outline: green solid;
+
+`
+const CommentsWindow= styled.div`
+    display: grid;
+    //font-weight: bold;
+    //font-size: 25px;
+   // box-sizing: padding-box;
+   // margin-bottom: 10%;
+    margin-left: 10%;
+    outline: green solid;
 
 `
 
