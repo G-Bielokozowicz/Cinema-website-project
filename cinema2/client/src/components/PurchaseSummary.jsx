@@ -9,10 +9,12 @@ import { useLocation } from 'react-router-dom'
 
 function PurchaseSummary() {
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYWM0ZmRlYmViNmZjZjkxYzQzMTc3MCIsImlhdCI6MTY1NTU2Njk0NCwiZXhwIjoxNjU4MTU4OTQ0fQ.eRNssIhWVg3b9dmoZ40V17NWJd_-xO-Ot2jzS8LU8rc"
+    const token = JSON.parse(localStorage.getItem('user'))
+     console.log("token: " + token.token)
+      
     const config = {
-        headers: { Authorization: `Bearer ${token}` }
-    };
+        headers: { Authorization: `Bearer ${token.token}` }
+    };      
     const [tickets, setTickets] = useState([])
 
     const getTickets = async () =>{
@@ -25,40 +27,39 @@ function PurchaseSummary() {
           console.log(error);
         })
       }
-
-    // const [src,setSrc] = useState("")
     
     useEffect(()=>{
         getTickets()
     },[])
 
-    // const ticketId = tickets[0] 
-
     //pobieranie danych z Ticket
-    //props._id, props.ticketType, props.ticketSeats]
     const location = useLocation()
 
     const ticketID = location.state.temp[0]
     const ticketType = location.state.temp[1]
     const ticketSeats = location.state.temp[2]
     const qrCode = location.state.temp[3]
+    const room = location.state.temp[4]
 
-    console.log("qr:" +  qrCode)
-
-    // console.log("ticketID:" +  ticketID)
-    // console.log("ticketType:" +  ticketType)
-    // console.log("ticketSeats:" +  ticketSeats)
+    // console.log("qr:" +  qrCode)
 
     return (
-   
         <Wrapper>
             <TextStyle>
                 Purchase summary
             </TextStyle>
-            
-            <div>
-            <QRCodee qr={qrCode}></QRCodee> 
-            </div>
+            <InfoStyle>
+                You are buying {ticketType} ticket
+            </InfoStyle>
+            <InfoStyle>
+                Your seat number: {ticketSeats}
+            </InfoStyle>
+            <InfoStyle>
+                Room number: {room}
+            </InfoStyle>
+            <QRStyle>
+                <QRCodee qr={qrCode}></QRCodee> 
+            </QRStyle>
             <ButtonRow>
                 <Button to = {'print'}>
                     Print ticket
@@ -73,41 +74,56 @@ const QRStyle = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
+  margin-top: 10%;
   //margin-bottom: 1%;
-  margin-top: 1%;
 `
 
 const Wrapper = styled.div`
     display: grid;
     align-items: center;
     justify-content: center;
+    outline: yellow;
 `
 
 const TextStyle=styled.section`
-    /* display: grid; */
-    margin-top: 20%;
-    outline: #24a763; 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    outline: #24a703; 
+`
+
+const InfoStyle=styled.section`
+    display: grid;
+    align-items: center;
+    justify-content: center;
 `
 
 const ButtonRow=styled.section`
-    /* display: grid; */
-    margin-top: 20%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
     //outline: #24a763
 `
 
 const Button = styled(Link)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #d34d18;
     color: #000;
+    outline: #b4c4bc;
     height: 50px;
     width: 150px; //szerokosc przycisku
     font-size: 20px;
     border-radius: 20px; //okragle rogi
     border: none;
     text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    &:focus {
+    &:hover {
     color: #ffffff;
     }
 `
