@@ -25,13 +25,13 @@ function PurchaseSummary() {
         })
       }
 
-    const [src,setSrc] = useState("")
+    // const [src,setSrc] = useState("")
     
     useEffect(()=>{
         getTickets()
     },[])
 
-    const ticketId = tickets[0] 
+    // const ticketId = tickets[0] 
 
     return (
         <div>

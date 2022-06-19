@@ -85,7 +85,7 @@ function MoviePage(props) {
                 {screenings.map((screen) => {
                     return(
                         <ScreenStyle key = {screen._id}>
-                            <Screenings date = {screen.screeningDate} room={screen.screeningRoom} />
+                            <Screenings date = {screen.screeningDate} room={screen.screeningRoom} screeningId={screen._id}/>
                         </ScreenStyle>
                     )
                 })}
