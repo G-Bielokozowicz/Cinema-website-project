@@ -21,6 +21,8 @@ function MoviePage(props) {
     const description=location.state.temp[1]
     const director=location.state.temp[2]
     const image=location.state.temp[3]
+    const length=location.state.temp[4]
+    const year=location.state.temp[5]
 
     const [screenings, setScreenings] = useState([])
 
@@ -49,7 +51,7 @@ function MoviePage(props) {
                 <Info>
                     <TableRow>
                         <TitleRow>
-                            Tytuł:
+                            Title:
                         </TitleRow>
                         <TableText>
                             {name}
@@ -57,7 +59,7 @@ function MoviePage(props) {
                     </TableRow>
                     <TableRow>
                         <TitleRow>
-                            Opis:
+                            Desription:
                         </TitleRow>
                         <TableText>
                             {description}
@@ -65,12 +67,28 @@ function MoviePage(props) {
                     </TableRow>
                     <TableRow>
                         <TitleRow>
-                            Reżyser:
+                            Director:
                         </TitleRow>
                         <TableText>
                             {director}
                         </TableText>
-                    </TableRow>     
+                    </TableRow> 
+                    <TableRow>
+                        <TitleRow>
+                            Length:
+                        </TitleRow>
+                        <TableText>
+                            {length}&nbsp; min
+                        </TableText>
+                    </TableRow>    
+                    <TableRow>
+                        <TitleRow>
+                             Year:
+                        </TitleRow>
+                        <TableText>
+                            {year}
+                        </TableText>
+                    </TableRow> 
                 </Info>
             </MovieDesc>
             <ScreeningsStyle>

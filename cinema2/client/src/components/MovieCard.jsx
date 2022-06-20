@@ -11,7 +11,7 @@ function MovieCard(props) {
         <Card>
             <img src={props.image} width={200} height={300} alt='Poster'/>
             <Info>
-                <Title to={`/movie/${props.name}`} state= {{ temp: [props.id, props.description, props.director, props.image] }}>
+                <Title to={`/movie/${props.name}`} state= {{ temp: [props.id, props.description, props.director, props.image, props.length, props.year] }}>
                     {props.name}
                 </Title>
                 <Description>

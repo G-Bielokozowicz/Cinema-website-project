@@ -30,7 +30,8 @@ function MovieCardList(props) {
           {movies.map((movie)=>{
             return (
               <ListItem key={movie._id}>
-                <MovieCard id = {movie._id} name={movie.movieName} description={movie.movieDescription} image={movie.moviePosterURL} director={movie.movieDirector}/>
+                <MovieCard id = {movie._id} name={movie.movieName} description={movie.movieDescription} image={movie.moviePosterURL} 
+                          director={movie.movieDirector} length = {movie.movieLength} year = {movie.movieReleaseYear}/>
               </ListItem>
             )
           })}
