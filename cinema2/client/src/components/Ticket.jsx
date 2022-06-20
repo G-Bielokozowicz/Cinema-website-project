@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import axios from 'axios'
 import QRCodee from './QRCode';
 import { useNavigate } from "react-router-dom"
+import Spinner from './Spinner'
 
 //TODO zrobić ui żeby było ładniej
 
@@ -26,22 +27,52 @@ function Ticket(props) {
     const ticketPriceReduced = location.state.temp[4]
     const time = location.state.temp[5]
     const date = location.state.temp[6]
+
+    //pobieranie zjaetych miejsc
+
+    const [takenSeats, setTakenSeats] = useState([])
+
+    const getSeats = async () =>{
+        axios.get('http://localhost:5000/screenings/seats/' + ticketScreeningID)
+        .then((response) => {
+        setTakenSeats(response.data.takenSeats)
+        console.log(response.data.takenSeats)
+        })
+        .catch((error)=>{
+        console.log(error);
+        })
+    }
+    
+    useEffect(()=>{
+        getSeats()
+    },[])
    
   //generowanie siedzonek 
     const [seatNumber, setSeatNumber]=useState(1);
     const params = useParams()
     const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)
+   // let chosenSeats = []
     
+    const [chosenSeats, setChosenSeats] = useState([])
+
     function handleSetSeatNumber(id){
         setSeatNumber(id)
+        setChosenSeats(chosenSeats => [...chosenSeats, id])
+        //console.log(chosenSeats)
+       // console.log(takenSeats)
     }
 
     let seats=[]
     for (let i = 1; i <= 100; i++) {
-        seats.push(<Square key={i} type = 'button' onClick={() => handleSetSeatNumber(i)}>
-            {i}
-        </Square>);
-      }
+        if( takenSeats.includes(i)){
+            seats.push(<TakenSeatStyle key ={i}> {i} </TakenSeatStyle>)
+        }
+        else{
+            seats.push(<Square key={i} type = 'button' onClick={() => handleSetSeatNumber(i)}>
+                {i}
+            </Square>);
+        }
+    }
 
     const ticketSeats = seatNumber
    
@@ -68,19 +99,22 @@ function Ticket(props) {
         headers: { Authorization: `Bearer ${token.token}` }
     };      
 
+    const [isLoading, setisLoading] = useState(false)
     const [added, setAdded] = useState(false)
     
     const onSubmit = (e) => {
+        setisLoading(true)
         console.log("Nacisnieto button buy")
         e.preventDefault()
         
-        const data = {ticketScreeningID, ticketType, ticketSeats} //nazwy takie jak w bazie
+        const data = {ticketScreeningID, ticketType, ticketSeats:chosenSeats} //nazwy takie jak w bazie
          
         axios.post('http://localhost:5000/tickets/add', data, config)
         .then((response) => {
         console.log("New ticket added")
         setServerTicket(response.data)
         setAdded(true)
+        setisLoading(false)
         console.log(response.data)
             // navigate('summary', {id: props._id, ticketType: selectedTicketType, ticketSeats: ticketSeats, 
                 // qrCode: serverTicket.qrCode, room: room, time: time, date: date, name: name })
@@ -131,6 +165,7 @@ function Ticket(props) {
                     Buy
                 </ButtonFirst>
                 }
+                {isLoading && <Spinner></Spinner>}
                 {added && < Button to = {'summary'} type = 'button' state = {{ temp: [selectedTicketType, ticketSeats, serverTicket.qrCode, room, time, date, name]}}>
                     Summary
                 </Button>
@@ -252,6 +287,21 @@ const Square=styled.button`
         color: white;
     }
    
+`
+
+const TakenSeatStyle=styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 5px;
+    min-height: 50px;
+    min-width: 50px;
+    border: none;
+    background-color: #ff0000;
+    outline: double 1px;
+    flex-basis: 2%;
+    transition: all 0.3s;
 `
 
 export default Ticket
