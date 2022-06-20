@@ -6,11 +6,7 @@ import RepertuarScreenings from './RepertuarScreenings'
 
 function GetScreeningsRep(props) {
 
-<<<<<<< HEAD
-    const movieId = props.id
-=======
     let movieId = props.id
->>>>>>> cb9041e7e5b50fec40d635811729ecfcf21627c6
     let selectedDate = props.selectedDate
 
     console.log("selectedDate w getscreeningsrep: " + selectedDate)
@@ -19,11 +15,7 @@ function GetScreeningsRep(props) {
     const [screenings, setScreenings] = useState([])
 
     const getScreenings = async () =>{
-<<<<<<< HEAD
-        axios.get('http://localhost:5000/screenings/date/' + selectedDate)
-=======
         axios.get('http://localhost:5000/screenings/date/' + selectedDate +"/"+movieId)
->>>>>>> cb9041e7e5b50fec40d635811729ecfcf21627c6
         .then((response) => {
           setScreenings(response.data)
         })
@@ -42,11 +34,16 @@ function GetScreeningsRep(props) {
             {screenings.map((screen) => {
                 return (
                     <div key={screen._id}>
+                        <div>
                        {screen._id}
-<<<<<<< HEAD
-                       {screen.screeningDate}
-=======
->>>>>>> cb9041e7e5b50fec40d635811729ecfcf21627c6
+                       </div>
+                       {/* <div>
+                       {screen.screeningMovie.movieName}
+                       </div>
+                       <div>
+                       <img src={screen.screeningMovie.moviePosterURL} width={210} height={297} alt='Poster'/>
+                       </div> */}
+                       
                     </div>
                 )
             })}  

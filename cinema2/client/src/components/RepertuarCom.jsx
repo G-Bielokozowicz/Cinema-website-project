@@ -28,10 +28,6 @@ function RepertuarCom() {
 
     //date picker
     const [date, setDate ] = useState('2022-06-20');
-<<<<<<< HEAD
-    
-=======
->>>>>>> cb9041e7e5b50fec40d635811729ecfcf21627c6
     const DatePicker = () => {
         console.log("Date " + date)
         return(
@@ -63,13 +59,14 @@ function RepertuarCom() {
                     <div key = {movies._id}>
                         <RepertuarStyle>
                             <GetScreeningsRep id = {movie._id} selectedDate = {date}></GetScreeningsRep>
-                            <div>
+                            {/* <div>
                                 {movie.movieName}
                             </div>
                             <div>
                                 <img src={movie.moviePosterURL} width={210} height={297} alt='Poster'/>
                             </div>
                             <div>
+                                Length:
                                 {movie.movieLength}
                             </div>
                             <div>
@@ -78,7 +75,7 @@ function RepertuarCom() {
                             <div>
                                 ID:
                                 {movie._id}
-                            </div>
+                            </div> */}
                         </RepertuarStyle>
                     </div>
                 )
@@ -88,13 +85,13 @@ function RepertuarCom() {
 }
 
 const RepertuarStyle = styled.div`
-   // display: flex;
+    display: flex;
     /* align-items: center; */
     /* justify-content: center;  */
     outline: green;
 `
 const MovieStyle = styled.div`
-  //  display: grid;
+    display: grid;
     /* align-items: center; */
     /* justify-content: center;  */
     outline: red solid;
