@@ -4,6 +4,7 @@ var endOfDay = require('date-fns/endOfDay')
 var startOfDay = require('date-fns/startOfDay') 
 let Movie = require('../models/movie.model')
 let Screening = require('../models/screening.model')
+let Ticket = require('../models/ticket.model')
 
 const getAllScreenings = asyncHandler(async(req,res)=>{
     if (req.params['movie']){
@@ -142,4 +143,37 @@ const getTodayScreenings = asyncHandler(async(req,res)=>{
    
 })
 
-module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings}
+const getTakenSeats = asyncHandler(async(req,res)=>{
+    const screeningID = req.params['screening']
+    let takenSeats=[]
+    const screen = await Screening.findById(screeningID)
+    if (!screen){
+        res.status(400).json("No screening with this ID")
+        throw new Error("No screening with this ID")
+    }
+    const tickets = await Ticket.find({
+        ticketScreeningID: screeningID
+    })
+    .populate([
+        {
+            path: 'ticketUser',
+            select: '-userPassword'
+        },
+        {
+            path: 'ticketScreeningID',
+            populate: 'screeningMovie'
+        }
+    ])
+
+    for (let i = 0;i<tickets.length;i++){
+        takenSeats.push(... tickets[i].ticketSeats)
+    }
+    
+    res.status(200).json({
+        screeningID: screeningID,
+        takenSeats: takenSeats.sort()
+
+    })
+})
+
+module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings,getTakenSeats}
