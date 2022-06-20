@@ -8,8 +8,9 @@ function GetScreeningsRep(props) {
 
     let movieId = props.id
     let selectedDate = props.selectedDate
+    let screeningDate = props.screeningDate
 
-    console.log("selectedDate w getscreeningsrep: " + selectedDate)
+    console.log("screeningDate w Get: " + screeningDate)
 
     //pobieranie senasów z bazy
     const [screenings, setScreenings] = useState([])
@@ -28,38 +29,71 @@ function GetScreeningsRep(props) {
         getScreenings()
     },[selectedDate])
 
+    
+    const formatTime = (time) => {
+        var optionstime = {hour: 'numeric', minute: 'numeric'}
+        return new Date(time).toLocaleTimeString([], optionstime)
+    }
+
+    const formatDate = (date) => {
+        var optionsHour = {year: 'numeric', month: 'long', day: 'numeric'}
+        return new Date(date).toLocaleDateString([], optionsHour)
+    }
+
+
+    // const time = formatTime(dataBD)
+    // const date = formatDate(dataBD)
+
    
     return (
         <div>
             {screenings.map((screen) => {
                 return (
-                    <div key={screen._id}>
+                    <InfoStyle>
+                        <div key={screen._id}>
+                            <NameStyle>
+                                {screen.screeningMovie.movieName}
+                            </NameStyle>
+                            <div>
+                                Date: &nbsp;
+                                {formatDate(screen.screeningDate)}
+                            </div>
+                            <div>
+                                Time: &nbsp;
+                                {formatTime(screen.screeningDate)}
+                            </div>
+                            <LengthStyle>
+                                Movie Length: &nbsp;
+                                {screen.screeningMovie.movieLength}
+                                &nbsp;
+                            </LengthStyle>
                         <div>
-                       {screen._id}
-                       </div>
-                       {/* <div>
-                       {screen.screeningMovie.movieName}
-                       </div>
-                       <div>
-                       <img src={screen.screeningMovie.moviePosterURL} width={210} height={297} alt='Poster'/>
-                       </div> */}
-                       
-                    </div>
+                        {/* <img src={screen.screeningMovie.moviePosterURL} width={210} height={297} alt='Poster'/> */}
+                        </div>
+                        
+                        </div>
+                    </InfoStyle>
                 )
             })}  
         </div>
     )
 }
 
-const RepertuarStyle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+const NameStyle = styled.div`
+    font-weight: bold;
 `
-const MovieStyle = styled.div`
+const LengthStyle = styled.div`
+    color: #7f7f7f;
+`
+
+const InfoStyle = styled.div`
     /* display: grid;
     align-items: center;
     justify-content: center; */
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 200%;
+    outline: green solid;
 `
 
 const ScreeningsStyle = styled.div`

@@ -9,23 +9,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 function RepertuarCom() {
 
-    //pobieranie wszystkich filmów z bazy
-    const [movies, setMovies] = useState([])
-
-    const getMovies = async () =>{
-      axios.get('http://localhost:5000/movies/')
-      .then((response) => {
-        setMovies(response.data)
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
-    }
-   
-    useEffect(()=>{
-        getMovies()
-    },[])
-
     //date picker
     const [date, setDate ] = useState('2022-06-20');
     const DatePicker = () => {
@@ -38,11 +21,30 @@ function RepertuarCom() {
         )
     }
 
-    console.log("Date za funkcją" + date)
+   // console.log("Date za funkcją" + date)
 
     
     useEffect(()=>{
         console.log(date)
+    },[date])
+
+
+    //pobieranie filmów, ktore maja seans danego dnia 
+    const [movies, setMovies] = useState([])
+
+    const getMovies = async () =>{
+        axios.get('http://localhost:5000/movies/date/' + date)
+        .then((response) => {
+        setMovies(response.data)
+        console.log(response.data)
+        })
+        .catch((error)=>{
+        console.log(error);
+        })
+    }
+    
+    useEffect(()=>{
+        getMovies()
     },[date])
 
 
@@ -58,24 +60,12 @@ function RepertuarCom() {
                 return(
                     <div key = {movies._id}>
                         <RepertuarStyle>
-                            <GetScreeningsRep id = {movie._id} selectedDate = {date}></GetScreeningsRep>
-                            {/* <div>
-                                {movie.movieName}
-                            </div>
-                            <div>
-                                <img src={movie.moviePosterURL} width={210} height={297} alt='Poster'/>
-                            </div>
-                            <div>
-                                Length:
-                                {movie.movieLength}
-                            </div>
-                            <div>
-                                {movie.screeningDate} 
-                            </div>
-                            <div>
-                                ID:
-                                {movie._id}
-                            </div> */}
+                            <Image>
+                                <div>
+                                    <img src={movie.moviePosterURL} width={210} height={297} alt='Poster'/>
+                                </div>
+                            </Image>
+                            <GetScreeningsRep id = {movie._id} selectedDate = {date} screeningDate = {movie.screeningDate}></GetScreeningsRep>
                         </RepertuarStyle>
                     </div>
                 )
@@ -86,21 +76,31 @@ function RepertuarCom() {
 
 const RepertuarStyle = styled.div`
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center;  */
-    outline: green;
+    align-items: center;
+    justify-content: center; 
+    /* outline: green; */
+    margin-bottom: 5%;
+    width: 75%;
 `
-const MovieStyle = styled.div`
+const Image = styled.div`
     display: grid;
     /* align-items: center; */
     /* justify-content: center;  */
-    outline: red solid;
+    outline: #2e1fcc;
+
+`
+const MovieStyle = styled.div`
+    /* display: grid; */
+    /* align-items: center; */
+    /* justify-content: center;  */
+    /* outline: red solid; */
 `
 
 const DateStyle = styled.div`
     display: grid;
     align-items: center;
     justify-content: center;
+    margin-bottom: 3%;
 `
 
 const ButtonStyle = styled.div`
