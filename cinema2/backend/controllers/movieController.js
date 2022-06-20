@@ -71,15 +71,15 @@ const getMoviesByDate = asyncHandler(async(req,res)=>{
         }
     ])
 
-    let movies = []
+    let moviesid = []
 
     for (let i = 0;i<screenings.length;i++){
-        movies.push(screenings[i].screeningMovie)
+        moviesid.push(screenings[i].screeningMovie)
     }
-    let ret = [... new Set(movies)]
-    res.status(200).json({
-        movies: ret
-    })
+    let ret = [... new Set(moviesid)]
+    res.status(200).json(
+        ret
+    )
 })
 
 module.exports = {getAllMovies,getMovieByName,getMovieById,addMovie,getMoviesByDate}
