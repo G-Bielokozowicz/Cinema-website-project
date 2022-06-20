@@ -145,17 +145,17 @@ function Ticket(props) {
             <CinemaHall>
                 {seats}
             </CinemaHall>
-            Chosen seat is {seatNumber}
             <RadioStyle >
                 <div>
                     <input
                         type = "radio"
                         value = "normal"
                         name = "ticket" 
-                        checked="checked"
+                       // checked="checked"
                         onChange={onClickRadioButton}   
                     />
-                    normal ticket
+                    normal ticket: &nbsp;
+                    {ticketPriceNormal} zł
                 </div>
                 <div>
                     <input
@@ -164,7 +164,8 @@ function Ticket(props) {
                         name = "ticket"
                         onChange={onClickRadioButton}   
                     />
-                    reduced ticket
+                    reduced ticket:&nbsp;
+                    {ticketPriceReduced} zł
                 </div>
             </RadioStyle>
             Chosen {selectedTicketType} ticket
