@@ -30,34 +30,41 @@ function Screenings(props) {
     return (
         <Wrapper>
             <Info>
-                <DateStyle>
-                    {date}
-                </DateStyle>
-                <DateStyle>
-                    {time}
-                </DateStyle>
-                <DateStyle>
-                    <div>
-                        Room nr:
-                    </div> 
-                    {room}
-                </DateStyle>
-                <DateStyle>
-                    Normal Ticket: 
-                    {ticketPriceNormal}
-                     zł
-                </DateStyle>
-                <DateStyle>
-                    Reduced Ticket: 
-                    {ticketPriceReduced}
-                     zł
-                </DateStyle>
-            </Info>
+                <SetStyle>
+                    <DateStyle>
+                        {date}
+                    </DateStyle>
+                    <DateStyle>
+                        {time}
+                    </DateStyle>
+                    <DateStyle>
+                        <div>
+                            Room nr: &nbsp;
+                            {room}
+                        </div> 
+                    </DateStyle>
+                </SetStyle>
+                <SetStyle>
+                    <DateStyle>
+                        Normal Ticket: &nbsp;
+                         {ticketPriceNormal}
+                         &nbsp; zł
+                    </DateStyle>
+                    <DateStyle>
+                        Reduced Ticket: &nbsp;
+                        {ticketPriceReduced}
+                        &nbsp; zł
+                    </DateStyle>
+                </SetStyle>
+           
+            <SetStyle>
             <ButtonRow>
                 <Button to={'ticket'} state = {{temp: [props.movieId, screeningID, room, ticketPriceNormal, ticketPriceReduced, time, date]}}>
                     Buy ticket
                 </Button>
             </ButtonRow>
+            </SetStyle>
+            </Info>
         </Wrapper>
     )
 }
@@ -71,50 +78,59 @@ const Wrapper = styled.section`
    //overflow: hidden;
     //position: relative;
     //border: 0;
-    //margin-top:15px;
+    margin-top:5%;
     //margin-left:20%;
-    outline: red solid;
+    //outline: red solid;
     background-color: black;
 `
 
+const SetStyle = styled.div`
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 100%; */
+    //outline: pink solid;
+`
+
 const DateStyle = styled.div`
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
    // flex-wrap: wrap;
-    outline: blue solid;
-    //margin-left: 10px;
+   // outline: blue solid;
+    margin-left: 2%;
    // padding-left: 10px;
-   // max-width: 100%;
+    width: 150%;
     //grid-template-rows:80px;
     //background-color: black;
 `
 
 
 const Info = styled.section`
-    display: grid;
+    display: flex;
+    justify-content: space-between;
     font-size: 1rem;
     font-weight: 600;
     margin: 2px;
     margin-bottom: 20px;
-    outline: yellow solid;
+    //outline: yellow solid;
 `
 
 const ButtonRow=styled.section`
     display: grid;
-    //justify-content: right;
-  //  align-items: center;
+    justify-content: right; 
+    align-items: center;
    // position: absolute;
    // bottom: 0;
    // right: 0;
     margin-bottom: 2%;
  //   margin-right: 1.5%;
-    outline: pink solid;
+  //  outline: pink solid;
 `
 
 const Button = styled(Link)`
     background-color: #d34d18;
-    outline: grey solid;
+  //  outline: grey solid;
    // position: right;
     color: #000;
     height: 50px;

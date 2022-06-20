@@ -42,6 +42,13 @@ function Ticket(props) {
 
     const ticketSeats = seatNumber
 
+
+     //tablica zajetych siedzen
+    let occpiedSeates = []
+    
+
+
+    //Typ biletu - radio buttons
     const ticketType = 'normal'
 
     const [selectedTicketType] = useState('')

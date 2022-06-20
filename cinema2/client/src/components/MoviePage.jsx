@@ -90,6 +90,7 @@ const Card = styled.section`
     display: gridbox;
     justify-content: center;
     align-items: center;
+    margin: auto;
   //  width: 100%;
     max-width: 60%;
     //height: 445px;
@@ -99,7 +100,7 @@ const Card = styled.section`
     /* margin-left:10%;
     margin-right:10%;
     margin-top:2%; */
-    outline: green solid;
+   // outline: green solid;
 `
 
 const MovieDesc = styled.section`
