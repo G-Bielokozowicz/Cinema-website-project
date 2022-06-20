@@ -177,7 +177,7 @@ const getTakenSeats = asyncHandler(async(req,res)=>{
 })
 
 const getScreeningsByDate = asyncHandler(async(req,res)=>{
-    const date = req.body.date
+    const date = req.params['date']
     res.status(200).json({
         message:date
     })

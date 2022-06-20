@@ -11,7 +11,7 @@ router.delete('/delete',protect,deleteScreening)
 router.get('/today',getTodayScreenings)
 router.get('/today/:movie',getTodayScreenings)
 router.get('/seats/:screening',getTakenSeats)
-router.get('/date',getScreeningsByDate)
+router.get('/date/:date',getScreeningsByDate)
 
 
 module.exports=router
