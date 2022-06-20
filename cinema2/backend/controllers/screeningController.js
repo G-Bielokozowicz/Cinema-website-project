@@ -176,4 +176,11 @@ const getTakenSeats = asyncHandler(async(req,res)=>{
     })
 })
 
-module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings,getTakenSeats}
+const getScreeningsByDate = asyncHandler(async(req,res)=>{
+    const date = req.params['date']
+    res.status(200).json({
+        message:date
+    })
+})
+
+module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings,getTakenSeats,getScreeningsByDate}

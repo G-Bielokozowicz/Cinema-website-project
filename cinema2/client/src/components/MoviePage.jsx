@@ -9,7 +9,7 @@ import Screenings from './Screenings'
 // to też trzeba będzie z bazy danych brac
 function MoviePage(props) {
 
-    const API_URL = 'http://localhost:5000/screenings/'
+    const API_URL = 'http://localhost:5000/screenings/movie/'
     
     const params = useParams()
     const name = params.name.charAt(0).toUpperCase() + params.name.slice(1)

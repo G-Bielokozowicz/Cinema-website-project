@@ -42,7 +42,7 @@ Metoda | Endpoint | Description |
 |Metoda| Endpoint | Description |
 |-------|---------| -----------|
 | GET| / | Get all screenings
-| GET| /:movie | Get screenings for a movie (/:movie is _id of the movie)
+| GET| /movie/:movie | Get screenings for a movie (/:movie is _id of the movie)
 | POST| /add | Add a screening
 | DELETE | /delete | Delete a screening, by screening ID
 | GET | /today | Get today screenings
