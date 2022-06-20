@@ -128,6 +128,7 @@ function Comments(props) {
                     {comments.map((comment)=>{
                     return (
                         <CommentsStyle>
+                            {comment.commentUser.userName}
                             <div key={comment._id}>
                                 <div com={comment.commentBody}/>
                                 {comment.commentBody}
@@ -177,6 +178,12 @@ const NameAndImage = styled.div`
 
 const CommentsStyle = styled.div`
     margin-bottom: 8%;
+    border-color: white;
+    border-bottom: 2px;
+    border-style: solid;
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
     //outline: purple solid;
 
 `
