@@ -28,7 +28,10 @@ function RepertuarCom() {
 
     //date picker
     const [date, setDate ] = useState('2022-06-20');
+<<<<<<< HEAD
     
+=======
+>>>>>>> cb9041e7e5b50fec40d635811729ecfcf21627c6
     const DatePicker = () => {
         console.log("Date " + date)
         return(
