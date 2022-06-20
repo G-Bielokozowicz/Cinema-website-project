@@ -24,9 +24,9 @@ Metoda | Endpoint | Description |
 ## /users
 |Metoda | Endpoint | Description |
 |----------|---------| -----------|
-| POST | /register | Register user|
+| POST | /register | Register user |
 | POST | /login | Login user |
-| GET|/me | Get information about currently logged user|
+| GET| /me | Get information about currently logged user|
 
 ## user JSON
 ```
@@ -42,11 +42,12 @@ Metoda | Endpoint | Description |
 |Metoda| Endpoint | Description |
 |-------|---------| -----------|
 | GET| / | Get all screenings
-| GET| /:movie | Get screenings for a movie (/:movie is movieID)
+| GET| /:movie | Get screenings for a movie (/:movie is _id of the movie)
 | POST| /add | Add a screening
 | DELETE | /delete | Delete a screening, by screening ID
 | GET | /today | Get today screenings
-| GET | /today/:movie | Get today screenings for a movie (/:movie is movieID)
+| GET | /today/:movie | Get today screenings for a movie (/:movie is _id of the movie)
+| GET | /seats/:screening | Get taken seats for a screening (/:screening is _id of the screening)
 
 
 ## screening JSON
