@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react';
 import axios from 'axios'
 import QRCodee from './QRCode';
+import { useNavigate } from "react-router-dom"
 
 //TODO zrobić ui żeby było ładniej
 
 function Ticket(props) {
+
+    const navigate = useNavigate()
    
     //pozyskiwanie dancyh
 
@@ -35,31 +38,27 @@ function Ticket(props) {
 
     let seats=[]
     for (let i = 1; i <= 100; i++) {
-        seats.push(<Square key={i} onClick={() => handleSetSeatNumber(i)}>
+        seats.push(<Square key={i} type = 'button' onClick={() => handleSetSeatNumber(i)}>
             {i}
         </Square>);
       }
 
     const ticketSeats = seatNumber
-
-
-     //tablica zajetych siedzen
-    let occpiedSeates = []
-    
-
+   
 
     //Typ biletu - radio buttons
-    const ticketType = 'normal'
 
-    const [selectedTicketType] = useState('')
+    const [selectedTicketType, setSelectedTicketType] = useState('')
 
-    const onClickRadioButton= (e) => {
+    const onClickRadioButton = (e) => {
         e.preventDefault()
-        //selectedTicketType.slice(e.target.value)
-        selectedTicketType.toString(e.target.value)
+        setSelectedTicketType(e.target.value)
+       // console.log("selectedTicketType: "+ selectedTicketType);
     }
-    console.log("selectedTicketType: "+ selectedTicketType);
+    const ticketType = 'normal'
+    console.log("ticketType: ", ticketType)
       
+    
     //przechwytywanie kodu qr
     const [serverTicket, setServerTicket] = useState([])
 
@@ -68,19 +67,25 @@ function Ticket(props) {
     const config = {
         headers: { Authorization: `Bearer ${token.token}` }
     };      
+
+    const [added, setAdded] = useState(false)
     
     const onSubmit = (e) => {
-        console.log("Nacisnieto button")
+        console.log("Nacisnieto button buy")
         e.preventDefault()
         
         const data = {ticketScreeningID, ticketType, ticketSeats} //nazwy takie jak w bazie
-        
+         
         axios.post('http://localhost:5000/tickets/add', data, config)
         .then((response) => {
-            console.log("New ticket added")
-            setServerTicket(response.data)
-            console.log(response.data)
-        })
+        console.log("New ticket added")
+        setServerTicket(response.data)
+        setAdded(true)
+        console.log(response.data)
+            // navigate('summary', {id: props._id, ticketType: selectedTicketType, ticketSeats: ticketSeats, 
+                // qrCode: serverTicket.qrCode, room: room, time: time, date: date, name: name })
+
+         })
         .catch((error)=>{
         console.log(error);
         })
@@ -104,8 +109,9 @@ function Ticket(props) {
                 <div>
                     <input
                         type = "radio"
-                        value = "normal ticket"
+                        value = "normal"
                         name = "ticket" 
+                        checked="checked"
                         onChange={onClickRadioButton}   
                     />
                     normal ticket
@@ -113,7 +119,7 @@ function Ticket(props) {
                 <div>
                     <input
                         type = "radio"
-                        value = "reduced ticket"
+                        value = "reduced"
                         name = "ticket"
                         onChange={onClickRadioButton}   
                     />
@@ -121,15 +127,45 @@ function Ticket(props) {
                 </div>
             </RadioStyle>
             Chosen {selectedTicketType} ticket
-            <Button to={'summary'} state = {{temp: [props._id, selectedTicketType, ticketSeats, serverTicket.qrCode, room, time, date, name] }}>
-                Buy
-            </Button>
+                {!added && < ButtonFirst type = 'submit'>
+                    Buy
+                </ButtonFirst>
+                }
+                {added && < Button to = {'summary'} type = 'button' state = {{ temp: [selectedTicketType, ticketSeats, serverTicket.qrCode, room, time, date, name]}}>
+                    Summary
+                </Button>
+                }
             </form>
         </Wrapper>
     )
 }
 
 const Button=styled(Link)`
+   // position: right;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #d34d18;
+    color: #000;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-top:4%;
+    margin: auto;
+    ///cursor: pointer;
+    //border: none;
+   // position: relative;
+    //left: 40%;
+   // outline: green solid;
+   // transition: color 0.4s;
+    text-decoration: none;
+    &:hover {
+    color: #ffffff;
+    }
+`
+const ButtonFirst=styled.button`
    // position: right;
     display: grid;
     justify-content: center;
@@ -161,6 +197,7 @@ const RadioStyle=styled.div`
     //margin-top: 25px;
     // outline: red solid;
 `
+
 const Wrapper=styled.div`
     display:grid;
     justify-content: center;

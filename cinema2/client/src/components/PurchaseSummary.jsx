@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import React from 'react'
 import QRCode from 'qrcode';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 import QRCodee from './QRCode';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function PurchaseSummary() {
 
@@ -35,14 +35,25 @@ function PurchaseSummary() {
     //pobieranie danych z Ticket
     const location = useLocation()
 
-    const ticketID = location.state.temp[0]
-    const ticketType = location.state.temp[1]
-    const ticketSeats = location.state.temp[2]
-    const qrCode = location.state.temp[3]
-    const room = location.state.temp[4]
-    const time = location.state.temp[5]
-    const date = location.state.temp[6]
-    const name = location.state.temp[7]
+    //const ticketID = location.state.temp[0]
+    const ticketType = location.state.temp[0]
+    const ticketSeats = location.state.temp[1]
+    const qrCode = location.state.temp[2]
+    const room = location.state.temp[3]
+    const time = location.state.temp[4]
+    const date = location.state.temp[5]
+    const name = location.state.temp[6]
+
+    // const ticketID = 'ty'
+    // const ticketType = 'hgfd'
+    // const ticketSeats = 'hgf'
+    // const qrCode = 'defghjk'
+    // const room = '3'
+    // const time = '76'
+    // const date = '65'
+    // const name = "hello"
+
+  //  const {id, ticketType, ticketSeats, qrCode, room, time, date, name} = route.params
 
     console.log("ticketType: " + ticketType)
 
@@ -60,7 +71,11 @@ function PurchaseSummary() {
             <InfoStyle>
                 Room number: {room}
             </InfoStyle>
+            <InfoStyle>
+                Qr code: {qrCode}
+            </InfoStyle>
             <QRStyle>
+                {/* QRCode Testowy */}
                 <QRCodee qr={qrCode}></QRCodee> 
             </QRStyle>
             <ButtonRow>
