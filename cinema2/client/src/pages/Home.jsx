@@ -7,7 +7,7 @@ import QRCode from '../components/QRCodePom'
 function Home() {
   return (
     <div>
-      <QRCode/>
+      {/* <QRCode/> */}
         <MovieCarousel/>
         <PlayingToday/>
     </div>

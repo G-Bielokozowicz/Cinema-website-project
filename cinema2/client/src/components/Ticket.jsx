@@ -2,13 +2,58 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
-import { useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react';
+import axios from 'axios'
 
 //TODO zrobić ui żeby było ładniej
 
-function Ticket() {
+function Ticket(props) {
+   
+    //pozyskiwanie dancyh
+    
+    // const params = useParams()
     const location = useLocation()
+
+    const movieId = location.state.temp[0]
+    const screeningID = location.state.temp[1]
+
+    console.log("TicketScreeningId: " + screeningID)
+
+    //umieszczanie biletu w bazie 
+    const API_URL = 'http://localhost:5000/tickets/add'
+    
+ 
+    const [tickets, setTickets] = useState([])
+
+    const ticket = {
+        ticketScreeningID: screeningID,
+        ticektPrice: 150,
+        ticektType: "normal",
+        ticektSeats: Array
+    }
+    
+
+    const postTickets = async () =>{
+        axios.post(API_URL, ticket)
+        .then((response) => {
+            setTickets(response.data)
+            console.log(tickets.size)
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+      }
+    
+    useEffect(()=>{
+        postTickets()
+    },[])
+
+   
+   
+  //generowanie siedzonek 
+    // const location = useLocation()
     const { time } = location.state
     const [seatNumber, setSeatNumber]=useState(1);
     const params = useParams()

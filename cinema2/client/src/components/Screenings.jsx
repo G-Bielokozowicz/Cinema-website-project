@@ -4,10 +4,14 @@ import { Link } from 'react-router-dom'
 
 function Screenings(props) {
 
-    const movieId = props.id
+    console.log("Jestem w screenings!")
+
+    // const movieId = props.id
     const dataBD = props.date
     const room = props.room
-    //console.log(movieId)
+    const screeningID = props.screeningId
+    
+    console.log("ScreeenignID: " + screeningID)
 
     const formatTime = (time) => {
         var optionstime = {hour: 'numeric', minute: 'numeric'}
@@ -25,6 +29,7 @@ function Screenings(props) {
 
     return (
         <Wrapper>
+            HAlo Gdzie jestem?
             <Info>
                 <DateStyle>
                     {date}
@@ -40,7 +45,7 @@ function Screenings(props) {
                 </DateStyle>
             </Info>
             <ButtonRow>
-                <Button to={'ticket'} state = {{id: movieId}}>
+                <Button to={'ticket'} state = {{temp: [props.movieId, screeningID]}}>
                     Buy ticket
                 </Button>
             </ButtonRow>
