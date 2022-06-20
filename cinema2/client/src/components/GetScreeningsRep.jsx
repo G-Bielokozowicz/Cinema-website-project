@@ -73,7 +73,7 @@ function GetScreeningsRep(props) {
                             <LengthStyle>
                                 Movie Length: &nbsp;
                                 {screen.screeningMovie.movieLength}
-                                &nbsp;
+                                &nbsp; min
                             </LengthStyle>
                         <div>
                         {/* <img src={screen.screeningMovie.moviePosterURL} width={210} height={297} alt='Poster'/> */}
@@ -105,7 +105,7 @@ const InfoStyle = styled.div`
     margin-top: 10%;
     margin-left: 10%;
     width: 200%;
-    outline: green solid;
+ //   outline: green solid;
 `
 
 const ScreeningsStyle = styled.div`

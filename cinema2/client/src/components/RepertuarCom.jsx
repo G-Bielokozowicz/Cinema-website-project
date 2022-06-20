@@ -14,12 +14,17 @@ function RepertuarCom() {
     const DatePicker = () => {
         console.log("Date " + date)
         return(
-            <div className='main'>
-                <h4>Selected Date: {date} </h4>
-                <input type = "date" onChange = { e => setDate(e.target.value)} />
-            </div>
+            <DatePickerStyle>
+                <div className='main'>
+                    <h4>Select a date</h4>
+                    <input type = "date" onChange = { e => setDate(e.target.value)} />
+                </div>
+            </DatePickerStyle>
         )
     }
+    const DatePickerStyle = styled.div`
+        margin-top: 10px;
+    `
 
    // console.log("Date za funkcją" + date)
 
@@ -79,14 +84,18 @@ const RepertuarStyle = styled.div`
     align-items: center;
     justify-content: center; 
     /* outline: green; */
-    margin-bottom: 5%;
-    width: 75%;
+    margin-bottom: 3%;
+    width: 87%;
 `
+const DatePickerStyle = styled.div`
+    margin-top: 30px;
+`
+
 const Image = styled.div`
     display: grid;
     /* align-items: center; */
     /* justify-content: center;  */
-    outline: #2e1fcc;
+  //  outline: #2e1fcc;
 
 `
 const MovieStyle = styled.div`
