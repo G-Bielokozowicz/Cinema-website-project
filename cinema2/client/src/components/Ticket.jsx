@@ -58,14 +58,21 @@ function Ticket(props) {
     function handleSetSeatNumber(id){
         setSeatNumber(id)
         setChosenSeats(chosenSeats => [...chosenSeats, id])
-        //console.log(chosenSeats)
+        console.log(chosenSeats)
        // console.log(takenSeats)
+    }
+
+    function removeSeatNumber(id){
+        setChosenSeats(chosenSeats.filter((o, i) => o !== id))
     }
 
     let seats=[]
     for (let i = 1; i <= 100; i++) {
         if( takenSeats.includes(i)){
             seats.push(<TakenSeatStyle key ={i}> {i} </TakenSeatStyle>)
+        }
+        else if( chosenSeats.includes(i)){
+            seats.push(<ChosenSeatStyle key = {i} type = 'button'  onClick={() => removeSeatNumber(i)}>{i} </ChosenSeatStyle>)
         }
         else{
             seats.push(<Square key={i} type = 'button' onClick={() => handleSetSeatNumber(i)}>
@@ -299,6 +306,21 @@ const TakenSeatStyle=styled.div`
     min-width: 50px;
     border: none;
     background-color: #ff0000;
+    outline: double 1px;
+    flex-basis: 2%;
+    transition: all 0.3s;
+`
+
+const ChosenSeatStyle=styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 5px;
+    min-height: 50px;
+    min-width: 50px;
+    border: none;
+    background-color: #d6af24;
     outline: double 1px;
     flex-basis: 2%;
     transition: all 0.3s;
