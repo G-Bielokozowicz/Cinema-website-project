@@ -12,6 +12,7 @@ import Register from './RegisterPage';
 import ConfirmRegistration from './ConfirmRegistration';
 import Summary from './Summary';
 import CommentsPage from './CommentsPage';
+import MyAccount from './MyAccount';
 
 function Pages() {
   return (
@@ -28,6 +29,7 @@ function Pages() {
         <Route path='/confirm' element={<ConfirmRegistration/>}/>
         <Route path='/movie/:name/ticket/summary' element={<Summary/>}/>
         <Route path='/movie/:name/comments' element={<CommentsPage/>}/>
+        <Route path='/account' element={<MyAccount/>}/>
     </Routes>
   )
 }

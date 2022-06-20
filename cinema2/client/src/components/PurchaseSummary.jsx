@@ -79,8 +79,8 @@ function PurchaseSummary() {
                 <QRCodee qr={qrCode}></QRCodee> 
             </QRStyle>
             <ButtonRow>
-                <Button to = {'print'}>
-                    Print ticket
+                <Button to = {'account'} >
+                    My tickets
                 </Button>
             </ButtonRow>
         </Wrapper>

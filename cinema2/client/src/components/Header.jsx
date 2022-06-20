@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
+import {FaSignInAlt, FaSignOutAlt, FaUser, FaTicketAlt} from 'react-icons/fa'
 import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
@@ -25,12 +25,17 @@ function Header() {
             TAI.Kino                
             </Title>
            <RLStyle>
-            {user ? ( 
+            {user ? (<>
+              <LinkStyle to='/account'>
+                <FaTicketAlt/> My Tickets
+              </LinkStyle>
               <LinkStyle to='/' className='btn' onClick={onLogout}>
                 {/* <button className='btn' onClick={onLogout}> */}
                   <FaSignOutAlt/> Logout
                 {/* </button> */}
               </LinkStyle>
+              </>
+              
               ) : (<>
               <LinkStyle to='/login'>
                 <FaSignInAlt/> Login
