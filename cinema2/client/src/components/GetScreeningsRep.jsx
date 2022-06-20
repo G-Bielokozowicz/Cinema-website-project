@@ -55,8 +55,10 @@ function GetScreeningsRep(props) {
         <div>
             {screenings.map((screen) => {
                 return (
-                    <InfoStyle>
-                        <div key={screen._id}>
+                    
+                    <div key={screen._id}>
+                        <InfoStyle>
+                        <TextStyle>
                             <NameStyle to={`/movie/${screen.screeningMovie.movieName}`}
                                         state = {{temp: [screen.screeningMovie._id, screen.screeningMovie.movieDescription,
                                             screen.screeningMovie.movieDirector, screen.screeningMovie.moviePosterURL]}}>
@@ -75,12 +77,15 @@ function GetScreeningsRep(props) {
                                 {screen.screeningMovie.movieLength}
                                 &nbsp; min
                             </LengthStyle>
-                        <div>
-                        {/* <img src={screen.screeningMovie.moviePosterURL} width={210} height={297} alt='Poster'/> */}
-                        </div>
-                        
-                        </div>
-                    </InfoStyle>
+                        </TextStyle>
+                        <ButtonStyle to={`/movie/${screen.screeningMovie.movieName}/ticket`} 
+                                state = {{temp: [screen.screeningMovie._id, screen._id,
+                                    screen.screeningRoom, screen.PriceNormal, screen.PriceReduced,
+                                    formatTime(screen.screeningDate), formatTime(screen.screeningDate)]}} >
+                                    Buy Ticket
+                        </ButtonStyle>
+                        </InfoStyle>
+                    </div>
                 )
             })}  
         </div>
@@ -97,21 +102,51 @@ const NameStyle = styled(Link)`
 const LengthStyle = styled.div`
     color: #7f7f7f;
 `
-
-const InfoStyle = styled.div`
-    /* display: grid;
+const TextStyle = styled.div`
+    display: grid;
+    justify-content: center;
     align-items: center;
-    justify-content: center; */
-    margin-top: 10%;
-    margin-left: 10%;
-    width: 200%;
- //   outline: green solid;
+    margin-left: 1%;
+    margin-right: 20%;
+    outline: red solid;
 `
 
-const ScreeningsStyle = styled.div`
-    /* display: grid;
+const InfoStyle = styled.div`
+    display: flexbox;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center; */
+
+    margin-top: 8%;
+    margin-left: 10%; 
+    width: 150%; 
+    background-color: black;
+    //outline: yellow solid;
+`
+
+const ButtonStyle=styled(Link)`
+    position: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #d34d18;
+    color: #000;
+    height: 50px;
+    width: 150px;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-top:4%;
+    margin: auto;
+    ///cursor: pointer;
+    //border: none;
+   // position: relative;
+    //left: 40%;
+   // outline: green solid;
+   // transition: color 0.4s;
+    text-decoration: none;
+    &:hover {
+    color: #ffffff;
+    }
 `
 
 

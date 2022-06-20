@@ -10,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 function RepertuarCom() {
 
     //date picker
-    const [date, setDate ] = useState('2022-06-20');
+    const [date, setDate ] = useState('2022-06-22');
     const DatePicker = () => {
         console.log("Date " + date)
         return(
@@ -23,7 +23,7 @@ function RepertuarCom() {
         )
     }
     const DatePickerStyle = styled.div`
-        margin-top: 10px;
+        margin-top: 2%;
     `
 
    // console.log("Date za funkcją" + date)
@@ -55,7 +55,10 @@ function RepertuarCom() {
 
     return (
     
-        <MovieStyle>
+        <div>
+            <HeaderStyle>
+                Movie played in the {date}
+            </HeaderStyle>
             <DateStyle>
                 <DatePicker></DatePicker>   
                 {date}
@@ -66,16 +69,14 @@ function RepertuarCom() {
                     <div key = {movies._id}>
                         <RepertuarStyle>
                             <Image>
-                                <div>
-                                    <img src={movie.moviePosterURL} width={210} height={297} alt='Poster'/>
-                                </div>
+                                 <img src={movie.moviePosterURL} width={210} height={297} alt='Poster'/>
                             </Image>
                             <GetScreeningsRep id = {movie._id} selectedDate = {date} screeningDate = {movie.screeningDate}></GetScreeningsRep>
                         </RepertuarStyle>
                     </div>
                 )
             })}
-        </MovieStyle>
+        </div>
   )
 }
 
@@ -83,57 +84,32 @@ const RepertuarStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center; 
-    /* outline: green; */
+    outline: green solid;
     margin-bottom: 3%;
-    width: 87%;
+   // width: 87%;
 `
-const DatePickerStyle = styled.div`
-    margin-top: 30px;
+const HeaderStyle = styled.div`
+    text-align: center;
+    margin-top: 2%;
+    font-weight: bold;
+    font-size: 20px;
+    outline: white solid
 `
 
 const Image = styled.div`
     display: grid;
     /* align-items: center; */
     /* justify-content: center;  */
-  //  outline: #2e1fcc;
-
-`
-const MovieStyle = styled.div`
-    /* display: grid; */
-    /* align-items: center; */
-    /* justify-content: center;  */
-    /* outline: red solid; */
+    outline: #2e1fcc solid;
 `
 
 const DateStyle = styled.div`
     display: grid;
+    text-align: center;
     align-items: center;
     justify-content: center;
     margin-bottom: 3%;
+    outline: pink solid;
 `
-
-const ButtonStyle = styled.div`
-    background-color: #d34d18;
-   // position: right;
-    color: #000;
-    height: 30px;
-    width: 50px; //szerokosc przycisku
-    font-size: 50px;
-    border-radius: 20px; //okragle rogi
-    cursor: pointer;
-    border: none;
-    margin: 0 10px 0px 10px;
-    //outline: red solid;
-    transition: color 0.4s;
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    &:hover {
-    color: #ffffff;
-    }
-    margin-top: 1%;
-`
-
 
 export default RepertuarCom

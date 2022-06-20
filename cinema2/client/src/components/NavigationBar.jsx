@@ -21,11 +21,11 @@ function NavigationBar() {
             Movies
           </Button>  
         </Link>  
-        <Link to={'/popular'}>
+        {/* <Link to={'/popular'}>
           <Button >
             Popular
           </Button>  
-        </Link>
+        </Link> */}
       </Wrapper>
       </div>
   )
