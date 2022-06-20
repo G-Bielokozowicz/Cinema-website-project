@@ -178,9 +178,15 @@ const getTakenSeats = asyncHandler(async(req,res)=>{
 
 const getScreeningsByDate = asyncHandler(async(req,res)=>{
     const date = req.params['date']
-    res.status(200).json({
-        message:date
+    Screening.find({
+        screeningDate:{
+            $gte: startOfDay(new Date(date)),
+            $lte: endOfDay(new Date(date))
+        },
     })
+    .populate('screeningMovie')
+    .then(screenings=>res.json(screenings))
+    .catch(err=>res.status(400).json('Error: ' + err));
 })
 
 module.exports = {getAllScreenings,addScreening, deleteScreening,getTodayScreenings,getTakenSeats,getScreeningsByDate}
