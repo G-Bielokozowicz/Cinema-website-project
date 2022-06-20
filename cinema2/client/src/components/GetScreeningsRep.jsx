@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import RepertuarScreenings from './RepertuarScreenings'
+import { Link } from 'react-router-dom'
 
 function GetScreeningsRep(props) {
 
@@ -45,13 +46,20 @@ function GetScreeningsRep(props) {
     // const date = formatDate(dataBD)
 
    
+    // const movieId = location.state.temp[0]
+    // const description=location.state.temp[1]
+    // const director=location.state.temp[2]
+    // const image=location.state.temp[3]
+
     return (
         <div>
             {screenings.map((screen) => {
                 return (
                     <InfoStyle>
                         <div key={screen._id}>
-                            <NameStyle>
+                            <NameStyle to={`/movie/${screen.screeningMovie.movieName}`}
+                                        state = {{temp: [screen.screeningMovie._id, screen.screeningMovie.movieDescription,
+                                            screen.screeningMovie.movieDirector, screen.screeningMovie.moviePosterURL]}}>
                                 {screen.screeningMovie.movieName}
                             </NameStyle>
                             <div>
@@ -79,8 +87,12 @@ function GetScreeningsRep(props) {
     )
 }
 
-const NameStyle = styled.div`
+const NameStyle = styled(Link)`
     font-weight: bold;
+    color: white;
+    &:hover{
+        color: grey;
+    }
 `
 const LengthStyle = styled.div`
     color: #7f7f7f;
