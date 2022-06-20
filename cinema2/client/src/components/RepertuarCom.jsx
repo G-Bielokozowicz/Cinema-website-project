@@ -27,12 +27,9 @@ function RepertuarCom() {
     },[])
 
     //date picker
-    const [date, setDate ] = useState();
-    
+    const [date, setDate ] = useState('2022-06-20');
     const DatePicker = () => {
-
         console.log("Date " + date)
-
         return(
             <div className='main'>
                 <h4>Selected Date: {date} </h4>
@@ -44,6 +41,10 @@ function RepertuarCom() {
     console.log("Date za funkcją" + date)
 
     
+    useEffect(()=>{
+        console.log(date)
+    },[date])
+
 
     return (
     
@@ -65,7 +66,7 @@ function RepertuarCom() {
                                 <img src={movie.moviePosterURL} width={210} height={297} alt='Poster'/>
                             </div>
                             <div>
-                                {movie.movieLenght}
+                                {movie.movieLength}
                             </div>
                             <div>
                                 {movie.screeningDate} 

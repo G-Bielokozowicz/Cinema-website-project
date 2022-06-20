@@ -12,6 +12,7 @@ router.get('/today',getTodayScreenings)
 router.get('/today/:movie',getTodayScreenings)
 router.get('/seats/:screening',getTakenSeats)
 router.get('/date/:date',getScreeningsByDate)
+router.get('/date/:date/:movie',getScreeningsByDate)
 
 
 module.exports=router

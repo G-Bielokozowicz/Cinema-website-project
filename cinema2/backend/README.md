@@ -49,7 +49,7 @@ Metoda | Endpoint | Description |
 | GET | /today/:movie | Get today screenings for a movie (/:movie is _id of the movie)
 | GET | /seats/:screening | Get taken seats for a screening (/:screening is _id of the screening)
 | GET | /date/:date | Get screenings by date (/:date is a date in YYYY-MM-DD)
-
+| GET | /date/:date/:movie | Get screenigs by date for a movie (/:date is a date in YYYY-MM-DD, /:movie is _id of the movie)
 ## screening JSON
 
 ```

@@ -6,51 +6,40 @@ import RepertuarScreenings from './RepertuarScreenings'
 
 function GetScreeningsRep(props) {
 
-    const movieId = props.id
-    const selectedDate = props.selectedDate
+    let movieId = props.id
+    let selectedDate = props.selectedDate
 
-    console.log("selectedDate: " + selectedDate)
+    console.log("selectedDate w getscreeningsrep: " + selectedDate)
 
     //pobieranie senasów z bazy
     const [screenings, setScreenings] = useState([])
 
     const getScreenings = async () =>{
-      axios.get('http://localhost:5000/screenings/' + movieId)
-      .then((response) => {
-        setScreenings(response.data)
-        filtrScreenings(screenings)
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
-    }
+        axios.get('http://localhost:5000/screenings/date/' + selectedDate +"/"+movieId)
+        .then((response) => {
+          setScreenings(response.data)
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+      }
    
     useEffect(()=>{
         getScreenings()
-    },[])
+    },[selectedDate])
 
-    function filtrScreenings(screenings){
-        screenings.filter(screenings => screenings.screeningDate == selectedDate).map(filteredScreenings => {
-            filteredScreenings(screenings)
-            console.log(filteredScreenings(screenings))
-        })
-    } 
-
-    // return (
-
-    //     <div>
-    //         {screenings.map((screen) => {
-    //         return(
-    //             <div key = {screen._id}>
-    //                 {/* <RepertuarScreenings date = {screen.screeningDate}></RepertuarScreenings> */}
-    //                 {screenings.filter(screenings => screenings.screeningDate == selectedDate).map(filteredScreenings => {
-    //                 <li>
-    //                     {filteredScreenings.screenings}
-    //                 </li>
-    //             </div>
-    //             ))}
-    //     </div>
-    // )
+   
+    return (
+        <div>
+            {screenings.map((screen) => {
+                return (
+                    <div key={screen._id}>
+                       {screen._id}
+                    </div>
+                )
+            })}  
+        </div>
+    )
 }
 
 const RepertuarStyle = styled.div`
