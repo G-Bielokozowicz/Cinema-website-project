@@ -7,6 +7,7 @@ Metoda | Endpoint | Description |
 | GET | /name/:movie | Find movies with fuzzy search
 | GET | /id/:movie | Get movie with specific mongoDB _id
 | POST | /add     | Add a movie     | 
+| GET | /date/:date | Get movies that have a screening at given date (/:date is a date in YYYY-MM-DD format)
 
 ## movie JSON
 ```

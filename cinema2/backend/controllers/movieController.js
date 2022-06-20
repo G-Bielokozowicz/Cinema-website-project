@@ -1,6 +1,9 @@
 const router = require('express').Router()
 let Movie = require('../models/movie.model')
 const asyncHandler = require('express-async-handler')
+let Screening = require('../models/screening.model')
+var endOfDay = require('date-fns/endOfDay') 
+var startOfDay = require('date-fns/startOfDay') 
 
 const getAllMovies = asyncHandler(async(req, res)=>{
     Movie.find()
@@ -54,5 +57,29 @@ const addMovie = asyncHandler(async(req,res)=>{
     .catch(err => res.status(400).json('Error: ' + err));
 })
 
+const getMoviesByDate = asyncHandler(async(req,res)=>{
+    const date = req.params['date']
 
-module.exports = {getAllMovies,getMovieByName,getMovieById,addMovie}
+    const screenings = await Screening.find({
+        screeningDate:{
+            $gte: startOfDay(new Date(date)),
+            $lte: endOfDay(new Date(date))
+        },
+    }).populate([
+        {
+            path: "screeningMovie"
+        }
+    ])
+
+    let moviesid = []
+
+    for (let i = 0;i<screenings.length;i++){
+        moviesid.push(screenings[i].screeningMovie)
+    }
+    let ret = [... new Set(moviesid)]
+    res.status(200).json(
+        ret
+    )
+})
+
+module.exports = {getAllMovies,getMovieByName,getMovieById,addMovie,getMoviesByDate}
