@@ -1,8 +1,12 @@
 import React from 'react'
+import RepertuarCom from '../components/RepertuarCom'
 
 function Repertuar() {
   return (
-    <div>Repertuar</div>
+    <div>
+        Repertuar
+        <RepertuarCom/>
+    </div>
   )
 }
 
