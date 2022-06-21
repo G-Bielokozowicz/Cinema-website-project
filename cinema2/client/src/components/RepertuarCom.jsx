@@ -17,13 +17,18 @@ function RepertuarCom() {
             <DatePickerStyle>
                 <div className='main'>
                     <h4>Select a date</h4>
-                    <input type = "date" onChange = { e => setDate(e.target.value)} />
+                    <WindowStyle>
+                        <input type = "date" onChange = { e => setDate(e.target.value)} />
+                    </WindowStyle>
                 </div>
             </DatePickerStyle>
         )
     }
     const DatePickerStyle = styled.div`
         margin-top: 2%;
+    `
+    const WindowStyle = styled.div`
+        /* background-color: green; */
     `
 
    // console.log("Date za funkcją" + date)
@@ -84,23 +89,23 @@ const RepertuarStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center; 
-    outline: green solid;
+   // outline: green solid;
     margin-bottom: 3%;
-   // width: 87%;
+    width: 85%;
 `
 const HeaderStyle = styled.div`
     text-align: center;
     margin-top: 2%;
     font-weight: bold;
     font-size: 20px;
-    outline: white solid
+  //  outline: orange solid
 `
 
 const Image = styled.div`
     display: grid;
     /* align-items: center; */
     /* justify-content: center;  */
-    outline: #2e1fcc solid;
+  //  outline: #2e1fcc solid;
 `
 
 const DateStyle = styled.div`
@@ -109,7 +114,7 @@ const DateStyle = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 3%;
-    outline: pink solid;
+  //  outline: pink solid;
 `
 
 export default RepertuarCom

@@ -107,8 +107,9 @@ const TextStyle = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: 1%;
-    margin-right: 20%;
-    outline: red solid;
+    margin-right: 10%;
+    width: 300px;
+   // outline: red solid;
 `
 
 const InfoStyle = styled.div`
@@ -120,7 +121,7 @@ const InfoStyle = styled.div`
     margin-left: 10%; 
     width: 150%; 
     background-color: black;
-    //outline: yellow solid;
+   // outline: yellow solid;
 `
 
 const ButtonStyle=styled(Link)`

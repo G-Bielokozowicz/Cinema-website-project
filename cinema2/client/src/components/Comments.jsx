@@ -95,29 +95,31 @@ function Comments(props) {
                         <Leavestyle>
                             Leave your comment
                         </Leavestyle>
-                        <input 
-                            type='text'
-                            name='text'
-                            id='text'
-                            value={commentBody}
-                            placeholder = 'Enter your comment' 
-                            size="100"
-                            //height="30"
-                            onChange={(e) => setText(e.target.value)}
-                            >
-                        </input>
+                        <CommentWindow
+                          
+                                type='text'
+                                name='text'
+                                id='text'
+                                value={commentBody}
+                                placeholder = 'Enter your comment' 
+                                size="100"
+                                //height="30"
+                                onChange={(e) => setText(e.target.value)}
+                                >
+                        </CommentWindow>
+                      
+                        {!isPending && 
+                            <ButtonStyle className='btn btn-block' type='submit'>
+                                Add Comment
+                            </ButtonStyle>
+                        }
+                                                
+                        {isPending && 
+                            <ButtonStyle disabled>
+                                Thanks for your comment
+                            </ButtonStyle>
+                        }
                         
-                            {!isPending && 
-                                <button className='btn btn-block' type='submit'>
-                                    Add Comment
-                                </button>
-                            }
-                                                    
-                            {isPending && 
-                                <button disabled>
-                                    Thanks for your comment
-                                </button>
-                            }
                     </CommentsWindow>
                 </form>
             </Card>
@@ -142,14 +144,44 @@ function Comments(props) {
     )
 }
 
-const ButtonStyle = styled.div`
-  //  background-color: #d34d18;
-   // border-radius: 20%;
+const CommentWindow = styled.input`
+    height: 100px;
+    background-color: gray;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    outline-style: grey solid;
+`
+
+const ButtonStyle=styled.button`
+    position: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #d34d18;
+    color: #000;
+    height: 35px;
+    width: 140px;
+    font-size: 16px;
+    border-radius: 20px;
+    margin-top:10%;
+    margin: auto;
+    cursor: pointer;
+    border: none;
+   // position: relative;
+    //left: 40%;
+   // outline: green solid;
+   // transition: color 0.4s;
+    text-decoration: none;
+    &:hover {
+    color: #ffffff;
+    }
 `
 
 const Leavestyle = styled.div`
     font-weight: bold;
     font-size: 25px;
+    margin-bottom: 3%;
 `
 
 const Card = styled.section`
@@ -167,6 +199,7 @@ const Info = styled.div`
     margin-bottom: 1%;
     font-size: 25px;
     font-weight: bold;
+    text-align: center;
    // outline: blue solid;
     /* line-height: 28px; */
 `
@@ -178,8 +211,8 @@ const NameAndImage = styled.div`
 
 const CommentsStyle = styled.div`
     margin-bottom: 8%;
-    border-color: white;
-    border-bottom: 2px;
+    border-color: #454545;
+    border-bottom: 1px;
     border-style: solid;
     border-left: 0px;
     border-top: 0px;
@@ -192,7 +225,7 @@ const TextStyle = styled.div`
     display: grid;
     justify-content: space-around;
     align-items: end;
-    margin-left: 10%;
+    //margin-left: 10%;
   //  outline: red solid;
 
 `
