@@ -13,6 +13,7 @@ import ConfirmRegistration from './ConfirmRegistration';
 import Summary from './Summary';
 import CommentsPage from './CommentsPage';
 import MyAccount from './MyAccount';
+import AdminPanelPage from './AdminPanelPage';
 
 function Pages() {
   return (
@@ -30,6 +31,7 @@ function Pages() {
         <Route path='/movie/:name/ticket/summary' element={<Summary/>}/>
         <Route path='/movie/:name/comments' element={<CommentsPage/>}/>
         <Route path='/account' element={<MyAccount/>}/>
+        <Route path='/admin' element={<AdminPanelPage/>}/>
     </Routes>
   )
 }

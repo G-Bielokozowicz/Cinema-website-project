@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaSignInAlt, FaSignOutAlt, FaUser, FaTicketAlt} from 'react-icons/fa'
+import {FaSignInAlt, FaSignOutAlt, FaUser, FaTicketAlt, FaAdjust} from 'react-icons/fa'
 import {Link, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import {useSelector, useDispatch} from 'react-redux'
@@ -11,6 +11,11 @@ function Header() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {user} = useSelector((state) => state.auth)
+
+  const userToken = JSON.parse(localStorage.getItem('user')) 
+  const userEmail = userToken.email
+
+  console.log("userEmail: " + userEmail)
 
   const onLogout = () => {
     dispatch(logout())
@@ -34,6 +39,13 @@ function Header() {
                   <FaSignOutAlt/> Logout
                 {/* </button> */}
               </LinkStyle>
+              <LinkStyle to='/admin'>
+                <FaAdjust/> Admin Panel
+              </LinkStyle>
+
+                {/* {userEmail ? 'admin' (<>
+                  <FaTicketAlt/> Admin Account
+                </>)} */}
               </>
               
               ) : (<>

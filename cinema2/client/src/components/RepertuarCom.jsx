@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import GetScreeningsRep from './GetScreeningsRep'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import {FaArrowCircleLeft} from 'react-icons/fa'
+
 
 function RepertuarCom() {
 
@@ -17,12 +19,12 @@ function RepertuarCom() {
                 <div className='main'>
                     <h4>Select a date</h4>
                     <WindowStyle  type = "date" onChange = { e => setDate(e.target.value)} >
+                        {/* <FaArrowCircleLeft /> */}
                     </WindowStyle>
                 </div>
             </DatePickerStyle>
         )
     }
-<<<<<<< HEAD
     const DatePickerStyle = styled.div`
         margin-top: 2%;
     `
@@ -32,9 +34,6 @@ function RepertuarCom() {
         border-radius: 5px;
         border: none; 
     `
-=======
-  
->>>>>>> 908410bc07ba392b18d60feedf466c557ad43fde
 
    // console.log("Date za funkcją" + date)
 
