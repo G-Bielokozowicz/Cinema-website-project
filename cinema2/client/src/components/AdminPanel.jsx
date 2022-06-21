@@ -8,11 +8,11 @@ function AdminPanel() {
 
     //dodwanie seansów  do bazy
     const [movieName, setMovieName] = useState('')
-    const [room, setRoom] = useState('')
+    const [room, setRoom] = useState('1')
     let [date, setDate] = useState('2022-06-22')
     let [time, setTime] = useState('12:00:00')
-    const [priceNormal, setPriceNormal] = useState('')
-    const [priceReduced, setPriceReduced] = useState('')
+    const [priceNormal, setPriceNormal] = useState('20')
+    const [priceReduced, setPriceReduced] = useState('15')
 
     let dateTime = `${date}T${time}Z`
 
