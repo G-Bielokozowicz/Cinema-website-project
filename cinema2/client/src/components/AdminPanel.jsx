@@ -16,15 +16,19 @@ function AdminPanel() {
 
     let dateTime = `${date}T${time}Z`
 
-    console.log("dateTime: ", dateTime)
+    //console.log("dateTime: ", dateTime)
 
     //pobieraniee wszytskich filmw
     const [movies, setMovies] = useState([])
+
+
+    
 
     const getMovies = async () =>{
       axios.get('http://localhost:5000/movies/')
       .then((response) => {
         setMovies(response.data)
+        setMovieName(response.data[0]._id)
       })
       .catch((error)=>{
         console.log(error);
@@ -35,6 +39,9 @@ function AdminPanel() {
       getMovies()
     },[])
 
+    const [added, setAdded]= useState(false)
+    const [errored, setErrored]=useState(false)
+    const [errMessage,setErrMessage]=useState('')
 
     //umieszczanie seansu w bazie
     const token = JSON.parse(localStorage.getItem('user'))
@@ -53,24 +60,26 @@ function AdminPanel() {
         axios.post('http://localhost:5000/screenings/add', data, config)
         .then(() => {
             console.log("New screening added")
+            setAdded(true)
+            setErrored(false)
         })
         .catch((error)=>{
-        console.log(error);
+            setErrored(true)
+            setAdded(false)
+            setErrMessage(error.response.data)
+            console.log(error.response.data);
         })
     }
 
   return (
     <AddSreeningStyle>
         Add the screening values &nbsp;
-        {movieName}
-        {movieName._id}
-
         <MovieList>
             <select onChange={(e) => setMovieName(e.target.value)}>
                 {movies.map((movie)=>{
                     return (
-                        <option defaultValue={movie._id} >
-                            {movie.movieName} &nbsp; {movie._id}
+                        <option value={movie._id} key={movie._id}>
+                            {movie.movieName}
                         </option>
                     )
                 })}
@@ -142,7 +151,12 @@ function AdminPanel() {
                 Add screening
             </Button>
         </form>
-
+        {
+            added ? (<>Dodano seans</>) : (<></>)
+        }
+        {
+            errored ? (<>{errMessage}</>):(<></>)
+        }
     </AddSreeningStyle>
   )
 }

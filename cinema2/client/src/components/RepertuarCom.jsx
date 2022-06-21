@@ -25,15 +25,6 @@ function RepertuarCom() {
             </DatePickerStyle>
         )
     }
-    const DatePickerStyle = styled.div`
-        margin-top: 2%;
-    `
-    const WindowStyle = styled.input`
-        background-color: #777777;
-        font-size: large;
-        border-radius: 5px;
-        border: none; 
-    `
 
    // console.log("Date za funkcją" + date)
 
@@ -91,9 +82,13 @@ function RepertuarCom() {
 const DatePickerStyle = styled.div`
 margin-top: 2%;
 `
-const WindowStyle = styled.div`
-/* background-color: green; */
+const WindowStyle = styled.input`
+background-color: #777777;
+font-size: large;
+border-radius: 5px;
+border: none; 
 `
+
 
 const RepertuarStyle = styled.div`
     display: flex;

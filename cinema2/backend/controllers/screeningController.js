@@ -61,12 +61,12 @@ const addScreening = asyncHandler(async(req,res)=>{
 
             // Added screening is after existing, so diffrence between them should be more than to existing screening movie length + 20 minutes
             if (diff<existingMovieLength+(20/60) && screeningDate>=existingScreening[i].screeningDate){
-                res.status(400)
+                res.status(400).json('Not enough time')
                 throw new Error('Not enough time')
 
             // Added screening is before existing, so difference between them should be more than new screening movie length + 20 minutes
             } else if (diff<addedMovieLength+(20/60)){
-                res.status(400)
+                res.status(400).json('Not enough time')
                 throw new Error('Not enough time')
             } else {
                 continue
