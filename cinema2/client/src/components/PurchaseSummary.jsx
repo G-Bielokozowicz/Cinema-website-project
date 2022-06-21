@@ -66,7 +66,13 @@ function PurchaseSummary() {
                 You are buying {ticketType} ticket for {name} at {time}
             </InfoStyle>
             <InfoStyle>
-                Your seat number: {ticketSeats}
+                Your seat number: {ticketSeats.map((seat)=>{
+                                        return (
+                                            <>
+                                            {seat} &nbsp;
+                                            </>
+                                        )
+                                    })}
             </InfoStyle>
             <InfoStyle>
                 Room number: {room}

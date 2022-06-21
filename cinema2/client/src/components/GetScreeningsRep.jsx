@@ -80,7 +80,7 @@ function GetScreeningsRep(props) {
                         </TextStyle>
                         <ButtonStyle to={`/movie/${screen.screeningMovie.movieName}/ticket`} 
                                 state = {{temp: [screen.screeningMovie._id, screen._id,
-                                    screen.screeningRoom, screen.PriceNormal, screen.PriceReduced,
+                                    screen.screeningRoom, screen.screeningPriceNormal, screen.screeningPriceReduced,
                                     formatTime(screen.screeningDate), formatTime(screen.screeningDate)]}} >
                                     Buy Ticket
                         </ButtonStyle>
