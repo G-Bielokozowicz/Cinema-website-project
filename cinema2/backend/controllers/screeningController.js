@@ -29,7 +29,7 @@ const addScreening = asyncHandler(async(req,res)=>{
 
     // Check if user is admin
     if(req.user.userType!=='admin'){
-        res.status(400)
+        res.status(400).json('Permission denied')
         throw new Error('Permission denied')
     }
 
@@ -95,7 +95,7 @@ const deleteScreening = asyncHandler(async(req,res)=>{
 
     // Check if user is admin
     if(req.user.userType!=='admin'){
-        res.status(400)
+        res.status(400).json("Permission denied")
         throw new Error('Permission denied')
     }
 
