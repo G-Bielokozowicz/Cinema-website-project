@@ -43,6 +43,7 @@ const registerUser = asyncHandler(async(req, res)=>{
         _id: newUser.id,
         email: userEmail,
         name: userName,
+        type: userType,
         token: generateToken(newUser._id)
     }))
     .catch(err => res.status(400).json('Error: ' + err));
@@ -58,6 +59,7 @@ const loginUser = asyncHandler(async(req,res)=>{
         res.json({
             _id: user._id,
             email: user.userEmail,  
+            type: user.userType,
             token: generateToken(user._id)       
         })
     }

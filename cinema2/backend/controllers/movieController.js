@@ -32,7 +32,7 @@ const getMovieById = asyncHandler(async(req,res)=>{
 const addMovie = asyncHandler(async(req,res)=>{
 
     if(req.user.userType!=='admin'){
-        res.status(400)
+        res.status(400).json('Permission denied')
         throw new Error('Permission denied')
     }
     const movieName = req.body.movieName
