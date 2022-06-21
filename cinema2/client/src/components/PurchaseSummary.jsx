@@ -66,7 +66,13 @@ function PurchaseSummary() {
                 You are buying {ticketType} ticket for {name} at {time}
             </InfoStyle>
             <InfoStyle>
-                Your seat number: {ticketSeats}
+                Your seat number: {ticketSeats.map((seat)=>{
+                                        return (
+                                            <>
+                                            {seat} &nbsp;
+                                            </>
+                                        )
+                                    })}
             </InfoStyle>
             <InfoStyle>
                 Room number: {room}
@@ -79,7 +85,7 @@ function PurchaseSummary() {
                 <QRCodee qr={qrCode}></QRCodee> 
             </QRStyle>
             <ButtonRow>
-                <Button to = {'account'} >
+                <Button to = {'/account'} >
                     My tickets
                 </Button>
             </ButtonRow>

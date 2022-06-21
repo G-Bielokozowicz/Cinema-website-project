@@ -174,7 +174,7 @@ function Ticket(props) {
                 </ButtonFirst>
                 }
                 {isLoading && <Spinner></Spinner>}
-                {added && < Button to = {'summary'} type = 'button' state = {{ temp: [selectedTicketType, ticketSeats, serverTicket.qrCode, room, time, date, name]}}>
+                {added && < Button to = {'summary'} type = 'button' state = {{ temp: [selectedTicketType, chosenSeats, serverTicket.qrCode, room, time, date, name]}}>
                     Summary
                 </Button>
                 }
