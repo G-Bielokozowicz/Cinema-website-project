@@ -136,7 +136,7 @@ function Ticket(props) {
     return (
         <Wrapper>
             <form onSubmit={onSubmit}>
-            You are buying ticket for {name} at {time}
+            You are buying ticket for {name} at {time} at {date}
             <br></br>
             {serverTicket.ticketQRCode}
             <Screen>
@@ -146,6 +146,7 @@ function Ticket(props) {
                 {seats}
             </CinemaHall>
             <RadioStyle >
+            <br></br>
                 <div>
                     <input
                         type = "radio"
@@ -168,7 +169,7 @@ function Ticket(props) {
                     {ticketPriceReduced} zł
                 </div>
             </RadioStyle>
-            Chosen {selectedTicketType} ticket
+            <br></br>
                 {!added && < ButtonFirst type = 'submit'>
                     Buy
                 </ButtonFirst>

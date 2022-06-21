@@ -1,5 +1,5 @@
 import React from 'react'
-import MovieCardList from './MovieCardList'
+import PlayingTodayList from './PlayingTodayList'
 import styled from 'styled-components'
 
 function PlayingToday() {
@@ -7,7 +7,7 @@ function PlayingToday() {
     <div>
         <Wrapper>
             <Text>Dzisiaj gramy</Text>
-            <MovieCardList number={3}/>
+            <PlayingTodayList />
         </Wrapper>
         
     </div>
