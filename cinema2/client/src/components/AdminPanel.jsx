@@ -73,8 +73,13 @@ function AdminPanel() {
 
   return (
     <AddSreeningStyle>
-        Add the screening values &nbsp;
-        <MovieList>
+        <Headerstyle>
+            Add the screening values &nbsp;
+        </Headerstyle>
+        <TextStyle>
+            Choose movie name
+        </TextStyle>
+        <MovieStyle>
             <select onChange={(e) => setMovieName(e.target.value)}>
                 {movies.map((movie)=>{
                     return (
@@ -84,8 +89,10 @@ function AdminPanel() {
                     )
                 })}
             </select>
-        </MovieList>
-
+        </MovieStyle>
+        <TextStyle>
+            Room number
+        </TextStyle>
         <InputStyle
             type='number'
             name='room'
@@ -98,6 +105,9 @@ function AdminPanel() {
             onChange={(e) => setRoom(e.target.value)}
             >
         </InputStyle> 
+        <TextStyle>
+            Screening date
+        </TextStyle>
         <InputStyle
             type='date'
             name='date'
@@ -109,6 +119,9 @@ function AdminPanel() {
             onChange={(e) => setDate(e.target.value)}
             >
         </InputStyle> 
+        <TextStyle>
+            Screening time
+        </TextStyle>
         <InputStyle
             type='time'
             name='time'
@@ -120,7 +133,10 @@ function AdminPanel() {
             //height="30"
             onChange={(e) => setTime(e.target.value)}
             >
-        </InputStyle> 
+        </InputStyle>
+        <TextStyle>
+            Normal ticket price
+        </TextStyle> 
         <InputStyle
             type='number'
             name='priceNormal'
@@ -133,6 +149,9 @@ function AdminPanel() {
             onChange={(e) => setPriceNormal(e.target.value)}
             >
         </InputStyle> 
+        <TextStyle>
+            Reduced ticket price
+        </TextStyle> 
         <InputStyle
             type='number'
             name='priceReduced'
@@ -161,85 +180,82 @@ function AdminPanel() {
   )
 }
 
-const AddSreeningStyle = styled.section`
+const TextStyle = styled.section`
     display: grid;
-    justify-content: center;
-    margin-top: 2%;
+    font-size: 15px;
+    font-weight: initial;
+  //  outline: yellow solid;
+    margin-left: 30%;
+    width: 40%;
+    margin-top: 3%;
+    margin-bottom: 1%;
+    color: #454343;
+`
+
+const Headerstyle = styled.section`
+    text-align: center; 
+    margin-top: 4%;
     font-weight: bold;
     font-size: 20px;
 `
 
+const MovieStyle = styled.section`
+    display: grid;
+    font-size: 15px;
+   // outline: blue solid;
+    margin-left: 30%;
+    size: 10px;
+    width: 40%;
+    height: 30px;
+
+`
+
+const AddSreeningStyle = styled.section`
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  //  width: 50%;
+  //  outline: green solid;
+`
+
 const InputStyle = styled.input`
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30%;
+    height: 30px;
+
     color-scheme: grey;
-    margin-top: 2%;
-    width: 100%;
-    height: 100%;
-`
-
-const DropdownStyle = styled.div`
-    position: relative;
-    display: inline-block;
-    &:hover{
-        display: block;
-    }
-`
-
-const ButtonStyle = styled.button`
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
+    background-color: #3b3a3a;
     border: none;
-`
-
-const DropdownContent = styled.div`
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-`
-
-const DropdownContentA = styled.div`
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+    color: white;
+    width: 40%;
+    /* height: 100%; */
+    
+  //  outline: red solid;
 `
 
 const Button = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #d34d18;
-   // position: right;
+    margin-left: 38%;
     color: #000;
     height: 50px;
     width: 150px; //szerokosc przycisku
     font-size: 20px;
     border-radius: 20px; //okragle rogi
-    cursor: pointer;
     border: none;
-    margin-top: 7%;
-    outline: white solid;
-    transition: color 0.4s;
+    margin-top: 5%;
+   // outline: white solid;
+   // transition: color 0.4s;
     text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+
+   
     &:hover {
     color: #ffffff;
     }
 `
-
-const MovieList = styled.ul`
-  display:flex;
-  flex-direction: column;
-  margin:auto;
-  width:70%;
-`
-
-const ListItem = styled.li`
-  display:inline-block;
-  margin-top:15px;
-`
-
 export default AdminPanel
