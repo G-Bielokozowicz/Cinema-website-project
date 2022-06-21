@@ -255,7 +255,7 @@ const Screen=styled.div`
     min-width: 1100px;
     height: 30px;
     font-weight: 5rem;
-    background-color: #eeeded;
+    background-color: #787878;
     color: black;
     justify-content: center;
     font-size: 1.05rem;
@@ -282,7 +282,8 @@ const Square=styled.button`
     min-height: 50px;
     min-width: 50px;
     border: none;
-    background-color: #eeeded;
+    /* background-color: #787878; */
+    background-color: #466e4a;
     outline: double 1px;
     flex-basis: 2%;
     cursor: pointer;
@@ -307,8 +308,10 @@ const TakenSeatStyle=styled.div`
     min-height: 50px;
     min-width: 50px;
     border: none;
-    background-color: #ff0000;
-    outline: double 1px;
+    /* background-color: #983b3b; */
+    /* background-color: #4e2828; */
+    background-color: #754c4c;
+    /* outline: double 1px; */
     flex-basis: 2%;
     transition: all 0.3s;
 `
@@ -322,7 +325,10 @@ const ChosenSeatStyle=styled.button`
     min-height: 50px;
     min-width: 50px;
     border: none;
-    background-color: #d6af24;
+    /* background-color: #24d6c1; */
+    /* background-color: #246bd6; */
+    /* background-color: #d6af24; */
+    background-color: #ffdc5f;
     outline: double 1px;
     flex-basis: 2%;
     transition: all 0.3s;

@@ -25,9 +25,6 @@ function RepertuarCom() {
             </DatePickerStyle>
         )
     }
-
-   // console.log("Date za funkcją" + date)
-
     
     useEffect(()=>{
         //console.log(date)
@@ -80,15 +77,15 @@ function RepertuarCom() {
 }
 
 const DatePickerStyle = styled.div`
-margin-top: 2%;
+    margin-top: 2%;
 `
 const WindowStyle = styled.input`
-background-color: #777777;
-font-size: large;
-border-radius: 5px;
-border: none; 
+    background-color: #777777;
+    font-size: large;
+    border-radius: 5px;
+    border: none; 
+    height: 30px;
 `
-
 
 const RepertuarStyle = styled.div`
     display: flex;
@@ -108,8 +105,6 @@ const HeaderStyle = styled.div`
 
 const Image = styled.div`
     display: grid;
-    /* align-items: center; */
-    /* justify-content: center;  */
   //  outline: #2e1fcc solid;
 `
 

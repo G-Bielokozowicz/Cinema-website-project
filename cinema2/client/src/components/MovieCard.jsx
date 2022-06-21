@@ -92,7 +92,7 @@ const MyLink=styled(Link)`
     align-items: center;
     background-color: #000000;
     color: #6a6a6a;
-    height: 40px;
+    height: 0px;
    // width: 190px;
     font-size: 20px;
     border-radius: 20px;

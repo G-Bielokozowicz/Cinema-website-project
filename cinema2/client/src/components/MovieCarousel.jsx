@@ -33,7 +33,7 @@ function MovieCarousel() {
                 arrows: false,
                 pagination: false,
                 autoplay: true,
-                interval: 5000,
+                interval: 3000,
                 fixedWidth: 200,
                 fixedHeight: 300,
                 perMove: 1,

@@ -6,7 +6,7 @@ function PlayingToday() {
   return (
     <div>
         <Wrapper>
-            <Text>Dzisiaj gramy</Text>
+            <Text>We play today</Text>
             <PlayingTodayList />
         </Wrapper>
         
