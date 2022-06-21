@@ -130,7 +130,9 @@ function Comments(props) {
                     {comments.map((comment)=>{
                     return (
                         <CommentsStyle>
-                            {comment.commentUser.userName}
+                            <UserStyle>
+                                {comment.commentUser.userName}
+                            </UserStyle>
                             <div key={comment._id}>
                                 <div com={comment.commentBody}/>
                                 {comment.commentBody}
@@ -144,12 +146,23 @@ function Comments(props) {
     )
 }
 
+const UserStyle = styled.section`
+    color: grey;
+    margin-right: 10%;
+`
+
 const CommentWindow = styled.input`
     height: 100px;
     background-color: gray;
     border-radius: 10px;
     margin-bottom: 3%;
-    outline-style: grey solid;
+ //   outline-style: #652020 solid;
+    color: #000;
+    font-size: 16px;
+    border-radius: 5px;
+   // margin: auto;
+    cursor: pointer;
+    border: none;
 `
 
 const ButtonStyle=styled.button`
@@ -157,6 +170,7 @@ const ButtonStyle=styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10%;
 
     background-color: #d34d18;
     color: #000;
