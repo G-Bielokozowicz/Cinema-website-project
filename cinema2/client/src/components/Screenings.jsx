@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 function Screenings(props) {
 
@@ -22,10 +23,20 @@ function Screenings(props) {
         var optionsHour = {year: 'numeric', month: 'long', day: 'numeric'}
         return new Date(date).toLocaleDateString([], optionsHour)
     }
-
-
     const time = formatTime(dataBD)
     const date = formatDate(dataBD)
+
+    //sprawdzenie czy uzytkownik jest zalogowany
+    const {user} = useSelector((state) => state.auth)
+    let userType='user'
+    if (user){
+        let userToken = JSON.parse(localStorage.getItem('user')) 
+        if (userToken){
+        userType = userToken.type
+        //  console.log("userEmail: " + userType)
+        }
+    
+    }
 
     return (
         <Wrapper>
@@ -59,9 +70,15 @@ function Screenings(props) {
            
             <SetStyle>
             <ButtonRow>
-                <Button to={'ticket'} state = {{temp: [props.movieId, screeningID, room, ticketPriceNormal, ticketPriceReduced, time, date]}}>
-                    Buy ticket
-                </Button>
+                {user ? (<>
+                    <Button to={'ticket'} state = {{temp: [props.movieId, screeningID, room, ticketPriceNormal, ticketPriceReduced, time, date]}}>
+                        Buy ticket
+                    </Button>
+                </>) : (<>
+                    <Button to={'/login'} >
+                        Buy ticket
+                    </Button>
+                </>)}
             </ButtonRow>
             </SetStyle>
             </Info>
