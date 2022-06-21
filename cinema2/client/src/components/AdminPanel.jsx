@@ -152,7 +152,7 @@ function AdminPanel() {
             </Button>
         </form>
         {
-            added ? (<>Dodano seans</>) : (<></>)
+            added ? (<>Screening added</>) : (<></>)
         }
         {
             errored ? (<>{errMessage}</>):(<></>)

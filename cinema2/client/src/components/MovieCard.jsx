@@ -1,11 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 function MovieCard(props) {
 
     const movieId = props.id
     //console.log(movieId)
+
+    const {user} = useSelector((state) => state.auth)
+    let userType='user'
+    if (user){
+      let userToken = JSON.parse(localStorage.getItem('user')) 
+      if (userToken){
+        userType = userToken.type
+        console.log("userEmail: " + userType)
+      }    
+    }
 
     return (
         <Card>
@@ -17,9 +28,15 @@ function MovieCard(props) {
                 <Description>
                     {props.description}
                 </Description>
+                    {user ? (<>
                     <MyLink to={`/movie/${props.name}/comments`} state= {{ temp: [props.id, props.name, props.image]}} >
                         Leave comments
-                    </MyLink>               
+                    </MyLink>  
+                    </>):(<>
+                    <MyLink to={`/login`}>
+                        Leave comments
+                    </MyLink>
+                    </>)}             
             </Info>
         </Card>
     )
