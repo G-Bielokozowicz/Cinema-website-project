@@ -11,7 +11,7 @@ function GetScreeningsRep(props) {
     let selectedDate = props.selectedDate
     let screeningDate = props.screeningDate
 
-    console.log("screeningDate w Get: " + screeningDate)
+   // console.log("screeningDate w Get: " + screeningDate)
 
     //pobieranie senasów z bazy
     const [screenings, setScreenings] = useState([])
@@ -20,6 +20,7 @@ function GetScreeningsRep(props) {
         axios.get('http://localhost:5000/screenings/date/' + selectedDate +"/"+movieId)
         .then((response) => {
           setScreenings(response.data)
+          //console.log(response.data)
         })
         .catch((error)=>{
           console.log(error);
@@ -28,7 +29,7 @@ function GetScreeningsRep(props) {
    
     useEffect(()=>{
         getScreenings()
-    },[selectedDate])
+    },[selectedDate,movieId])
 
     
     const formatTime = (time) => {
@@ -55,13 +56,12 @@ function GetScreeningsRep(props) {
         <div>
             {screenings.map((screen) => {
                 return (
-                    
-                    <div key={screen._id}>
+                        <div key={screen._id}>
                         <InfoStyle>
                         <TextStyle>
                             <NameStyle to={`/movie/${screen.screeningMovie.movieName}`}
                                         state = {{temp: [screen.screeningMovie._id, screen.screeningMovie.movieDescription,
-                                            screen.screeningMovie.movieDirector, screen.screeningMovie.moviePosterURL]}}>
+                                            screen.screeningMovie.movieDirector, screen.screeningMovie.moviePosterURL,screen.screeningMovie.movieLength,screen.screeningMovie.movieReleaseYear]}}>
                                 {screen.screeningMovie.movieName}
                             </NameStyle>
                             <div>

@@ -22,7 +22,7 @@ function UserAccount() {
         axios.get('http://localhost:5000/tickets/', config)
         .then((response) => {
         setTickets(response.data)
-        console.log(tickets.size)
+       // console.log(tickets.size)
         })
         .catch((error)=>{
         console.log(error);
@@ -62,7 +62,7 @@ function UserAccount() {
         <HeaderStyle>
             Hi {user}! It's your tickets:
         </HeaderStyle>
-        {tickets.map((ticket) => {
+        {[... tickets].reverse().map((ticket) => {
                 return(
                     <OneTicket>
                         <div key = {ticket._id}>
@@ -86,7 +86,14 @@ function UserAccount() {
                                 </InfoStyle>
                                 <ImportantStyle>
                                     seats: &nbsp;
-                                    {ticket.ticketSeats}
+                                    {ticket.ticketSeats.map((seat)=>{
+                                        return (
+                                            <>
+                                            {seat} &nbsp;
+                                            </>
+                                        )
+                                    })}
+                                    {/* {ticket.ticketSeats} */}
                                 </ImportantStyle>
                             </TextStyle>
                             <QRCodee qr={ticket.ticketQRCode} ></QRCodee> 

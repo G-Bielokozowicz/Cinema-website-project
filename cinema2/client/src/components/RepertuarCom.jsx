@@ -12,7 +12,7 @@ function RepertuarCom() {
     //date picker
     const [date, setDate ] = useState('2022-06-22');
     const DatePicker = () => {
-        console.log("Date " + date)
+       // console.log("Date " + date)
         return(
             <DatePickerStyle>
                 <div className='main'>
@@ -24,18 +24,13 @@ function RepertuarCom() {
             </DatePickerStyle>
         )
     }
-    const DatePickerStyle = styled.div`
-        margin-top: 2%;
-    `
-    const WindowStyle = styled.div`
-        /* background-color: green; */
-    `
+  
 
    // console.log("Date za funkcją" + date)
 
     
     useEffect(()=>{
-        console.log(date)
+        //console.log(date)
     },[date])
 
 
@@ -46,7 +41,6 @@ function RepertuarCom() {
         axios.get('http://localhost:5000/movies/date/' + date)
         .then((response) => {
         setMovies(response.data)
-        console.log(response.data)
         })
         .catch((error)=>{
         console.log(error);
@@ -62,7 +56,7 @@ function RepertuarCom() {
     
         <div>
             <HeaderStyle>
-                Movie played in the {date}
+                Movies played on the: {date}
             </HeaderStyle>
             <DateStyle>
                 <DatePicker></DatePicker>   
@@ -84,6 +78,13 @@ function RepertuarCom() {
         </div>
   )
 }
+
+const DatePickerStyle = styled.div`
+margin-top: 2%;
+`
+const WindowStyle = styled.div`
+/* background-color: green; */
+`
 
 const RepertuarStyle = styled.div`
     display: flex;
