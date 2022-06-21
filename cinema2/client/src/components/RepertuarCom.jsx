@@ -6,7 +6,6 @@ import GetScreeningsRep from './GetScreeningsRep'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-
 function RepertuarCom() {
 
     //date picker
@@ -17,14 +16,25 @@ function RepertuarCom() {
             <DatePickerStyle>
                 <div className='main'>
                     <h4>Select a date</h4>
-                    <WindowStyle>
-                        <input type = "date" onChange = { e => setDate(e.target.value)} />
+                    <WindowStyle  type = "date" onChange = { e => setDate(e.target.value)} >
                     </WindowStyle>
                 </div>
             </DatePickerStyle>
         )
     }
+<<<<<<< HEAD
+    const DatePickerStyle = styled.div`
+        margin-top: 2%;
+    `
+    const WindowStyle = styled.input`
+        background-color: #777777;
+        font-size: large;
+        border-radius: 5px;
+        border: none; 
+    `
+=======
   
+>>>>>>> 908410bc07ba392b18d60feedf466c557ad43fde
 
    // console.log("Date za funkcją" + date)
 
