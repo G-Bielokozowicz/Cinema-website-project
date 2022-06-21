@@ -11,11 +11,16 @@ function Header() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {user} = useSelector((state) => state.auth)
-
-  const userToken = JSON.parse(localStorage.getItem('user')) 
-  const userEmail = userToken.email
-
-  console.log("userEmail: " + userEmail)
+  let userType='user'
+  if (user){
+    let userToken = JSON.parse(localStorage.getItem('user')) 
+    if (userToken){
+      userType = userToken.type
+    //  console.log("userEmail: " + userType)
+    }
+   
+  }
+  
 
   const onLogout = () => {
     dispatch(logout())
@@ -39,10 +44,11 @@ function Header() {
                   <FaSignOutAlt/> Logout
                 {/* </button> */}
               </LinkStyle>
+              { userType==='admin' ? (
               <LinkStyle to='/admin'>
                 <FaAdjust/> Admin Panel
-              </LinkStyle>
-
+              </LinkStyle>) : (<></>)
+              }
                 {/* {userEmail ? 'admin' (<>
                   <FaTicketAlt/> Admin Account
                 </>)} */}
