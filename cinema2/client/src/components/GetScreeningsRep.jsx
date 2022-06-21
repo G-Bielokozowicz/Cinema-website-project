@@ -4,6 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import RepertuarScreenings from './RepertuarScreenings'
 import { Link } from 'react-router-dom'
+import {useSelector} from 'react-redux'
 
 function GetScreeningsRep(props) {
 
@@ -31,7 +32,7 @@ function GetScreeningsRep(props) {
         getScreenings()
     },[selectedDate,movieId])
 
-    
+    //formatiowanie daty i godziny
     const formatTime = (time) => {
         var optionstime = {hour: 'numeric', minute: 'numeric'}
         return new Date(time).toLocaleTimeString([], optionstime)
@@ -42,6 +43,16 @@ function GetScreeningsRep(props) {
         return new Date(date).toLocaleDateString([], optionsHour)
     }
 
+    //sprawdzenie czy uzytkownik jest alogowany, żeby mógł kupic bilet
+    const {user} = useSelector((state) => state.auth)
+    let userType='user'
+    if (user){
+        let userToken = JSON.parse(localStorage.getItem('user')) 
+        if (userToken){
+            userType = userToken.type
+            console.log("userEmail: " + userType)
+        }    
+    }
 
     // const time = formatTime(dataBD)
     // const date = formatDate(dataBD)
@@ -78,12 +89,18 @@ function GetScreeningsRep(props) {
                                 &nbsp; min
                             </LengthStyle>
                         </TextStyle>
-                        <ButtonStyle to={`/movie/${screen.screeningMovie.movieName}/ticket`} 
-                                state = {{temp: [screen.screeningMovie._id, screen._id,
-                                    screen.screeningRoom, screen.screeningPriceNormal, screen.screeningPriceReduced,
-                                    formatTime(screen.screeningDate), formatTime(screen.screeningDate)]}} >
-                                    Buy Ticket
-                        </ButtonStyle>
+                        {user ? (<>
+                            <ButtonStyle to={`/movie/${screen.screeningMovie.movieName}/ticket`} 
+                                    state = {{temp: [screen.screeningMovie._id, screen._id,
+                                        screen.screeningRoom, screen.screeningPriceNormal, screen.screeningPriceReduced,
+                                        formatTime(screen.screeningDate), formatTime(screen.screeningDate)]}} >
+                                        Buy Ticket
+                            </ButtonStyle>
+                        </>) : (<>
+                            <ButtonStyle to={`/login`} >
+                                Buy Ticket
+                            </ButtonStyle>
+                        </>)}
                         </InfoStyle>
                     </div>
                 )
