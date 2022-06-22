@@ -289,11 +289,11 @@ const Square=styled.button`
     cursor: pointer;
     transition: all 0.3s;
     &:hover{
-        background-color: #D34D18;
+        background-color: green;
         color: white;
     }
     &:focus{
-        background-color: #D34D18;
+        background-color: green;
         color: white;
     }
    
@@ -332,6 +332,16 @@ const ChosenSeatStyle=styled.button`
     outline: double 1px;
     flex-basis: 2%;
     transition: all 0.3s;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover{
+        background-color: yellow;
+        color: black;
+    }
+    &:focus{
+        background-color: yellow;
+        color: black;
+    }
 `
 
 export default Ticket
