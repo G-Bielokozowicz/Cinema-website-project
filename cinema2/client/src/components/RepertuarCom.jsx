@@ -81,9 +81,10 @@ const DatePickerStyle = styled.div`
 `
 const WindowStyle = styled.input`
     background-color: #777777;
+    /* background-color: #d34d18; */
     font-size: large;
     border-radius: 5px;
-    border: none; 
+   // border: none; 
     height: 30px;
 `
 
@@ -91,9 +92,9 @@ const RepertuarStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center; 
-   // outline: green solid;
+ //   outline: green solid;
     margin-bottom: 3%;
-    width: 85%;
+  //  width: 85%;
 `
 const HeaderStyle = styled.div`
     text-align: center;

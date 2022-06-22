@@ -53,57 +53,51 @@ function GetScreeningsRep(props) {
         }    
     }
 
-    // const time = formatTime(dataBD)
-    // const date = formatDate(dataBD)
-
-   
-    // const movieId = location.state.temp[0]
-    // const description=location.state.temp[1]
-    // const director=location.state.temp[2]
-    // const image=location.state.temp[3]
-
     return (
         <div>
+            <InfoStyle>
             {screenings.map((screen) => {
                 return (
                         <div key={screen._id}>
-                        <InfoStyle>
-                        <TextStyle>
-                            <NameStyle to={`/movie/${screen.screeningMovie.movieName}`}
-                                        state = {{temp: [screen.screeningMovie._id, screen.screeningMovie.movieDescription,
-                                            screen.screeningMovie.movieDirector, screen.screeningMovie.moviePosterURL,screen.screeningMovie.movieLength,screen.screeningMovie.movieReleaseYear]}}>
-                                {screen.screeningMovie.movieName}
-                            </NameStyle>
-                            <div>
-                                Date: &nbsp;
-                                {formatDate(screen.screeningDate)}
-                            </div>
-                            <div>
-                                Time: &nbsp;
-                                {formatTime(screen.screeningDate)}
-                            </div>
-                            <LengthStyle>
-                                Movie Length: &nbsp;
-                                {screen.screeningMovie.movieLength}
-                                &nbsp; min
-                            </LengthStyle>
-                        </TextStyle>
-                        {user ? (<>
-                            <ButtonStyle to={`/movie/${screen.screeningMovie.movieName}/ticket`} 
-                                    state = {{temp: [screen.screeningMovie._id, screen._id,
-                                        screen.screeningRoom, screen.screeningPriceNormal, screen.screeningPriceReduced,
-                                        formatTime(screen.screeningDate), formatDate(screen.screeningDate)]}} >
-                                        Buy Ticket
-                            </ButtonStyle>
-                        </>) : (<>
-                            <ButtonStyle to={`/login`} >
-                                Buy Ticket
-                            </ButtonStyle>
-                        </>)}
-                        </InfoStyle>
+                            <ScreeningStyle>
+                            <TextStyle>
+                                <NameStyle to={`/movie/${screen.screeningMovie.movieName}`}
+                                            state = {{temp: [screen.screeningMovie._id, screen.screeningMovie.movieDescription,
+                                                screen.screeningMovie.movieDirector, screen.screeningMovie.moviePosterURL,screen.screeningMovie.movieLength,screen.screeningMovie.movieReleaseYear]}}>
+                                    {screen.screeningMovie.movieName}
+                                </NameStyle>
+                                <div>
+                                    Date: &nbsp;
+                                    {formatDate(screen.screeningDate)}
+                                </div>
+                                <div>
+                                    Time: &nbsp;
+                                    {formatTime(screen.screeningDate)}
+                                </div>
+                                <LengthStyle>
+                                    Movie Length: &nbsp;
+                                    {screen.screeningMovie.movieLength}
+                                    &nbsp; min
+                                </LengthStyle>
+                            </TextStyle>
+                            {user ? (<>
+                                <ButtonStyle to={`/movie/${screen.screeningMovie.movieName}/ticket`} 
+                                        state = {{temp: [screen.screeningMovie._id, screen._id,
+                                            screen.screeningRoom, screen.screeningPriceNormal, screen.screeningPriceReduced,
+                                            formatTime(screen.screeningDate), formatDate(screen.screeningDate)]}} >
+                                            Buy Ticket
+                                </ButtonStyle>
+                            </>) : (<>
+                                <ButtonStyle to={`/login`} >
+                                    Buy Ticket
+                                </ButtonStyle>
+                            </>)}
+                            </ScreeningStyle>
+                        
                     </div>
                 )
             })}  
+            </InfoStyle>
         </div>
     )
 }
@@ -118,26 +112,34 @@ const NameStyle = styled(Link)`
 const LengthStyle = styled.div`
     color: #7f7f7f;
 `
-const TextStyle = styled.div`
-    display: grid;
+const ScreeningStyle = styled.section`
+    display: flex;
     justify-content: center;
     align-items: center;
+  //  outline: purple solid;
+`
+
+const TextStyle = styled.div`
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
     margin-left: 1%;
-    margin-right: 10%;
+   // margin-right: 10%;
     width: 300px;
-   // outline: red solid;
+  //  outline: red solid;
 `
 
 const InfoStyle = styled.div`
-    display: flexbox;
+    display: grid;
     justify-content: space-between;
     align-items: center;
 
-    margin-top: 8%;
+   // margin-top: 8%;
     margin-left: 10%; 
-    width: 150%; 
+    width: 500px; 
+    height: 297px;
     background-color: black;
-   // outline: yellow solid;
+  //  outline: yellow solid;
 `
 
 const ButtonStyle=styled(Link)`
