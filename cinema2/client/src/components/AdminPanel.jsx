@@ -104,7 +104,7 @@ function AdminPanel() {
     <Wrapper>
         <AddSreeningStyle>
             <Headerstyle>
-                Add the screening values &nbsp;
+                Add screening info &nbsp;
             </Headerstyle>
             <TextStyle>
                 Choose movie name
@@ -215,7 +215,7 @@ function AdminPanel() {
     {/* Dodawanie filmów */}
         <AddSreeningStyle>
             <Headerstyle>
-                Add the movies values &nbsp;
+                Add movie info &nbsp;
             </Headerstyle>
 
             <TextStyle>
