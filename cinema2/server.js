@@ -30,7 +30,7 @@ app.use('/tickets',ticketRouter)
 app.use('/comments',commentRoutes)
 app.use('/movies',moviesRouter)
 
-const port = process.env.PORT || 5000;
+const port = process.env.SERVER_PORT || 5000;
 
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`)
