@@ -1,70 +1,134 @@
-# Getting Started with Create React App
+# Endpoints
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## /movies
+Metoda | Endpoint | Description |
+| -------- |--------  | -------------|
+| GET | /        | Get all movies |
+| GET | /name/:movie | Find movies with fuzzy search
+| GET | /id/:movie | Get movie with specific mongoDB _id
+| POST | /add     | Add a movie     | 
+| GET | /date/:date | Get movies that have a screening at given date (/:date is a date in YYYY-MM-DD format)
 
-## Available Scripts
+## movie JSON
+```
+{
+    movieName: String,
+    movieDirector: String,
+    movieLength: Number,
+    movieDescription: String,
+    movieReleaseYear: Number,
+    moviePosterURL: String,
+}
+```
+--------------------------------
 
-In the project directory, you can run:
+## /users
+|Metoda | Endpoint | Description |
+|----------|---------| -----------|
+| POST | /register | Register user |
+| POST | /login | Login user |
+| GET| /me | Get information about currently logged user|
 
-### `npm start`
+## user JSON
+```
+{
+    userEmail: String,
+    userName: String,
+    userPassword: String,
+    userType: String,
+}
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## /screenings
+|Metoda| Endpoint | Description |
+|-------|---------| -----------|
+| GET| / | Get all screenings
+| GET| /movie/:movie | Get screenings for a movie (/:movie is _id of the movie)
+| POST| /add | Add a screening
+| DELETE | /delete | Delete a screening, by screening ID
+| GET | /today | Get today screenings
+| GET | /today/:movie | Get today screenings for a movie (/:movie is _id of the movie)
+| GET | /seats/:screening | Get taken seats for a screening (/:screening is _id of the screening)
+| GET | /date/:date | Get screenings by date (/:date is a date in YYYY-MM-DD)
+| GET | /date/:date/:movie | Get screenigs by date for a movie (/:date is a date in YYYY-MM-DD, /:movie is _id of the movie)
+## screening JSON
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+{
+    screeningMovie: {
+        movieName: String,
+        movieDirector: String,
+        movieLength: Number,
+        movieDescription: String,
+        movieReleaseYear: Number,
+        moviePosterURL: String
+    },
+    screeningRoom: Number,
+    screeningDate: Date,
+    screeningPriceNormal: Number,
+    screeningPriceReduced: Number
+}
+```
 
-### `npm test`
+## /tickets
+|Metoda| Endpoint | Description |
+|-----------|---------|----------------|
+| GET| / | Get tickets of the logged user|
+| POST| /add | Add ticket for the logged user|
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ticket JSON
+```
+{
+    ticksetScreeningID: {
+        screeningMovie: {
+            movieName: String,
+            movieDirector: String,
+            movieLength: Number,
+            movieDescription: String,
+            movieReleaseYear: Number,
+            moviePosterURL: String
+        },
+        screeningRoom: Number,
+        screeningDate: Date,
+    },
+    ticketType: String,
+    ticketSeats: [Number],
+    ticketUser: {
+        userEmail: String,
+        userName: String,
+        userPassword: String,
+        userType: String,
+    }
+    
+}
+```
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## /comments
+| Metoda| Endpoint | Description |
+|---------|---------|----------------|
+| GET |/user | Get comments of the logged user|
+| GET | /movie/:movie | Get comments of the movie (/:movie is movieID)|
+| POST | /add | Add a comment to the movie by the currently logged user|
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## comment JSON
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+{
+    commentUser: {
+        userEmail: String,
+        userName: String,
+        userPassword: String,
+        userType: String,
+    },
+    commentMovie: {
+        movieName: String,
+        movieDirector: String,
+        movieLength: Number,
+        movieDescription: String,
+        movieReleaseYear: Number,
+        moviePosterURL: String
+    },
+    commentBody: String
+}
+```
