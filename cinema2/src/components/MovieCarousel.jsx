@@ -10,7 +10,8 @@ function MovieCarousel() {
 
     const [movies, setMovies] = useState([])
     const getMovies = async () =>{
-      axios.get('http://localhost:5000/movies/')
+      //axios.get('http://localhost:5000/movies/')
+      axios.get('https://swbocinemaapi.onrender.com/movies/')
       .then((response) => {
         setMovies(response.data)
       })

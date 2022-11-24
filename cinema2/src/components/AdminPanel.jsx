@@ -30,7 +30,8 @@ function AdminPanel() {
     const [movies, setMovies] = useState([])
 
     const getMovies = async () =>{
-      axios.get('http://localhost:5000/movies/')
+      //axios.get('http://localhost:5000/movies/')
+      axios.get('https://swbocinemaapi.onrender.com/movies/')
       .then((response) => {
         setMovies(response.data)
         setMovieName(response.data[0]._id)
@@ -61,7 +62,8 @@ function AdminPanel() {
         const data = {screeningMovie:movieName, screeningRoom:room, screeningDate:dateTime, screeningPriceNormal:priceNormal, 
             screeningPriceReduced: priceReduced}
 
-        axios.post('http://localhost:5000/screenings/add', data, config)
+        //axios.post('http://localhost:5000/screenings/add', data, config)
+        axios.post('https://swbocinemaapi.onrender.com/screenings/add', data, config)
         .then(() => {
             console.log("New screening added")
             setAdded(true)
@@ -86,7 +88,8 @@ function AdminPanel() {
                     moviePosterURL: posterURL
                 }
 
-        axios.post('http://localhost:5000/movies/add', data, config)
+        //axios.post('http://localhost:5000/movies/add', data, config)
+        axios.post('https://swbocinemaapi.onrender.com/movies/add', data, config)
         .then(() => {
             console.log("New screening added")
             setAddedMovie(true)

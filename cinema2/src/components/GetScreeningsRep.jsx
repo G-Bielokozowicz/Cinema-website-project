@@ -17,7 +17,8 @@ function GetScreeningsRep(props) {
     const [screenings, setScreenings] = useState([])
 
     const getScreenings = async () =>{
-        axios.get('http://localhost:5000/screenings/date/' + selectedDate +"/"+movieId)
+        //axios.get('http://localhost:5000/screenings/date/' + selectedDate +"/"+movieId)
+        axios.get('https://swbocinemaapi.onrender.com/screenings/date/' + selectedDate +"/"+movieId)
         .then((response) => {
           setScreenings(response.data)
           //console.log(response.data)

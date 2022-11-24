@@ -35,7 +35,8 @@ function RepertuarCom() {
     const [movies, setMovies] = useState([])
 
     const getMovies = async () =>{
-        axios.get('http://localhost:5000/movies/date/' + date)
+        //axios.get('http://localhost:5000/movies/date/' + date)
+        axios.get('https://swbocinemaapi.onrender.com/movies/date/' + date)
         .then((response) => {
         setMovies(response.data)
         })

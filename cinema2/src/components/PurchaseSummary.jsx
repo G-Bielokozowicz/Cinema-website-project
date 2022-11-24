@@ -18,7 +18,8 @@ function PurchaseSummary() {
     const [tickets, setTickets] = useState([])
 
     const getTickets = async () =>{
-        axios.get('http://localhost:5000/tickets/',config)
+        //axios.get('http://localhost:5000/tickets/',config)
+        axios.get('https://swbocinemaapi.onrender.com/tickets/',config)
         .then((response) => {
           setTickets(response.data)
           console.log(tickets.size)

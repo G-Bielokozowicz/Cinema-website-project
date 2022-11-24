@@ -33,7 +33,8 @@ function Ticket(props) {
     const [takenSeats, setTakenSeats] = useState([])
 
     const getSeats = async () =>{
-        axios.get('http://localhost:5000/screenings/seats/' + ticketScreeningID)
+        //axios.get('http://localhost:5000/screenings/seats/' + ticketScreeningID)
+        axios.get('https://swbocinemaapi.onrender.com/screenings/seats/' + ticketScreeningID)
         .then((response) => {
         setTakenSeats(response.data.takenSeats)
         console.log(response.data.takenSeats)
@@ -116,7 +117,8 @@ function Ticket(props) {
         
         const data = {ticketScreeningID, ticketType, ticketSeats:chosenSeats} //nazwy takie jak w bazie
          
-        axios.post('http://localhost:5000/tickets/add', data, config)
+        //axios.post('http://localhost:5000/tickets/add', data, config)
+        axios.post('https://swbocinemaapi.onrender.com/tickets/add', data, config)
         .then((response) => {
         console.log("New ticket added")
         setServerTicket(response.data)

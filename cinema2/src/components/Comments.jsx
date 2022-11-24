@@ -8,8 +8,8 @@ import axios from 'axios'
 
 function Comments(props) {
     
-    const API_URL = 'http://localhost:5000/comments/'
-    
+    //const API_URL = 'http://localhost:5000/comments/'
+    const API_URL = 'https://swbocinemaapi.onrender.com/comments/'
     // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYWM0ZmRlYmViNmZjZjkxYzQzMTc3MCIsImlhdCI6MTY1NTU2Njk0NCwiZXhwIjoxNjU4MTU4OTQ0fQ.eRNssIhWVg3b9dmoZ40V17NWJd_-xO-Ot2jzS8LU8rc"
     // const config = {
     //     headers: { Authorization: `Bearer ${token}` }
@@ -70,7 +70,8 @@ function Comments(props) {
 
         setIsPending(true);
 
-        axios.post('http://localhost:5000/comments/add', data, config)
+        //axios.post('http://localhost:5000/comments/add', data, config)
+        axios.post('https://swbocinemaapi.onrender.com/comments/add', data, config)
         .then(() => {
             console.log("New comment added")
             setIsPending(false);
