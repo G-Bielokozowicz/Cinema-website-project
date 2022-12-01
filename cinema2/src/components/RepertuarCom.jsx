@@ -11,7 +11,7 @@ import {FaArrowCircleLeft} from 'react-icons/fa'
 function RepertuarCom() {
 
     //date picker
-    const [date, setDate ] = useState('2022-06-22');
+    const [date, setDate ] = useState('2022-12-02');
     const DatePicker = () => {
        // console.log("Date " + date)
         return(
