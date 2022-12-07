@@ -1,7 +1,6 @@
 # swbo 
 
-Aby uruchomić projekt, należy w terminalu w folderze głównym:
+Aby uruchomić projekt, należy w terminalu w folderze głównym (cinema2) wykonać:
 
     1. npm install
-    2. nodemon server.js
-    3. npm run start
+    2. npm run start
